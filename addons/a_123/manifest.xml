@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.w7.cc" versionCode="">
+	
+	<application setting='false'>
+		<name><![CDATA[测试123345]]></name>
+
+		<identifie><![CDATA[a_123]]></identifie>
+
+		<version><![CDATA[1.0.0]]></version>
+
+		<ability><![CDATA[xxx]]></ability>
+
+		<type><![CDATA[other]]></type>
+
+		<description><![CDATA[测试]]></description>
+
+		<author><![CDATA[zhongfutongda]]></author>
+
+		<url><![CDATA[xxx]]></url>
+
+		<setting><![CDATA[xxx]]></setting>
+
+	</application>
+
+	
+	<platform>
+		<rule embed="false" />
+
+		<rule embed="false" />
+
+	<supports>
+
+	</supports>
+
+	</platform>
+
+	
+	<bindings>
+
+	</bindings>
+
+	<install><![CDATA[]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

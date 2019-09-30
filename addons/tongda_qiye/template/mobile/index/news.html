@@ -1,0 +1,46 @@
+{php include $this->template('common/header');}
+	<div class="newsbox">
+		<h3>企业动态</h3>
+		<ul class="newslist">
+			{loop $list $key $item}
+			<li>
+				<a class="newwrap" href="{php echo $this->createMobileUrl('index',array('act'=>'article','article_id'=>$item['article_id']));}">
+					<span>{$item['title']}</span>
+					<em>{php echo date('Y-m-d', $item['addtime'])}</em>
+				</a>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+{php include $this->template('common/footer');}
+<script type="text/javascript" >
+    //下拉加载
+    var before_request = 1; // 上一次请求是否已经有返回来, 有才可以进行下一次请求
+    var page = 1;
+    function ajax_sourch_submit(){
+        if(before_request == 0)// 上一次请求没回来 不进行下一次请求
+            return false;
+        before_request = 0;
+        page++;
+        $.ajax({
+            type : "get",
+            url:"{php echo $this->createMobileUrl('index',array('act'=>'news'));}&page="+page,
+            success: function(data)
+            {
+                if(page==1){
+                    $(".newslist").html(data);
+                    before_request = 1;
+                    return false;
+                }
+
+                if(data){
+                    $(".newslist").append(data);
+                    before_request = 1;
+                }
+            }
+        });
+
+    }
+</script>
+<script type="text/javascript" src="../addons/{php echo $this->gpc['m']}/static/mobile/script/load_more.js"></script>
+

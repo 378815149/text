@@ -1,0 +1,150 @@
+{template 'common/header'}
+
+<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->gpc['m']}/static/css/ygcss.css">
+
+
+<div class="main ygmain">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                首页导航logo设置
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品中心logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('products_logo', $info['products_logo'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">关于我们logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('about_logo', $info['about_logo'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">企业动态logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('news_logo', $info['news_logo'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">联系我们logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('contact_logo', $info['contact_logo'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-heading wyheader">
+                产品特性描述
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-1</label>
+                <div class="col-sm-9">
+                    <input type="text" name="point_1" placeholder="健康舒适" maxlength="20"  class="form-control"  value="{$info['point_1']}" />
+                    <span class="help-block">*不填,默认健康舒适</span>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-1</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_1', $info['point_logo_1'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-2</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="point_2"  placeholder="亲肤贴身" maxlength="20"  class="form-control" value="{$info['point_2']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-2</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_2', $info['point_logo_2'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-3</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="point_3"  placeholder="柔软舒爽感" maxlength="20" class="form-control" value="{$info['point_3']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-3</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_3', $info['point_logo_3'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-4</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="point_4" placeholder="超高性价比" maxlength="20" class="form-control" value="{$info['point_4']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-4</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_4', $info['point_logo_4'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-5</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="point_5" placeholder="不缩水不褪色" maxlength="20" class="form-control" value="{$info['point_5']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-5</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_5', $info['point_logo_5'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性-6</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="point_6" placeholder="售后有保障" maxlength="20" class="form-control" value="{$info['point_6']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">特性logo-6</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('point_logo_6', $info['point_logo_6'])}
+                        <span class="help-block">*建议比例 1:1 (240*240) 不填则使用默认logo</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-group">
+
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #444444;margin-left: 550px;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+
+        </div>
+
+    </form>
+
+</div>
+
+{template 'common/footer'}

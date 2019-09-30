@@ -1,0 +1,43 @@
+{php include $this->template('common/header');}
+<div class="procenter">
+    <h3>产品中心</h3>
+    <div class="waterfall">
+    <ul class="prolists">
+        {php include $this->template('index/goods_item');}
+    </ul>
+    </div>
+</div>
+{php include $this->template('common/footer');}
+<script type="text/javascript" >
+    //下拉加载
+    var before_request = 1; // 上一次请求是否已经有返回来, 有才可以进行下一次请求
+    var page = 1;
+    function ajax_sourch_submit(){
+        if(before_request == 0)// 上一次请求没回来 不进行下一次请求
+            return false;
+        before_request = 0;
+        page++;
+        $.ajax({
+            type : "get",
+            url:"{php echo $this->createMobileUrl('index',array('act'=>'goods'));}&page="+page,
+            success: function(data)
+            {
+                console.log(data);
+                if(page==1){
+                    $(".prolists").html(data);
+                    before_request = 1;
+                    return false;
+                }
+
+                if(data){
+                    $(".prolists").append(data);
+                    before_request = 1;
+                }
+            }
+        });
+
+    }
+</script>
+
+<script type="text/javascript" src="../addons/{php echo $this->gpc['m']}/static/mobile/script/load_more.js"></script>
+

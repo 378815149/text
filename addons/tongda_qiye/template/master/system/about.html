@@ -1,0 +1,146 @@
+{template 'common/header'}
+
+<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->gpc['m']}/static/css/ygcss.css">
+
+
+<div class="main ygmain">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                关于我们
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="company_name" class="form-control" value="{$info['company_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">关于我们banner</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('about_banner', $info['about_banner'])}
+                        <span class="help-block">*建议640*350 不填则使用默认banner</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">联系我们banner</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('contact_banner', $info['contact_banner'])}
+                        <span class="help-block">*建议640*350 不填则使用默认banner</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">联系电话logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('contact_tel_logo', $info['contact_tel_logo'])}
+                        <span class="help-block">*建议1:1 (130*130) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">联系电话</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="contact_tel" class="form-control" value="{$info['contact_tel']}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司邮箱logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('company_email_logo', $info['company_email_logo'])}
+                        <span class="help-block">*建议1:1 (130*130) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司邮箱</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="company_email" class="form-control" value="{$info['company_email']}" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司传真logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('company_fax_logo', $info['company_fax_logo'])}
+                        <span class="help-block">*建议1:1 (130*130) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司传真</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="company_fax" class="form-control" value="{$info['company_fax']}" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司地址logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('company_address_logo', $info['company_address_logo'])}
+                        <span class="help-block">*建议1:1 (130*130) 不填则使用默认logo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司地址</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="company_address" class="form-control" value="{$info['company_address']}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司地址坐标</label>
+                    <div class="col-sm-9">
+                        经度：
+                        <input type="text" style="width: 115px;display: inline-block;" name="address_lng" class="form-control" value="{$info['address_lng']}" />
+                        -
+                        纬度：<input type="text" style="width: 115px;display: inline-block;" name="address_lat" class="form-control" value="{$info['address_lat']}" />
+                        <iframe id="mapPage" width="100%" height="600px" frameborder=0
+                                src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=YGSBZ-PCNLU-MMXVV-4BOBK-QXRU3-H3BO4&referer=myapp">
+                        </iframe>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司简介</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_ueditor('company_profile',$info['company_profile']);}
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="form-group">
+
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #444444;margin-left: 550px;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+
+        </div>
+
+    </form>
+
+</div>
+
+{template 'common/footer'}
+
+<script>
+    window.addEventListener('message', function(event) {
+        // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+        var loc = event.data;
+        if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+            $('input[name="address_lat"]').val(loc.latlng.lat);
+            $('input[name="address_lng"]').val(loc.latlng.lng);
+
+            console.log('location', loc);
+        }
+    }, false);
+</script>

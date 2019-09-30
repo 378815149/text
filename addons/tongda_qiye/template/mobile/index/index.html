@@ -1,0 +1,94 @@
+{php include $this->template('common/header');}
+		<div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {loop $adlist $key $item}
+                    <div class="swiper-slide"><a href="{$item['path']}"><img src="{php echo tomedia($item['image']);}"></a></div>
+                    {/loop}
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+        </div>
+        <!-- banner图结束 -->
+       <!--  <ul class="navlist">
+        	<li><a href="{php echo $this->createMobileUrl('index',array('act'=>'goods'));}"><img src="{if empty($info['products_logo'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/icon01.png{else} {$info['products_logo']} {/if}"><span>产品中心</span></a></li>
+        	<li><a href="{php echo $this->createMobileUrl('index',array('act'=>'about'));}"><img src="{if empty($info['about_logo'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/icon02.png{else} {$info['products_logo']} {/if}"><span>关于我们</span></a></li>
+        	<li><a href="{php echo $this->createMobileUrl('index',array('act'=>'news'));}"><img src="{if empty($info['news_logo'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/icon03.png{else} {$info['products_logo']} {/if}"><span>企业动态</span></a></li>
+        	<li><a href="{php echo $this->createMobileUrl('index',array('act'=>'contact'));}"><img src="{if empty($info['contact_logo'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/icon04.png{else} {$info['products_logo']} {/if}"><span>联系我们</span></a></li>
+        </ul> -->
+        <div class="prospecl">
+            <h2>产品特性</h2>
+            <div class="short-line"><span></span></div>
+            <ul class="protips">
+                <li>
+                    <img src="{if empty($info['point_logo_1'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic01.png{else} {$info['point_logo_1']} {/if}">
+                    <span>{if empty($info['point_1'])} 节约环保 {$info['point_1']} {/if}</span>
+                </li>
+                <li>
+                    <img src="{if empty($info['point_logo_2'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic02.png{else} {$info['point_logo_2']} {/if}">
+                    <span>{if empty($info['point_2'])} 丰富多彩 {else} {$info['point_2']} {/if}</span>
+                </li>
+                <li>
+                    <img src="{if empty($info['point_logo_3'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic03.png{else} {$info['point_logo_3']} {/if}">
+                    <span>{if empty($info['point_3'])} 品种多样化 {else} {$info['point_3']} {/if}</span>
+                </li>
+                <li>
+                    <img src="{if empty($info['point_logo_4'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic04.png{else} {$info['point_logo_4']} {/if}">
+                    <span>{if empty($info['point_4'])} 超高性价比 {else} {$info['point_4']} {/if}</span>
+                </li>
+                <li>
+                    <img src="{if empty($info['point_logo_5'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic05.png{else} {$info['point_logo_5']} {/if}">
+                    <span>{if empty($info['point_5'])} 可爱小巧生动 {else} {$info['point_5']} {/if}</span>
+                </li>
+                <li>
+                    <img src="{if empty($info['point_logo_6'])}../addons/{php echo $this->gpc['m']}/static/mobile/images/ic06.png{else} {$info['point_logo_6']} {/if}">
+                    <span>{if empty($info['point_6'])} 售后有保障 {else} {$info['point_6']} {/if}</span>
+                </li>
+            </ul>
+        </div>
+        <!-- 产品特性结束 -->
+        <div class="prospecl">
+            <h2>推荐产品</h2>
+            <div class="short-line"><span></span></div>
+            {loop $goodslist $key  $item}
+            <dl>
+                <dt><a href="{php echo $this->createMobileUrl('index',array('act'=>'info','goods_id'=>$item['goods_id']));}"><img src="{php echo tomedia($item['image']);}"></a></dt>
+                <dd><a href="{php echo $this->createMobileUrl('index',array('act'=>'info','goods_id'=>$item['goods_id']));}">{$item['title']}</a></dd>
+            </dl>
+            {/loop}
+
+        <div class="center"><a class="viewmore" href="{php echo $this->createMobileUrl('index',array('act'=>'goods'));}"><span class="butText">更多 &gt;</span></a></div>
+	   </div>
+        <div class="prospecl">
+            <h2>企业动态</h2>
+            <div class="short-line"><span></span></div>
+            <ul class="news_view">
+                {loop $newslist $key  $item}
+                <li>
+                    <a href="{php echo $this->createMobileUrl('index',array('act'=>'article','article_id'=>$item['article_id']));}">
+                        <div class="pic"><img src="{php echo tomedia($item['image']);}"></div>
+                        <div class="proAttr">
+                            <h3>{$item['title']}</h3>
+                            <p class="proIntro textfont">{$item['desc']}</p>
+                        </div>
+                    </a>
+                </li>
+                {/loop}
+
+            </ul>
+            <div class="center"><a class="viewmore" href="{php echo $this->createMobileUrl('index',array('act'=>'news'));}"><span class="butText">更多 &gt;</span></a></div>
+        </div>
+        {if $config['copyright']}
+        <div class="bottom">
+            <p>
+                {$config['copyright']}
+            </p>
+        </div>
+        {/if}
+       {php include $this->template('common/footer');}
+ <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay : 5000
+    });
+</script>   

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.w7.cc" versionCode="">
+	
+	<application setting='false'>
+		<name><![CDATA[企业介绍]]></name>
+
+		<identifie><![CDATA[tongda_qiye]]></identifie>
+
+		<version><![CDATA[1.0.0]]></version>
+
+		<ability><![CDATA[]]></ability>
+
+		<type><![CDATA[]]></type>
+
+		<description><![CDATA[公司业务的简介和动态内容发布]]></description>
+
+		<author><![CDATA[zhongfutongda]]></author>
+
+		<url><![CDATA[]]></url>
+
+		<setting><![CDATA[]]></setting>
+
+	</application>
+
+	
+	<platform>
+		<rule embed="false" />
+
+		<rule embed="false" />
+
+	<supports>
+
+			<item type="qiyeapp" />
+	</supports>
+
+	</platform>
+
+	
+	<bindings>
+
+	</bindings>
+
+	<install><![CDATA[]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

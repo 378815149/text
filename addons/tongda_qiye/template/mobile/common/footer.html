@@ -1,0 +1,75 @@
+
+<!--<div class="fixedNavBut" id="fixed_nav_but" style="display:block;">-->
+    <!--<div class="navMoreBut_1">-->
+      <!--<i class="i-1"></i>-->
+      <!--<i class="i-2"></i>-->
+      <!--<i class="i-3"></i>-->
+      <!--<b class="b-1"></b>-->
+      <!--<b class="b-2"></b>-->
+      <!--<b class="b-3"></b>-->
+<br>
+<br>
+<br>
+<br>
+<div class="nav">
+	<ul>
+		{if $menu=='index'}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'index'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/index_css.png" height="20"></span><span style="color:#d81e06">首页</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'index'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/index.png" height="20"></span><span>首页</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='goods'}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'goods'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/chanping_css.png" height="20"></span><span style="color:#d81e06">产品</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'goods'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/chanping.png" height="20"></span><span>产品</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='news'}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'news'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/dongtai_css.png" height="20"></span><span style="color:#d81e06">动态</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'news'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/dongtai.png" height="20"></span><span>动态</span></a>
+		</li>
+		{/if}
+
+
+		{if $menu=='about'}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'about'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/about_css.png" height="20"></span><span style="color:#d81e06">关于</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'about'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/about.png" height="20"></span><span>关于</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='contact'}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'contact'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/contact_css.png" height="20"></span><span style="color:#d81e06">联系</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createMobileUrl('index',array('act'=>'contact'));}"><span><img src="../addons/{php echo $this->gpc['m']}/static/mobile/images/contact.png" height="20"></span><span>联系</span></a>
+		</li>
+		{/if}
+
+	</ul>
+</div>
+<div style="display: none">
+	{php echo $config['statsCode']};
+</div>
+
+
+</body>
+</html>
