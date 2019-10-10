@@ -1,0 +1,90 @@
+
+{template "admin/header"}
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>控制面板</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title" style="display:none;">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Forms</a></li>
+                                    <li class="active">Basic</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+<div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">留言详情</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">{$setting['name']}</h3>
+                                        </div>
+                                        <hr>
+                                        <form action="#" method="post" novalidate="novalidate">
+                                            <div class="form-group text-center">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="text-muted fa fa-cc-visa fa-2x"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-cc-mastercard fa-2x"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-cc-amex fa-2x"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-cc-discover fa-2x"></i></li>
+                                                </ul>
+                                            </div>
+											<div class="col-md-12">
+                        <aside class="profile-nav alt">
+                            <section class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-phone"></i> <strong class="card-title">&nbsp;&nbsp;电话：</strong>{$setting['phone']}</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-envelope-o"></i> <strong class="card-title">&nbsp;&nbsp;邮箱：</strong>{$setting['email']}</a>
+                                    </li>
+									<li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-location-arrow"></i> <strong class="card-title">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;P：</strong>{$setting['ip']}</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-calendar"></i> <strong class="card-title">&nbsp;&nbsp;时间：</strong>{php echo date('Y-m-d H:i:s',$setting['addtime'])}</a>
+                                    </li>
+									<li class="list-group-item">
+                                        <a href="#"> <i class="fa fa-comments-o"></i> <strong class="card-title">&nbsp;&nbsp;内容：</strong>{$setting['content']}</a>
+                                    </li>
+                                </ul>
+
+                            </section>
+                        </aside>
+                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- .card -->
+
+                    </div>
+                  
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+	{template "admin/footer"}

@@ -1,0 +1,101 @@
+{template "admin/header"}
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>控制面板</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title" style="display:none;">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Forms</a></li>
+                                    <li class="active">Basic</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+               
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>站点信息</strong> 
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="col-lg-10">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">站点名称</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="webname" value="{$setting['webname']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">站点logo</label></div>
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('logo', $setting['logo'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">公司名称</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="name" value="{$setting['name']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">公司电话</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="phone" value="{$setting['phone']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">联系时间</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="timer" value="{$setting['timer']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">客服邮箱</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="email" value="{$setting['email']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">底部二维码</label></div>
+                                        <div class="col-12 col-md-9">
+                                        {php echo tpl_form_field_image('code', $setting['code'], '', array('global' => true));}
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">备案号</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="beian" value="{$setting['beian']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">底部版权</label></div>
+                                        <div class="col-12 col-md-6"><input type="text" name="footer" value="{$setting['footer']}" class="form-control"></div>
+                                    </div>
+									<div class="row form-group">
+								<div class="col-6">
+									<input type="submit" name="submit" value="提交" class="btn btn-success btn-sm">
+									<input type="hidden" name="token" value="{$_W['token']}">
+								</div>
+								</div>	
+								</div>
+
+                                </form>
+                            </div>
+                            <div class="card-footer">
+
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+			
+        </div><!-- .animated -->
+    </div><!-- .content -->
+	{template "admin/footer"}

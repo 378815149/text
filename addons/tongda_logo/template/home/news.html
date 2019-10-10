@@ -1,0 +1,59 @@
+{template 'home/header'}
+
+<!-- banner部分 -->
+{if !empty($banner)}
+  <div class="banner" style="background: url({php echo tomedia($banner['image'])}) no-repeat center top;background-size: cover">
+    <div class="title">
+      <p>{$banner['title']}</p>
+      <p class="en">{$banner['desc']}</p>
+    </div>
+  </div>
+ {else}
+  <div class="banner news">
+    <div class="title">
+      <p>实时新闻</p>
+      <p class="en">Real-time News</p>
+    </div>
+  </div>
+  {/if}
+  
+<div class="main-news">
+    <div class="layui-container">
+      <div class="layui-row layui-col-space20">
+        {loop $list $item}
+        <div class="layui-col-lg6 content">
+          <div>
+            <div class="news-img"><a href="{php echo url('account/welcome',array('p'=>'detail','token'=>$item['id']))}"><img src="{php echo tomedia($item['image'])}"></a></div><div class="news-panel">
+              <strong><a href="{php echo url('account/welcome',array('p'=>'detail','token'=>$item['id']))}">{$item['title']}</a></strong>
+              <p class="detail"><span>{$item['desc']}</span><a href="{php echo url('account/welcome',array('p'=>'detail','token'=>$item['id']))}">[详细]</a></p>
+              <p class="read-push">阅读 <span>{$item['number']}</span>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<span>{php echo date('Y-m-d',$item['addtime'])}</span></p>
+            </div>
+          </div>
+        </div>
+      {/loop}
+      </div>
+        <div id="newsPages"></div>
+    </div>
+  </div>
+{template 'home/footer'}
+
+<script type="text/javascript">
+layui.use(['laypage'], function(){
+  var laypage = layui.laypage;
+
+  laypage.render({
+      elem   : 'newsPages'
+      ,count : {$total}
+      ,theme : '#2db5a3'
+      ,curr  : {$page}
+      ,limit : {$size}
+      ,jump: function(obj, first){
+          if(!first){
+            window.location.href = "{url ('account/welcome')}"+"&p=news&page="+obj.curr;
+          }
+      }
+  });
+
+});
+
+</script>

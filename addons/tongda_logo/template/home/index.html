@@ -1,0 +1,60 @@
+{template 'home/header'}
+  {if !empty($images)}
+  <div>
+    <div class="layui-carousel" id="banner">
+      <div carousel-item>
+        {loop $images $item}
+        <div>
+          <img src="{php echo tomedia($item['image'])}">
+          <div class="panel">
+            <p class="title">{$item['title']}</p>
+            <p>{$item['title']}</p>
+          </div>
+        </div>
+        {/loop}
+      </div>
+    </div>
+  </div>
+  {/if}
+  <!-- main部分 -->
+  <div class="main-product">
+    <div class="layui-container">
+      <p class="title"><span>核心产品</span></p>
+      <div class="layui-row layui-col-space25">
+        {loop $goods $item}
+        <div class="layui-col-sm6 layui-col-md3">
+          <div class="content">
+            <div><img src="{php echo tomedia($item['icon'])}"></div>
+            <div>
+              <p class="label">{$item['title']}</p>
+              <p>{$item['desc']}</p>
+            </div>
+            <a href="javascript:;">查看产品 ></a>
+          </div>
+        </div>
+        {/loop}
+      </div>
+    </div>
+  </div>
+  <div class="main-service">
+    <div class="layui-container">
+      <p class="title"><span>经典案例</span></p>
+      <div class="layui-row layui-col-space25 layui-col-space80">
+        {loop $case $item}
+        <div class="layui-col-sm6">
+          <div class="content">
+            <div class="content-left"><img src="{php echo tomedia($item['image'])}"></div>
+            <div class="content-right">
+              <p class="label">{$item['title']}</p>
+              <span></span>
+              <p>{$item['desc']}</p>
+            </div>
+          </div>
+        </div>
+        {/loop}
+      </div>
+      <div class="service-more"><a href="{php echo url('account/welcome',array('p'=>'case','token'=>$item['id']))}">查看更多</a></div>
+    </div>
+  </div>
+
+{template 'home/footer'}

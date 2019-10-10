@@ -1,0 +1,56 @@
+  {template 'home/header'}
+
+  <!-- banner部分 -->
+  {if !empty($banner)}
+  <div class="banner" style="background: url({php echo tomedia($banner['image'])}) no-repeat center top;background-size: cover">
+    <div class="title">
+      <p>{$banner['title']}</p>
+      <p class="en">{$banner['desc']}</p>
+    </div>
+  </div>
+ {else}
+  <div class="banner product">
+    <div class="title">
+      <p>产品展示</p>
+      <p class="en">Product Display</p>
+    </div>
+  </div>
+  {/if}
+  <!-- main部分 -->
+  <div class="main product">
+    <div class="layui-container">
+      {loop $list $item}
+      <div class="content layui-row">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md7 layui-col-lg6 content-img"><img src="{php echo tomedia($item['image'])}"></div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md5 layui-col-lg6 right">
+          <p class="label">{$item['title']}</p>
+          <p class="detail">{$item['desc']}</p>
+          <div><a href="javascript:;">查看产品 ></a></div>
+        </div>
+      </div>
+      {/loop}   
+    </div>
+     <div id="goodsPages"></div>
+  </div>
+  {template 'home/footer'}
+
+<script type="text/javascript">
+layui.use(['laypage'], function(){
+  var laypage = layui.laypage;
+
+  laypage.render({
+      elem   : 'goodsPages'
+      ,count : {$total}
+      ,theme : '#2db5a3'
+      ,curr  : {$page}
+      ,limit : {$size}
+      ,jump: function(obj, first){
+          if(!first){
+            window.location.href = "{url ('account/welcome')}"+"&p=goods&page="+obj.curr;
+          }
+      }
+  });
+
+});
+
+</script>

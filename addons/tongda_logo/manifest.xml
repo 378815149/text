@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.w7.cc" versionCode="">
+	
+	<application setting='false'>
+		<name><![CDATA[通达自适应官网]]></name>
+
+		<identifie><![CDATA[tongda_logo]]></identifie>
+
+		<version><![CDATA[1.0.0]]></version>
+
+		<ability><![CDATA[pc]]></ability>
+
+		<type><![CDATA[自适应官网]]></type>
+
+		<description><![CDATA[快速布置企业官网]]></description>
+
+		<author><![CDATA[zhongfutongda]]></author>
+
+		<url><![CDATA[https://www.baidu.com]]></url>
+
+		<setting><![CDATA[]]></setting>
+
+	</application>
+
+	
+	<platform>
+		<rule embed="false" />
+
+		<rule embed="false" />
+
+	<supports>
+
+			<item type="webapp" />
+			<item type="system_welcome" />
+	</supports>
+
+	</platform>
+
+	
+	<bindings>
+
+	</bindings>
+
+	<install><![CDATA[]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

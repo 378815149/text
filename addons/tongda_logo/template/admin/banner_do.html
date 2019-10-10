@@ -1,0 +1,85 @@
+{template "admin/header"}
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>控制面板</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title" style="display:none;">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Forms</a></li>
+                                    <li class="active">Basic</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+               
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{if empty($_GPC['id'])} 添加banner{else}编辑banner  {/if}</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="col-lg-10">
+                                   <div class="row form-group">
+                                        <div class="col col-md-3"><label for="selectSm" class=" form-control-label">展示位置</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="position" id="selectSm" class="form-control-sm form-control">
+                                                <option value="case" {if $setting['position']=='case'}selected{/if}>案例</option>
+                                                <option value="goods" {if $setting['position']=='goods'}selected{/if}>产品</option>
+                                                <option value="news" {if $setting['position']=='case'}selected{/if}>动态</option>
+                                                <option value="about" {if $setting['position']=='about'}selected{/if}>关于</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">banner图片</label></div>
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('image', $setting['image'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">中文标题</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="title" value="{$setting['title']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">英文标题</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="desc" value="{$setting['desc']}" class="form-control"></div>
+                                    </div>
+								<div class="row form-group">
+								<div class="col-6">
+                                    <input type="submit" name="submit" value='提交' class="btn btn-success btn-sm">
+                                    <input type="hidden" name="token" value="{$_W['token']}">
+								</div>
+								</div>
+									</div>
+
+                                </form>
+                            </div>
+                            <div class="card-footer">
+
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+	{template "admin/footer"}

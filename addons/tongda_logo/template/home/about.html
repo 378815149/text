@@ -1,0 +1,101 @@
+{template 'home/header'}
+
+<!-- banner部分 -->
+  {if !empty($banner)}
+  <div class="banner" style="background: url({php echo tomedia($banner['image'])}) no-repeat center top;background-size: cover">
+    <div class="title">
+      <p>{$banner['title']}</p>
+      <p class="en">{$banner['desc']}</p>
+    </div>
+  </div>
+  {else}
+  <div class="banner about">
+    <div class="title">
+      <p>关于我们</p>
+      <p class="en">About Us</p>
+    </div>
+  </div>
+  {/if}
+  
+ <div class="main-about">
+    <div class="layui-container">
+      <div class="layui-row">
+        <ul class="aboutab">
+          <li class="layui-this">公司简介</li> {if $config['status']}<li>宝贵意见</li>{/if}<li>公司地址</li>
+        </ul>
+        <!-- 公司简介 -->
+        <div class="tabIntro">
+          {php echo htmlspecialchars_decode($config['company'])}
+        </div>
+        <!-- 宝贵意见 -->
+        {if $config['status']}
+        <div class="tabJob">
+            <form class="layui-form" action="" method="post">
+               <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="name"  lay-reqtext="用户名是必填项" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">电话</label>
+                <div class="layui-input-block">
+                  <input type="text" name="phone" lay-reqtext="电话是必填项" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                  <input type="text" name="email" placeholder="请输入邮箱"  autocomplete="off" class="layui-input">
+                </div>
+              </div>
+               <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">意见内容</label>
+                <div class="layui-input-block">
+                  <textarea placeholder="请输入内容" class="layui-textarea"   name="content"></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <input type="submit" name="submit" value="立即提交" class="layui-btn ">
+                  <input type="hidden" name="token" value="{$_W['token']}">
+                </div>
+              </div>
+            </form>
+        </div>
+        {/if}
+        <!-- 公司地址 -->
+        <div class="tabCour">
+            <p class="title">{$config['address']}</p>
+              <div class="row form-group">
+                <div class="col-sm-9">
+                    <span style="display:none;">
+                    经度：
+                    <input type="text" style="width: 115px;display: inline-block;" name="address_lng" class="form-control" value="{$config['address_lng']}" />
+                    -
+                    纬度：<input type="text" style="width: 115px;display: inline-block;" name="address_lat" class="form-control" value="{$config['address_lat']}" />
+                    </span>
+                    <iframe id="mapPage" width="100%" height="600px" frameborder=0
+                            src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=YGSBZ-PCNLU-MMXVV-4BOBK-QXRU3-H3BO4&referer=myapp">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ {template 'home/footer'}
+
+ <script>
+    window.addEventListener('message', function(event) {
+        // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+        var loc = event.data;
+        if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+            $('input[name="address_lat"]').val(loc.latlng.lat);
+            $('input[name="address_lng"]').val(loc.latlng.lng);
+
+            console.log('location', loc);
+        }
+    }, false);
+</script>
