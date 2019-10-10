@@ -11,17 +11,25 @@ define('MODULE_NAME', 'tongda_logo');
 	
 class Tongda_logoModuleSystemWelcome extends WeModuleSystemWelcome
 {
-	//入口
+
+	//首页入口
+	public function systemWelcomeDisplay()
+	{
+		$this->getClassName('Home');
+	}
+
+	//后端入口
 	public function __call($name,$reqeust)
 	{
+        $this->getClassName('Admin');
+	}
+
+	//引入类
+	private function getClassName($class)
+	{
 		global $_GPC, $_W;
-		if(substr($name,13) == 'Display'){
-			$class = 'Home';
-		} else {
-			$class = 'Admin';
-		}
-        (include MODULE_ROOT.'/inc/'.$class.'.php');
-        $action     = isset($_GPC['p'])&&$_GPC['p']?$_GPC['p']:'index';
+		(include MODULE_ROOT.'/inc/'.$class.'.php');
+		$action = isset($_GPC['p'])&&$_GPC['p']?$_GPC['p']:'index';
         if (class_exists($class)){
             $obj = new $class();
             $obj->$action();
@@ -29,4 +37,5 @@ class Tongda_logoModuleSystemWelcome extends WeModuleSystemWelcome
            exit('404');
         }
 	}
+
 }

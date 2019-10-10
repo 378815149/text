@@ -21,30 +21,21 @@
 
 class Home extends Base
 {
-	protected $uniacid;
-
-	public function __cu()
-	{
-		global $_W;
-		$this->uniacid = $_W['uniacid'];
-	}
-
 	//首页
 	public function index()
 	{
 		global $_GPC;
-		$where  = array('uniacid' => $this->uniacid,'status'=>1);
+		$where  = array('status'=>1);
 		//轮播图
 		$images = pdo_getall(MODULE_NAME.'_chart',$where);
 		//展示产品
 		$goods  = pdo_getall(MODULE_NAME.'_goods',$where,'', '', "listsort DESC",'0,4');
 		//展示案例
-		$case   = pdo_getall(MODULE_NAME.'_case', $where,'', '', "listsort DESC",'0,4');
+		$case   = pdo_getall(MODULE_NAME.'_cases',$where,'', '', "listsort DESC",'0,4');
 		//站点配置
 		$config  = $this->config;
 		//合作公司
-		unset($where['status']);
-		$company = pdo_getall(MODULE_NAME.'_company',$where);
+		$company = pdo_getall(MODULE_NAME.'_company');
 		$show 	= 'index';
 		include $this->template('home/index');
 	}
@@ -65,24 +56,25 @@ class Home extends Base
 	//动态详情
 	public function detail()
 	{
-		global $_GPC;
-		$where  = array('uniacid' => $this->uniacid,'id' => $_GPC['token']);
+		global $_GPC,$_W;
+		$where  = array('id' => $_GPC['token']);
 		$info   = pdo_get(MODULE_NAME.'_news',$where);
 		if(empty($info)) {
 			message('动态新闻不存在！', '', "error");
 		}
+		$this->addNewsNumber($where['id'],$info['number']);
 		//站点配置
 		$config  = $this->config;
 		unset($config['id']);
 		//合作公司
-		$company = pdo_getall(MODULE_NAME.'_company',$where);
+		$company = pdo_getall(MODULE_NAME.'_company');
 		$show 	= 'news';
 		include $this->template('home/detail');
 	}
 	//案例
-	public function case()
+	public function cases()
 	{
-		$this->getCommonList('case');
+		$this->getCommonList('cases');
 	}
 
 	//关于
@@ -90,7 +82,7 @@ class Home extends Base
 	{
 		global $_GPC,$_W;
 		if(checksubmit('submit')){
-			$data = array('uniacid'=>$this->uniacid,'ip'=>$_W['clientip'],'addtime'=>time(),'name'=>$_GPC['name'],'phone'=>$_GPC['phone'],'email'=>$_GPC['email'],'content'=>$_GPC['content']);
+			$data = array('ip'=>$_W['clientip'],'addtime'=>time(),'name'=>$_GPC['name'],'phone'=>$_GPC['phone'],'email'=>$_GPC['email'],'content'=>$_GPC['content']);
 			$table  = MODULE_NAME.'_message';
 			$res    = pdo_insert($table,$data);
 			$config = $this->config;
@@ -100,15 +92,13 @@ class Home extends Base
 				message('意见功能已暂停！', '', "error");
 			}	
 		} else {
-			$where = array('uniacid' => $this->uniacid);
 			//站点配置
 			$config  = $this->config;
 			//合作公司
-			$company = pdo_getall(MODULE_NAME.'_company',$where);
+			$company = pdo_getall(MODULE_NAME.'_company');
 			//banner
-			$where['position'] = $name;
-			$banner = pdo_get(MODULE_NAME.'_banner', $where);
-			$show 	= 'about';
+			$banner  = pdo_get(MODULE_NAME.'_banner', array('position' => $name));
+			$show 	 = 'about';
 			include $this->template('home/about');
 		}	
 	}
@@ -118,7 +108,7 @@ class Home extends Base
 	{
 		global $_GPC;
 		$table = MODULE_NAME.'_'.$name;
-		$where = array('uniacid' => $this->uniacid,'status' => 1);
+		$where = array('status' => 1);
 		$page  = max(1, intval($_GPC["page"]));
 		$size  = intval($_GPC["psize"]) ? intval($_GPC["psize"]) : 10;
 		$total = pdo_count($table,$where,0);
@@ -128,15 +118,26 @@ class Home extends Base
 		}
 		//$pager = pagination($total, $page, $size);
 		//站点配置
-		unset($where['status']);
 		$config  = $this->config;
 		//合作公司
-		$company = pdo_getall(MODULE_NAME.'_company',$where);
+		$company = pdo_getall(MODULE_NAME.'_company');
 		//banner
-		$where['position'] = $name;
 		$show 	= $name;
-		$banner = pdo_get(MODULE_NAME.'_banner', $where);
+		$banner = pdo_get(MODULE_NAME.'_banner', array('position' => $name));
 		include $this->template('home/'.$name);
 	}
 
+	//阅读量+1
+	protected function addNewsNumber($id,$number)
+	{
+		global $_W;
+		$name  = 'get_news_number';
+		$info  = cache_load($name);
+		//每个用户24小时 阅读量+1
+		$time = time()+24*60*60;
+		if(empty($info) || $info['time'] > $time){
+			cache_write($name,array('ip'=>$_W['clientip'],'time'=>time()));
+			pdo_update(MODULE_NAME.'_news',array('number',$number),array('id' => $id));
+		}
+	}
 }

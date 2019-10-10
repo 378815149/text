@@ -6,10 +6,9 @@
 $table = 'tongda_logo';  //表前缀名
 
 
-pdo_query("
-
-DROP TABLE IF EXISTS `ims_{$table}_banner`;
-CREATE TABLE `ims_{$table}_banner` (
+pdo_run("
+  
+CREATE TABLE IF NOT EXISTS `ims_{$table}_banner` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -20,9 +19,7 @@ CREATE TABLE `ims_{$table}_banner` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-
-DROP TABLE IF EXISTS `ims_{$table}_case`;
-CREATE TABLE `ims_{$table}_case` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_cases` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `desc` varchar(255) NOT NULL,
@@ -35,8 +32,7 @@ CREATE TABLE `ims_{$table}_case` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_chart`;
-CREATE TABLE `ims_{$table}_chart` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_chart` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(300) NOT NULL,
   `path` varchar(300) NOT NULL,
@@ -46,8 +42,7 @@ CREATE TABLE `ims_{$table}_chart` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_company`;
-CREATE TABLE `ims_{$table}_company` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_company` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
@@ -57,8 +52,7 @@ CREATE TABLE `ims_{$table}_company` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_config`;
-CREATE TABLE `ims_{$table}_config` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_config` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `value` text NOT NULL,
@@ -66,8 +60,7 @@ CREATE TABLE `ims_{$table}_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_goods`;
-CREATE TABLE `ims_{$table}_goods` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_goods` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -80,8 +73,7 @@ CREATE TABLE `ims_{$table}_goods` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_message`;
-CREATE TABLE `ims_{$table}_message` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_message` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `phone` int(11) NOT NULL,
@@ -93,8 +85,7 @@ CREATE TABLE `ims_{$table}_message` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `ims_{$table}_news`;
-CREATE TABLE `ims_{$table}_news` (
+CREATE TABLE IF NOT EXISTS `ims_{$table}_news` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `desc` varchar(255) NOT NULL,

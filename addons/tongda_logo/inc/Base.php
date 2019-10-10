@@ -17,7 +17,7 @@
 
 class Base
 {
-
+	//配置文件
 	protected $config;
 	//配置缓存名
 	protected $cachename = 'get_tongda_log_config';
@@ -92,7 +92,7 @@ class Base
 		$info  = cache_load($this->cachename);
 		if(empty($info)){
 			//重组数据
-			$result = $this->getConfig(1);
+			$result = $this->getConfig(false);
 			$config = (include MODULE_ROOT.'/inc/Config.php');
 			$info   = array_merge($config,$result);
 			cache_write($this->cachename,$info);
@@ -104,7 +104,8 @@ class Base
 	protected function getConfig($uniacid)
 	{
 		$table  = MODULE_NAME.'_config';
-		$res    = pdo_getall($table,array('uniacid'=>$uniacid));
+		$where  = empty($uniacid) ? []:array('uniacid'=>$uniacid);
+		$res    = pdo_getall($table,$where);
 		if(empty($res)) return [];
 		$result = array();
 		foreach($res as $k=>$v){

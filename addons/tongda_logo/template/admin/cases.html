@@ -13,7 +13,7 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                   <a style="color: #03a9f3;" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'case_do')}"><i class="fa fa-plus"></i>&nbsp; 添加案例</a>
+                                   <a style="color: #03a9f3;" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'cases_do')}"><i class="fa fa-plus"></i>&nbsp; 添加案例</a>
                                 </ol>
                             </div>
                         </div>
@@ -57,8 +57,8 @@
                                             <td>  <span class="name">{$item['listsort']}</span> </td>
                                             <td>  <span class="name">{php echo date('Y-m-d H:i:s',$item['addtime'])}</span> </td>
                                             <td>
-                                                <a class="btn btn-primary btn-sm" style="color:#ffffff" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'case_do','id'=>$item['id'])}"><i class="fa fa-edit"></i>&nbsp; 编辑</a>
-												<a class="btn btn-danger btn-sm" style="color:#ffffff" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'case_del','id'=>$item['id'])}"><i class="fa fa-trash-o"></i>&nbsp; 删除</a>
+                                                <a class="btn btn-primary btn-sm" style="color:#ffffff" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'cases_do','id'=>$item['id'])}"><i class="fa fa-edit"></i>&nbsp; 编辑</a>
+												<a class="btn btn-danger btn-sm" style="color:#ffffff" href="{url 'site/entry',array('eid'=>$_GPC['eid'],'p'=>'cases_del','id'=>$item['id'])}"><i class="fa fa-trash-o"></i>&nbsp; 删除</a>
                                             </td>
                                         </tr>
 									{/loop}

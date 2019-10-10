@@ -126,20 +126,20 @@ class Admin extends Base
 		$this->getCommonDel('news','动态');
 	}
 	//案例列表
-	public function case()
+	public function cases()
 	{
-		$this->getCommonList('case');
+		$this->getCommonList('cases');
 	}
 	//操作案例
-	public function case_do()
+	public function cases_do()
 	{
 		$data = array('title','desc','image','status','path','listsort','addtime');
-		$this->getCommonDo('case',$data,true);
+		$this->getCommonDo('cases',$data,true);
 	}
 	//删除案例
-	public function case_del()
+	public function cases_del()
 	{
-		$this->getCommonDel('case','产品');
+		$this->getCommonDel('cases','产品');
 	}
 	//公共列表
 	protected function getCommonList($name)
@@ -147,6 +147,11 @@ class Admin extends Base
 		global $_W, $_GPC;
 		$tablename = MODULE_NAME.'_'.$name;
 		$where = array("uniacid" => $_W["uniacid"]);
+		if($name == 'banner'){
+			$banner = $this->position();
+		} else if($name == 'message'){
+			$where = array();
+		}
 		$page  = max(1, intval($_GPC["page"]));
 		$size  = intval($_GPC["psize"]) ? intval($_GPC["psize"]) : 10;
 		$total = pdo_count($tablename, $where, 0);
@@ -156,9 +161,6 @@ class Admin extends Base
 			$list = pdo_getall($tablename, $where, '', '', $sort, $this->getPageLimit($page, $size));
 		}
 		$pager = pagination($total, $page, $size);
-		if($name == 'banner'){
-			$banner = $this->position();
-		}
 		include $this->template('admin/'.$name);
 	}
 	//公共操作
@@ -191,7 +193,9 @@ class Admin extends Base
 			}
 		} else {
 			if (intval($_GPC["id"])) {
-				$setting = pdo_get($tablename, array("id" => $_GPC["id"], "uniacid" => $_W["uniacid"]));
+				$where  = array("id" => $_GPC["id"], "uniacid" => $_W["uniacid"]);
+				if($name == 'message') unset($where['uniacid']);
+				$setting = pdo_get($tablename, $where);
 			}
 			$name = $type?$name.'_do':$name;
 			include $this->template('admin/'.$name);
@@ -205,6 +209,7 @@ class Admin extends Base
 			message('请选择要删除的'.$msg, '', "error");
 		}
 		$where   = array('uniacid'=>$_W["uniacid"],'id'=>$_GPC['id']);
+		if($name == 'message') unset($where['uniacid']);
 		$table   = MODULE_NAME.'_'.$name;
 		$result  = pdo_count($table,$where);
 		if($result <= 0){
