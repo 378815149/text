@@ -25,6 +25,16 @@
 			<td><div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#pass">修改</a></div></td>
 		</tr>
 		
+			{if permission_check_account_user('see_user_edit_base_founder_name')}
+			{if empty($user['founder_groupid'])}
+			<tr>
+				<td class="table-label">副创始人姓名</td>
+				<td ng-bind="user.vice_founder_name"></td>
+				<td><div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#vice_founder_name" ng-click="editInfo('vice_founder_name', user.vice_founder_name)">修改</a></div></td>
+			</tr>
+			{/if}
+			{/if}
+		
 		{if !empty($user['founder_groupid'])}
 		<tr>
 			<td class="table-label">注册链接</td>
@@ -176,15 +186,15 @@
 			{/if}
 		</tr>
 		
-
-		
-			{if $_W['isfounder']}
+			{if $_W['isfounder'] && !user_is_vice_founder()}
 			<tr>
 				<td class="table-label">备注</td>
 				<td ng-bind="user.remark"></td>
 				<td><div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#remark" ng-click="editInfo('remark', user.remark)">修改</a></div></td>
 			</tr>
 			{/if}
+		
+
 		
 
 	</table>

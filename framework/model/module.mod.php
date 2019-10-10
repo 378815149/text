@@ -134,8 +134,8 @@ function module_entries($name, $types = array(), $rid = 0, $args = null) {
 
 	global $_W;
 	
+		$ts = array('rule', 'cover', 'menu', 'home', 'profile', 'shortcut', 'function', 'mine', 'system_welcome');
 	
-		$ts = array('rule', 'cover', 'menu', 'home', 'profile', 'shortcut', 'function', 'mine');
 	
 	if(empty($types)) {
 		$types = $ts;
@@ -353,7 +353,6 @@ function module_fetch($name, $enabled = true) {
 	global $_W;
 	$cachekey = cache_system_key('module_info', array('module_name' => $name));
 	$module = cache_load($cachekey);
-
 	if (empty($module)) {
 		$module_info = table('modules')->getByName($name);
 		if (empty($module_info)) {
@@ -1256,4 +1255,20 @@ function module_delete_store_wish_goods($module_name, $support_name) {
 		pdo_update('site_store_goods', array('status' => 2), array('module' => $module_name, 'type' => $type));
 	}
 	return true;
+}
+
+function module_expire_notice() {
+	$module_expire = setting_load('module_expire');
+	$module_expire = !empty($module_expire['module_expire']) ? $module_expire['module_expire'] : array();
+	foreach ($module_expire as $value) {
+		if ($value['status'] == 1) {
+			$expire_notice = $value['notice'];
+			break;
+		}
+	}
+	if (empty($expire_notice)) {
+		$system_module_expire = setting_load('system_module_expire');
+		$expire_notice = !empty($system_module_expire['system_module_expire']) ? $system_module_expire['system_module_expire'] : '您访问的功能模块不存在，请重新进入';
+	}
+	return $expire_notice;
 }

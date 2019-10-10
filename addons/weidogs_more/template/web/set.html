@@ -1,0 +1,125 @@
+{template 'common/header'}
+<div class="main">
+    <form action="" method="post" class="form-horizontal form"  >
+        <div class="panel panel-default">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">基本设置</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+            <div id="tab1" class="tab-pane active">
+    			<div class="panel-heading">
+    				基本设置
+                </div>		
+                <div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">小程序系统url</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="host" value="{$settings['host']}"/>
+						 
+                         <span class="help-block">例如：https://www.baidu.com</span>
+                        </div>
+                    </div>
+                </div>
+				
+				<!--<div class='panel-body'>
+                    <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">操作员模式</label>
+                            <div class="col-sm-8 col-lg-9 col-xs-12">
+                                
+                                <select name="czy" class="form-control">
+                                    <option value="0" {if $settings['czy']=='0'}selected{/if}>否</option>
+                                    <option value="1" {if $settings['czy']=='1'}selected{/if}>是</option>
+                                    
+                                </select>
+                                <span class="help-block">开启之后不要关闭，关闭之后也不要开启</span>
+                            </div>
+            
+                        </div>
+                    </div>-->
+					
+				<div class='panel-body'>
+                    <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">外链数据库</label>
+                            <div class="col-sm-8 col-lg-9 col-xs-12">
+                                
+                                <select name="db" class="form-control">
+                                    <option value="0" {if $settings['db']=='0'}selected{/if}>否</option>
+                                    <option value="1" {if $settings['db']=='1'}selected{/if}>是</option>
+                                    
+                                </select>
+                                <span class="help-block">客服没有提示的不用问哦。选择否就行了</span>
+                            </div>
+            
+                        </div>
+                    </div>
+					
+				<div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">数据库ip</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="db_ip" value="{$settings['db_ip']}"/>
+						 
+                         <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>	
+				<div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">数据库连接用户名</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="db_username" value="{$settings['db_username']}"/>
+						 
+                         <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>	
+				<div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">数据库连接密码</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="db_password" value="{$settings['db_password']}"/>
+						 
+                         <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>	
+				<div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">数据库名</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="db_database" value="{$settings['db_database']}"/>
+						 
+                         <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>	
+				<div class='panel-body'>  
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">数据库连接端口</label>
+                        <div class="col-sm-6 col-xs-6">
+                          <input type="text" class="form-control"  name="db_port" value="{$settings['db_port']}"/>
+						 
+                         <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>	
+
+            </div>
+
+                    
+            <div class="form-group">
+                    <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+                    <div class="col-sm-9 col-xs-12">
+                           
+                            <input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1"  />
+                            <input type="hidden" name="token" value="{$_W['token']}" />
+                         
+                     </div>
+                    </div>
+            </div>
+
+    </form>
+</div>
+{template 'common/footer'}

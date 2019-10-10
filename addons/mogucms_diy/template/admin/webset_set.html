@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>网站设置</title>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/colorpicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/inspiniatext.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/main.js"></script>
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/colorpicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./resource/css/common.css?v=20170426" rel="stylesheet">
+	<link href="../addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}
+		{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'isfounder': {if !empty($_W['isfounder'])}1{else}0{/if},
+		'family': '{IMS_FAMILY}',
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		'module' : {'url' : '{if defined('MODULE_URL')}{MODULE_URL}{/if}', 'name' : '{if defined('IN_MODULE')}{IN_MODULE}{/if}'},
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'},
+		'account' : {php echo json_encode($_W['account'])},
+		'server' : {'php' : '{php echo phpversion()}'},
+	};
+	</script>
+	<script>var require = { urlArgs: 'v=20170426' };</script>
+	<script type="text/javascript" src="./resource/js/app/util.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/app/common.min.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/require.js?v=20170426"></script>
+<body><div class="warpcont">
+{template "admin/top"}
+
+<div class="allwrapper">
+  <div class="leftsidebar" >
+  
+    {template "admin/left"}
+  </div><!--leftsidebar-->
+  <div class="page-wrapper hmmidcon">
+      <div class="row welctop lhgray-bg padding20">
+          <div class="col-lg-9 col-md-6 col-xs-7 border">
+              <div class="subtitle themetxtcolor">网站设置</div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-5 ">
+          </div>
+      </div><!--row welctop-->
+      
+     <div class="row padding20 white-bg">
+      
+          <form name="form1" method="POST" action="">
+          <div class="col-lg-12 cpadlf">
+             <div class="title"><span class="themebgcolor"></span>网站设置</div>
+			 <div class="posmabox">
+                  <span class="lf1">模板选择</span>
+                  <div class="inbox">
+                      <select class="textinput" name="skin">
+                         <option value="default">默认样式</option>
+                         <option value="red" {if $setting['skin']=="red"}selected{/if}>红色样式</option>
+                         <option value="green" {if $setting['skin']=="green"}selected{/if}>绿色样式</option>
+                        </select>
+                  </div>
+              </div>
+			  {if $_W['setting']['site']['key']=="55844"}
+			  <div class="posmabox">
+                  <span class="lf1">首页模板</span>
+                  <div class="inbox">
+                      <select class="textinput" name="homeskin">
+                         <option value="gf" {if $setting['homeskin']=="gf"}selected{/if}>官方首页</option>
+                         <option value="zdy" {if $setting['homeskin']=="zdy"}selected{/if}>自定义首页</option>
+                        </select>
+                  </div>
+              </div>
+			  {/if}
+			   <div class="posmabox">
+                  <span class="lf1">只保留登录注册</span>
+                  <div class="inbox">
+                      <select class="textinput" name="onlylogin">
+                         <option value="1" {if $setting['onlylogin']=="1"}selected{/if}>是</option>
+                         <option value="0" {if $setting['onlylogin']!="1"}selected{/if}>否</option>
+                        </select>
+                  </div>
+              </div>
+			 
+             <div class="posmabox">
+                  <span class="lf1">Logo</span>
+                  <div class="inbox">
+					   139*52px
+                      {php echo tpl_form_field_image('logo', $setting['logo'], '');}
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">开启伪静态</span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="rewrite" value="1" id="RadioGroup1_0" {if $setting['rewrite']=="1"}checked{/if}><label for="RadioGroup1_0" {if $setting['rewrite']=="1"}class="themebgcolor"{/if}></label>开启</div>
+                        <div class="radio bdradio"><input type="radio" name="rewrite" value="0" id="RadioGroup1_1" {if $setting['rewrite']!="1"}checked{/if}><label for="RadioGroup1_1" {if $setting['rewrite']!="1"}class="themebgcolor"{/if}></label>关闭</div>
+                </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">前台关闭登录</span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="islogin" value="1" id="RadioGroup1_7" {if $setting['islogin']=="1"}checked{/if}><label for="RadioGroup1_7" {if $setting['islogin']=="1"}class="themebgcolor"{/if}></label>关闭</div>
+                        <div class="radio bdradio"><input type="radio" name="islogin" value="0" id="RadioGroup1_8" {if $setting['islogin']!="1"}checked{/if}><label for="RadioGroup1_8" {if $setting['islogin']!="1"}class="themebgcolor"{/if}></label>开启</div>
+                </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">留言功能</span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="message" value="1" id="RadioGroup1_4" {if $setting['message']=="1"}checked{/if}><label for="RadioGroup1_4" {if $setting['message']=="1"}class="themebgcolor"{/if}></label>开启</div>
+                        <div class="radio bdradio"><input type="radio" name="message" value="0" id="RadioGroup1_5" {if $setting['message']!="1"}checked{/if}><label for="RadioGroup1_5" {if $setting['message']!="1"}class="themebgcolor"{/if}></label>关闭</div>
+                </div>
+              </div>
+			  <!--<div class="posmabox">
+                  <span class="lf1">未绑域名自定义</span>
+                  <div class="inbox">
+						文件名:bobind.html 放网站根目录
+                        <div class="radio bdradio"><input type="radio" name="nobind" value="1" id="RadioGroup1_8" {if $setting['nobind']=="1"}checked{/if}><label for="RadioGroup1_8" {if $setting['nobind']=="1"}class="themebgcolor"{/if}></label>开启</div>
+                        <div class="radio bdradio"><input type="radio" name="nobind" value="0" id="RadioGroup1_9" {if $setting['nobind']!="1"}checked{/if}><label for="RadioGroup1_9" {if $setting['nobind']!="1"}class="themebgcolor"{/if}></label>关闭</div>
+                </div>
+              </div>-->
+			  <div class="posmabox">
+                  <span class="lf1">首页关闭全部</span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="indexall" value="1" id="RadioGroup1_2" {if $setting['indexall']=="1"}checked{/if}><label for="RadioGroup1_2" {if $setting['indexall']=="1"}class="themebgcolor"{/if}></label>是</div>
+                        <div class="radio bdradio"><input type="radio" name="indexall" value="0" id="RadioGroup1_3" {if $setting['indexall']!="1"}checked{/if}><label for="RadioGroup1_3" {if $setting['indexall']!="1"}class="themebgcolor"{/if}></label>否</div>
+                </div>
+              </div>
+              <!--<div class="posmabox">
+                  <span class="lf1">开启伪静态</span>
+                  <div class="inbox">
+                      <select class="textinput" name="rewrite"> 
+                         <option>开启</option>
+                         <option>关闭</option>
+                        </select>
+                  </div>
+              </div>-->
+			  <div class="posmabox">
+                  <span class="lf1">公司名</span>
+                  <div class="inbox">
+                      <input type="text" name="company" class="textinput" value="{$setting['company']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">联系电话</span>
+                  <div class="inbox">
+                      <input type="text" name="tel" class="textinput" value="{$setting['tel']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">联系人</span>
+                  <div class="inbox">
+                      <input type="text" name="lxr" class="textinput" value="{$setting['lxr']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">手机</span>
+                  <div class="inbox">
+                      <input type="text" name="phone" class="textinput" value="{$setting['phone']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">qq</span>
+                  <div class="inbox">
+                      <input type="text" name="qq" class="textinput" value="{$setting['qq']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">电子邮件</span>
+                  <div class="inbox">
+                      <input type="text" name="email" class="textinput" value="{$setting['email']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">公司地址</span>
+                  <div class="inbox">
+                      <input type="text" name="address" class="textinput" value="{$setting['address']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">底部版权</span>
+                  <div class="inbox">
+                      <input type="text" name="corp" class="textinput" value="{$setting['corp']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">自定义登录地址</span>
+                  <div class="inbox">
+                      <input type="text" name="zdylogin" class="textinput" value="{$setting['zdylogin']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">自定义注册地址</span>
+                  <div class="inbox">
+                      <input type="text" name="zdyreg" class="textinput" value="{$setting['zdyreg']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">备案号</span>
+                  <div class="inbox">
+                      <input type="text" name="beian" class="textinput" value="{$setting['beian']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">二维码</span>
+                  <div class="inbox">
+                      {php echo tpl_form_field_image('erweima', $setting['erweima'], '');}
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">全局keyword</span>
+                  <div class="inbox">
+                      <input type="text" name="keyword" class="textinput" value="{$setting['keyword']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">全局description</span>
+                  <div class="inbox">
+                      <input type="text" name="description" class="textinput" value="{$setting['description']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">公安备案号</span>
+                  <div class="inbox">
+                      <input type="text" name="gongan" class="textinput" value="{$setting['gongan']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">公安备案链接</span>
+                  <div class="inbox">
+                      <input type="text" name="gonganurl" class="textinput" value="{$setting['gonganurl']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">工商网监图片</span>
+                  <div class="inbox">
+					   20*20px
+                      {php echo tpl_form_field_image('gsimg', $setting['gsimg'], '');}
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">工商网监链接</span>
+                  <div class="inbox">
+                      <input type="text" name="gsurl" class="textinput" value="{$setting['gsurl']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">icon</span>
+                  <div class="inbox">
+                      {php echo tpl_form_field_image('icon', $setting['icon'], '');}
+                  </div>
+              </div>
+			 
+               <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  小程序 · 大市场-主标题
+                      <input type="text" name="home_title1" class="textinput" value="{$setting['home_title1']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  小程序 · 大市场-副标题
+                      <input type="text" name="home_sub1" class="textinput" value="{$setting['home_sub1']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  应用中心-主标题
+                      <input type="text" name="home_title2" class="textinput" value="{$setting['home_title2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  应用中心-副标题
+                      <input type="text" name="home_sub2" class="textinput" value="{$setting['home_sub2']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  经典案例-主标题
+                      <input type="text" name="home_title3" class="textinput" value="{$setting['home_title3']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  经典案例-副标题
+                      <input type="text" name="home_sub3" class="textinput" value="{$setting['home_sub3']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  我们的核心优势-主标题
+                      <input type="text" name="home_title4" class="textinput" value="{$setting['home_title4']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  我们的核心优势-副标题
+                      <input type="text" name="home_sub4" class="textinput" value="{$setting['home_sub4']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  帮助中心-主标题
+                      <input type="text" name="home_title5" class="textinput" value="{$setting['home_title5']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+					  帮助中心-副标题
+                      <input type="text" name="home_sub5" class="textinput" value="{$setting['home_sub5']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">应用中心</span>
+                  <div class="inbox">
+					  应用中心-主标题
+                      <input type="text" name="app_title1" class="textinput" value="{$setting['app_title1']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">应用中心</span>
+                  <div class="inbox">
+					  应用中心-副标题
+                      <input type="text" name="app_sub1" class="textinput" value="{$setting['app_sub1']}">
+                  </div>
+              </div>
+            <div class="posmabox">
+                  <span class="lf1">小程序大未来</span>
+                  <div class="inbox">
+					  小程序入口-主标题
+                      <input type="text" name="xcx_title1" class="textinput" value="{$setting['xcx_title1']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">小程序大未来</span>
+                  <div class="inbox">
+					  小程序案例展示-主标题
+                      <input type="text" name="xcx_title2" class="textinput" value="{$setting['xcx_title2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">小程序大未来</span>
+                  <div class="inbox">
+					  小程序案例展示-副标题
+                      <input type="text" name="xcx_sub2" class="textinput" value="{$setting['xcx_sub2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">小程序大未来</span>
+                  <div class="inbox">
+					  适用客户-主标题
+                      <input type="text" name="xcx_title3" class="textinput" value="{$setting['xcx_title3']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+					  六大模式助你轻松盈利-主标题
+                      <input type="text" name="agent_title1" class="textinput" value="{$setting['agent_title1']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+					 合作，你能获得什么？-主标题
+                      <input type="text" name="agent_title2" class="textinput" value="{$setting['agent_title2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+					  我们需要这样的你-主标题
+                      <input type="text" name="agent_title3" class="textinput" value="{$setting['agent_title3']}">
+                  </div>
+              </div>
+
+			   <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+					  成为渠道伙伴 简单快速-主标题
+                      <input type="text" name="agent_title4" class="textinput" value="{$setting['agent_title4']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+					  申请代理商-主标题
+                      <input type="text" name="agent_title5" class="textinput" value="{$setting['agent_title5']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+					  我们是谁-主标题
+                      <input type="text" name="about_title1" class="textinput" value="{$setting['about_title1']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+					  资质证书-主标题
+                      <input type="text" name="about_title2" class="textinput" value="{$setting['about_title2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+					  我们的团队-主标题
+                      <input type="text" name="about_title3" class="textinput" value="{$setting['about_title3']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+					  我们的团队-副标题
+                      <input type="text" name="about_sub3" class="textinput" value="{$setting['about_sub3']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+					  联系我们-主标题
+                      <input type="text" name="about_title4" class="textinput" value="{$setting['about_title4']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">第三方代码</span>
+                  <div class="inbox">
+					  (统计，客服等)
+                      <textarea type="text" name="tongji" class="textinput">{$setting['tongji']}</textarea>
+                  </div>
+              </div>
+			 <div class="posmabox">
+                  <span class="lf1">友情链接</span>
+                  <div class="inbox">
+                      <input type="text" name="yqlj" class="textinput" value="{$setting['yqlj']}">
+                  </div>
+              </div>
+              <div class="posmabox">
+                  <div class="inbox">
+                      <div class="marginrg bn"><input name="" type="submit" class=" btn themebgcolor" value="保存"></div>
+                  </div>
+              </div>
+              
+          </div>
+		</form>
+      
+      </div><!--row -->
+    
+
+      
+      
+  </div><!-- page-wrapper-->
+  
+    
+  
+    
+    
+</div>
+</div>
+<script type="text/javascript">
+ $(function () {
+	 
+	 		 
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	
+	var selcolor; 
+	var $toli=$('.toggle').find('li');
+	function toggleCon(n){
+		var selele='<i class="icon iconfont icon-right"></i>'
+		  $toli.eq(n).append('<i class="icon iconfont icon-right"></i>').siblings("li").find(".icon").remove();
+	      var bgcor=$toli.eq(n).find('a').attr('data-url');
+		  selcolor=bgcor;
+	 };
+	 toggleCon(1);
+	 
+	 $('#colorpickerField1').click(function(){
+		
+		var $input = $(this);
+		$input.colorpicker({success : function(dom, color){
+			selcolor=color;
+		}
+		});
+	});
+	
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	 
+	 	/*单选	*/	
+		$(".selbox li").click(function(e){
+			
+		 if($(this).find(".checked").length==0){
+			$(this).addClass('checked').addClass('themetxtcolor');
+			$(this).append('<i class="sel"></i>');
+			$(this).siblings('li').removeClass('checked').removeClass('themetxtcolor');
+			$(this).siblings('li').find('i.sel').remove();
+			
+		 }
+		})
+		
+		
+    });
+  
+</script>
+</body>
+</html>

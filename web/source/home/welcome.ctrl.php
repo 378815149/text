@@ -30,19 +30,21 @@ if ('get_not_installed_modules' == $do) {
 }
 
 
-if ('ext' == $do) {
-	if (!empty($_GPC['version_id'])) {
-		$version_info = miniapp_version($_GPC['version_id']);
+
+	if ('ext' == $do && 'store' != $_GPC['m'] && !$_GPC['system_welcome']) {
+		if (!empty($_GPC['version_id'])) {
+			$version_info = miniapp_version($_GPC['version_id']);
+		}
+		$account_api = WeAccount::createByUniacid();
+		if (is_error($account_api)) {
+			message($account_api['message'], url('account/display'));
+		}
+		$check_manange = $account_api->checkIntoManage();
+		if (is_error($check_manange)) {
+			itoast('', $account_api->displayUrl);
+		}
 	}
-	$account_api = WeAccount::createByUniacid();
-	if (is_error($account_api)) {
-		message($account_api['message'], url('account/display'));
-	}
-	$check_manange = $account_api->checkIntoManage();
-	if (is_error($check_manange)) {
-		itoast('', $account_api->displayUrl);
-	}
-}
+
 
 if ('platform' == $do) {
 	if (empty($_W['account'])) {
@@ -51,7 +53,7 @@ if ('platform' == $do) {
 	if (!empty($_W['account']['endtime']) && $_W['account']['endtime'] != USER_ENDTIME_GROUP_EMPTY_TYPE && $_W['account']['endtime'] != USER_ENDTIME_GROUP_UNLIMIT_TYPE && $_W['account']['endtime'] < time() && !user_is_founder($_W['uid'], true)) {
 		itoast('平台账号已到服务期限，请联系管理员并续费', url('account/manage'), 'info');
 	}
-	$notices = welcome_notices_get();
+		$notices = welcome_notices_get();
 	template('home/welcome');
 }
 
@@ -150,27 +152,10 @@ if ('ext' == $do) {
 if ('account_ext' == $do) {
 	$modulename = $_GPC['m'];
 	if (!empty($modulename)) {
-		$module_info = module_fetch($modulename, false);
+		$module_info = module_fetch($modulename);
 	}
-
-	if (empty($module_info) || (!empty($module_info['is_delete']) && empty($module_info['recycle_info']))) {
-		itoast('抱歉，你操作的模块不能被访问！', url('home/welcome'), 'info');
-	}
-
-	if (!empty($module_info['is_delete']) && !empty($module_info['recycle_info'])) {
-		$system_module_expire = setting_load('system_module_expire');
-		$system_module_expire = !empty($system_module_expire['system_module_expire']) ? $system_module_expire['system_module_expire'] : '您访问的功能模块不存在，请重新进入';
-		$module_expire = setting_load('module_expire');
-		$module_expire = !empty($module_expire['module_expire']) ? $module_expire['module_expire'] : array();
-		$expire_notice = '';
-		foreach ($module_expire as $key => $value) {
-			if ($value['status'] == 1) {
-				$expire_notice = $value['notice'];
-				break;
-			}
-			continue;
-		}
-		itoast($module_expire ? $module_expire : $system_module_expire, url('home/welcome'), 'info');
+	if (empty($module_info)) {
+		itoast('抱歉，你操作的模块不能被访问！');
 	}
 	$link_uniacid = table('uni_link_uniacid')->getMainUniacid($_W['uniacid'], $modulename, intval($_GPC['version_id']));
 	$redirect_uniacid = empty($link_uniacid) ? $_W['uniacid'] : $link_uniacid;

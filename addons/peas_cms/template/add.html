@@ -1,0 +1,66 @@
+{template 'common/header'}
+
+
+
+;
+
+-----
+'attachurl': '{$_W['attachurl']}',
+'attachurl_local': '{$_W['attachurl_local']}',
+'attachurl_remote': '{$_W['attachurl_remote']}',
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				笑话列表 【<a href="{php echo $this->createWebUrl('joke')}">返回笑话列表</a>】
+			</h3>
+		</div>
+		<div class="panel-body">
+		
+          
+          <form class="form-horizontal"  role="form" method="POST" action="{php echo $this->createWebUrl('add')}">
+           
+            <div class="form-group">
+               <label for="title" class="col-sm-2 control-label">标题</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="title"  name="title" placeholder="请输入标题">
+              </div>
+            </div>
+            
+         	<div class="form-group">  
+               <label for="content" class="col-sm-2 control-label">内容</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="content" name="content"  placeholder="请输入内容">
+              </div>
+            </div>
+
+
+                <div class="form-group">
+                    <label for="content" class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-10">
+                        {php echo tpl_ueditor('aaaa', $info['content']);}
+                    </div>
+                </div>
+
+              
+         	  <div class="form-group">  
+               	<label for="content" class="col-sm-2 control-label">附件</label>
+                <div class="col-sm-10">
+               {php echo tpl_form_field_image('copyright','https://img.zcool.cn/community/01cef357f78516a84a0d304f805e81.png@1280w_1l_2o_100sh.png');}
+                </div> 
+              </div> 
+
+              
+              
+             <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">提交</button>
+              </div>
+            </div>
+            
+          </form>
+
+	</div>
+
+{template 'common/footer'}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>豆豆科技后台管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="{MODULE_URL}/images/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="{MODULE_URL}/images/layuiadmin/style/admin.css" media="all">
+
+
+  <link rel="stylesheet" href="{MODULE_URL}/images/css/main.css" media="all">
+</head>
+<body>
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">产品列表</div>
+
+                <div class="layui-card-body">
+
+                    <div class="div-search-body">
+
+                        <a class="layui-btn" href="{php echo $this->createWebUrl('goods_edit')}">
+                            <i class="layui-icon">&#xe608;</i> 添加产品
+                        </a>
+ 
+                        <form class="form-inline">
+                            <div class="form-group" style="display: inline-block;width: 50%">
+                                <label class="sr-only"></label>
+                                <div class="input-group">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入产品名" autocomplete="off" class="layui-input" id="inputSearch" value="{$keyword}">
+                                </div>
+                            </div>
+                            <button class="layui-btn layui-btn-normal btn-search" type="button">
+                                搜索
+                            </button>
+                        </form>
+
+                    </div>
+
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>产品名</th>
+                            <th>封面图</th>
+                            <th>分类</th>
+                            <th width="80">状态</th>
+                            <th>创建时间</th>
+                            <th width="200">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $list $item}
+                        <tr>
+                            <td>{$item['id']}</td>
+                            <td>{$item['f_title']}</td>
+                            <td>
+                                <img src="{$_W['attachurl']}{$item['f_img']}" alt="">
+                            </td>
+                            <td>
+                            {loop $catalogs $catalogItem}
+                                {if $catalogItem['id'] == $item['t_catalog_id'] }
+                                    {$catalogItem['f_title']}
+                                {/if}
+                            {/loop}
+                            </td>
+                            <td>
+                                {if $item['f_state'] == 0}
+                                <span class="layui-badge layui-bg-blue">上架中</span>
+                                {else}
+                                <span class="layui-badge">已下架</span>
+                                {/if}
+                            </td>
+                            <td>
+                                {php echo date('Y-m-d H:i:s', $item['f_createtime'])}
+                            </td>
+                            <td>
+                                {if $item['f_state'] == 0}
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-danger btn-down-item"
+                                        itemId="{$item['id']}"  itemState="{$item['f_state']}" >
+                                    下架
+                                </button>
+                                {else}
+                                <button type="button" class="layui-btn layui-btn-xs btn-on-item"
+                                        itemId="{$item['id']}"  itemState="{$item['f_state']}" >
+                                    上架
+                                </button>
+                                {/if}
+                                <button type="button" class="layui-btn layui-btn-xs btn-edit-item"
+                                        itemId="{$item['id']}">
+                                    编辑
+                                </button>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-danger btn-delete-item"
+                                        itemId="{$item['id']}">
+                                    删除
+                                </button>
+                            </td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+
+                    <div id="dataTable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {template 'common/footer'}
+
+
+</div>
+
+ 
+<script src="{MODULE_URL}/images/layuiadmin/layui/layui.js"></script>  
+<script src="{MODULE_URL}/images/js/jquery-1.11.1.min.js"></script>
+<script>
+    var keyword = $('#inputSearch').val();
+    layui.use(['layer', 'laypage'], function () {
+        var layer = layui.layer
+            , laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'dataTable' //注意，这里的 test1 是 ID，不用加 # 号
+            , count: {$count} //数据总数，从服务端得到
+            , curr: {$curr}
+            , limit: {$perPage} //每页显示的条数
+            ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+
+                //首次不执行
+                if (!first) {
+                    //do something
+                    layer.load();
+                    window.location.href = "{php echo $this->createWebUrl('goods')}" + "&page=" + obj.curr + "&keyword=" + keyword;
+                }
+            }
+        });
+
+    });
+
+    //  搜索内容
+    $('.btn-search').click(function () {
+        var keyword = $('#inputSearch').val();
+        if (!keyword) {
+            window.location.href = "{php echo $this->createWebUrl('goods')}";
+            return false;
+        }
+        layer.load();
+        window.location.href = "{php echo $this->createWebUrl('goods')}" + "&keyword=" + keyword;
+        return false;
+    });
+
+
+    //  新增
+    $('.btn-add').click(function () {
+        layer.load();
+        var url = "{php echo $this->createWebUrl('goods_edit')}" + "&action=edit";
+        window.location.href = url;
+    });
+
+
+    //  编辑
+    $('.btn-edit-item').click(function () {
+        var id = $(this).attr('itemId');
+        if (!id) {
+            layer.msg('获取id失败!');
+            return false;
+        }
+        layer.load();
+        var url = "{php echo $this->createWebUrl('goods_edit')}" + "&action=edit" + "&id=" +id;
+        window.location.href = url;
+    });
+
+
+    //  上下架
+    $('.btn-on-item, .btn-down-item').click(function () {
+        var id = $(this).attr('itemId');
+        var state = $(this).attr('itemState');
+        if (!id) {
+            layer.msg('获取id失败!');
+            return false;
+        }
+        layer.open({
+            content: '是否确认执行该操作?',
+            yes: function (index, layero) {
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                layer.load();
+                var url = "{php echo $this->createWebUrl('goods_edit')}";
+                var data = {
+                    action: 'change',
+                    state: state ,
+                    id: id
+                };
+
+                postData(url, data);
+            }
+        });
+    });
+
+    //  删除
+    $('.btn-delete-item').click(function () {
+        var id = $(this).attr('itemId');
+        if (!id) {
+            layer.msg('获取id失败!');
+            return false;
+        }
+
+        layer.open({
+            content: '是否删除?',
+            yes: function (index, layero) {
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                layer.load();
+                var url = "{php echo $this->createWebUrl('goods_edit')}" + "&action=delete&id=" + id;
+                // window.location.href = url/
+                var data = {
+                    action: 'delete',
+                    id: id
+                };
+
+                postData(url, data);
+            }
+        });
+    });
+  </script>
+
+
+<script src="{MODULE_URL}/images/js/main.js"></script>
+</body>
+</html>

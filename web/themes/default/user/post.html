@@ -65,6 +65,16 @@
 		<!-- 权限 start -->
 		<div ng-show="create_step == 2" class="user-create-permission">
 			
+			{if permission_check_account_user('see_user_create_own_vice_founder')}
+			<div class="form-group">
+				<label for="" class="control-label col-sm-2">所属副创始人</label>
+				<div class="form-controls col-sm-8">
+					<input type="text" name="vice_founder_name" id="vice_founder" ng-style="{'width': '200px'}" class="form-control" ng-model="vice_founder_name" placeholder="" autocomplete="off">
+					<div class="help-block">请输入副创始人姓名</div>
+				</div>
+			</div>
+			{/if}
+			
 
 			<div class="form-group">
 				<label for="" class="control-label col-sm-2">权限方式</label>

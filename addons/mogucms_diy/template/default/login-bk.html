@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>{if !empty($title['login'])}{$title['login']}{else}登录{/if}</title>
+	<meta name="keywords" content="{$webset['keyword']}" />
+	<meta name="description" content="{$webset['description']}" />
+	{if !empty($webset['icon'])}
+	<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+	{/if}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="/addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+</head>
+<body>
+<form method="post"  id="form1" class="we7-form">
+<div class="warpcont">
+    <div class="login_crm" style="background:url({if !empty($setting['corp'])}{$_W['attachurl']}{$setting['corp']}{else}/addons/mogucms_diy/static/admin/images/pc-login-bg.png{/if}) no-repeat center center;background-size:cover; background-attachment:fixed;">
+        <div class="login_crm_wrapper">
+            <div class="login_logo"><a href="/"><img src="{if !empty($webset['logo'])}{$_W['attachurl']}{$webset['logo']}{else}/addons/mogucms_diy/static/admin/images/login-logo.png{/if}"/></a></div>
+            <div class="login_crm_content">
+                <div class="form-groups">
+                    <div class="form-group uname">
+                        <input type="text" name="username" id="username" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group psw">
+                        <input name="password" id="password" type="password" placeholder="请输入密码">
+                    </div>
+					{if !empty($_W['setting']['copyright']['verifycode'])}
+                    <div class="form-group yzm">
+                        <div class="yzminp"><input name="verify" id="verify" type="text" placeholder="请输入验证码"></div>
+                        <div class="yzmimg"><img src="/web/index.php?c=utility&a=code&" id="imgcode" onclick="this.src='/web/index.php?c=utility&a=code&' + Math.random();"></div>
+                    </div>
+					{/if}
+                    <div class="jzmm"><label class="left">
+					<input name="token" value="{$_W['token']}" type="hidden" />
+				    <input name="login_type" id="login_type" type="hidden" class="form-control " value="system">
+				    <input type="checkbox" id="rember" name="rember" value="true" /><span>记住密码</span></label><a class="right" href="/web/index.php?c=user&a=find-password">忘记密码？</a></div>
+                    <a href="javascript:;" class="loginBtn" onclick="return formcheck();">登录</a>
+                    {if $_W['setting']['register']['open']==1}<div class="login_bottom"><a class="right" href="{php echo $this->mogucms_url('register')}">立即注册</a></div>{/if}
+					{if !empty($_W['setting']['thirdlogin']['qq']['authstate']) || !empty($_W['setting']['thirdlogin']['wechat']['authstate'])}
+                    <div class="tacbox">使用第三方账号登录</div>
+                    <div class="linklogin">{if !empty($_W['setting']['thirdlogin']['qq']['authstate'])}<a href="{$login_urls['qq']}"><img src="/addons/mogucms_diy/static/admin/images/qqlogin.png"></a>{/if}{if !empty($_W['setting']['thirdlogin']['wechat']['authstate'])}<a href="{$login_urls['wechat']}"><img src="/addons/mogucms_diy/static/admin/images/wxlogin.png"></a>{/if}</div>
+					{/if}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<div class="wfooter"><a href="http://beian.miit.gov.cn" target="_blank">{$webset['beian']}</a></div>
+<style type="text/css">
+.wfooter{position: absolute; left: 0; bottom: 20px; right: 0;width: 100%;text-align: center;
+</style>
+<script src="/addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+<script>
+document.onkeydown = function(e){
+	if(e.keyCode === 13){
+		formcheck();
+	}
+}
+function formcheck(){
+          var username = $("#username").val();
+          var str = /^[1][3,4,5,7,8][0-9]{9}$///手机
+          if(username == ''){
+            alert("请输入帐号")
+            return false
+          }
+         
+          $.ajax({
+              url:"/web/index.php?c=user&a=login",
+              type:"POST",
+              dataType:'json',
+              data:$('#form1').serialize(),
+              success: function(data){
+                 var url = data.redirect;
+				 var logininfo="{$logininfo['tourl']}";
+				 var tourl = '{$tourl}';
+                 if(url){
+                     if(url.indexOf("user") != -1){
+						 alert(data.message);
+						 $("#imgcode").attr("src","/web/index.php?c=utility&a=code&" + Math.random());
+					 }else{
+						url = url.replace(".","");
+						if(logininfo=="1"){
+							window.location.href=tourl;
+						}else{
+							window.location.href="/web"+url;
+						}
+					 }
+                 }else{
+					alert(data.message);
+				 }
+              }
+          });
+          return false;
+      }
+</script>
+</body>
+</html>

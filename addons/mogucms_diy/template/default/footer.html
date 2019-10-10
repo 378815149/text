@@ -1,0 +1,34 @@
+<div class="footer">
+	<?php 
+	$temp = $this->getlinks();
+	if(!empty($temp)){
+	?>
+	<div class="footer_link">
+		<div class="wrapper" style="text-align:left">
+    	<strong>{if !empty($webset['yqlj'])}{$webset['yqlj']}{else}友情链接{/if}：</strong>{loop $this->getlinks() $t}<a href="{$t['url']}" target="_blank">{$t['name']}</a>{/loop}
+        </div>
+    </div>
+	<?php }?>
+    <div class="footer_bot">
+        <div class="wrapper">
+            <div class="foot_menu">{if $menu['appshow']!='1'}<a href="{php echo $this->mogucms_url('application')}">{if !empty($menu['app'])}{$menu['app']}{else}应用中心{/if}</a><span>|</span>{/if}{if $menu['xcxshow']!='1'}<a href="{php echo $this->mogucms_url('mini')}">{if !empty($menu['xcx'])}{$menu['xcx']}{else}小程序大未来{/if}</a><span>|</span>{/if}{if $menu['qudaoshow']!='1'}<a href="{php echo $this->mogucms_url('agent')}">{if !empty($menu['qudao'])}{$menu['qudao']}{else}代理加盟{/if}</a><span>|</span>{/if}{if $menu['aboutshow']!='1'}<a href="{php echo $this->mogucms_url('about')}">{if !empty($menu['about'])}{$menu['about']}{else}关于我们{/if}</a><span>|</span>{/if}{if $menu['helpshow']!='1'}<a href="{php echo $this->mogucms_url('help')}">{if !empty($menu['help'])}{$menu['help']}{else}帮助中心{/if}</a>{/if}</div>
+            <div class="footer_copyright">{if !empty($webset['corp'])}{$webset['corp']}{else}Copyright © 1998 - 2018 moguyun. All Rights Reserved.{/if}&nbsp;<a href="http://beian.miit.gov.cn" target="_blank">{$webset['beian']}</a>&nbsp;{if !empty($webset['gsimg'])}<a href="{$webset['gsurl']}" target="_blank"><img src="{$_W['attachurl']}{$webset['gsimg']}" width="14px" height="14px" style="margin-top:-3px;"></a>{/if}&nbsp;<img src="/addons/mogucms_diy/static/default/images/ga.png" width="14px" height="14px" style="margin-top:-3px;"><a href="{$webset['gonganurl']}" target="_blank">{$webset['gongan']}</a></div>
+        </div>
+    </div>
+</div>
+<!--右侧浮动-->
+<div class="fix_link">
+	<ul>
+    	<a href="http://wpa.qq.com/msgrd?v=3&uin={$webset['qq']}&site=qq&menu=yes" target="_blank"><li class="fix_qq"><em><img src="/addons/mogucms_diy/static/default/images/fix_ico1.png"></em><span>在线咨询</span></li></a>
+    	<li class="fix_wx"><em><img src="/addons/mogucms_diy/static/default/images/fix_ico2.png"></em><span>官方微信</span>
+        	<div class="fix_info" id="gfweixin"><h3><img src="{if !empty($webset['erweima'])}{$_W['attachurl']}{$webset['erweima']}{else}../addons/mogucms_diy/static/default/images/ct3_ewm.jpg{/if}"></h3><p>扫一扫关注</p><span></span></div>
+        </li>
+    	<li class="fix_tel"><em><img src="/addons/mogucms_diy/static/default/images/fix_ico3.png"></em><span>联系电话</span>
+        	<a href="tel:{$webset['phone']}"><div class="fix_info" id="gftel">{$webset['phone']}<span></span></div></a>
+        </li>
+    	<li class="fix_top top"><em><img src="/addons/mogucms_diy/static/default/images/fix_ico4.png"></em><span>返回顶部</span></li>
+    </ul>
+</div>
+{php echo html_entity_decode($webset['tongji'])}
+</body>
+</html>

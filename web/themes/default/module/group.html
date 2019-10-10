@@ -72,11 +72,11 @@
 						<a href="javascript:;" class="color-default js-unfold" ng-click="changeText($event)">展开</a>
 						{/if}
 						
-						
-							{if $_W['role'] == ACCOUNT_MANAGE_NAME_FOUNDER}
+							{if $_W['role'] == ACCOUNT_MANAGE_NAME_FOUNDER || $_W['role'] == ACCOUNT_MANAGE_NAME_VICE_FOUNDER}
 							<a href="{php echo url('module/group/post', array('id' => $module_group['id']))}">编辑套餐</a>
 							<a href="javascript:void(0);" class="del" ng-click="delUniGroup('{php echo url("module/group/delete", array("id" => $module_group["id"]))}')">删除</a>
 							{/if}
+						
 						
 					</div>
 				</td>

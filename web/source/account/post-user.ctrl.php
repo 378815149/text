@@ -136,6 +136,14 @@ if ('set_manager' == $do) {
 		$exists = pdo_get('uni_account_users', $data);
 		if (empty($exists)) {
 			
+				if (ACCOUNT_MANAGE_TYPE_VICE_FOUNDER == $addtype) {
+					if (ACCOUNT_MANAGE_GROUP_VICE_FOUNDER != $user['founder_groupid']) {
+						iajax(6, '副创始人不存在！', '');
+					}
+					pdo_delete('uni_account_users', array('uniacid' => $uniacid, 'role' => ACCOUNT_MANAGE_NAME_VICE_FOUNDER));
+					$data['role'] = ACCOUNT_MANAGE_NAME_VICE_FOUNDER;
+				}
+			
 			if (ACCOUNT_MANAGE_TYPE_OWNER == $addtype) {
 				if (ACCOUNT_MANAGE_NAME_MANAGER == $state) {
 					iajax(4, '管理员不可操作主管理员', '');

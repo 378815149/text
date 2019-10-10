@@ -22,11 +22,11 @@
 <div class="clearfix"></div>
 <div class="btn-group we7-btn-group wechat-edit-group">
 	
-
-	
-		{if $state == ACCOUNT_MANAGE_NAME_FOUNDER || $state == ACCOUNT_MANAGE_NAME_OWNER}
+		{if $state == ACCOUNT_MANAGE_NAME_FOUNDER || $state == ACCOUNT_MANAGE_NAME_OWNER || $state == ACCOUNT_MANAGE_NAME_VICE_FOUNDER}
 		<a href="{php echo url('account/post/base', array('uniacid' => $account['uniacid'], 'account_type' => ACCOUNT_TYPE_APP_NORMAL))}" class="btn btn-default {if $do == 'base'} active{/if}">基础信息</a>
 		{/if}
+	
+
 	
 
 	<a href="{php echo url('account/post-user/edit', array('uniacid' => $account['uniacid'], 'account_type' => ACCOUNT_TYPE_APP_NORMAL))}" class="btn btn-default {if $action == 'post-user' && $do == 'edit'} active{/if}">使用者管理</a>

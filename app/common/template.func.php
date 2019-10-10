@@ -18,6 +18,45 @@ function template_compat($filename) {
 	return '';
 }
 
+function template_design($html) {
+	if (empty($html)) {
+		return '';
+	}
+	$html = str_replace(array('<?', '<%', '<?php', '{php'), '_', $html);
+	$html = preg_replace('/<\s*?script.*(src|language)+/i', '_', $html);
+
+	$script_start = '<sc<x>ript type="text/ja<x>vasc<x>ript">';
+	$script_end = '</sc<x>ript>';
+
+	$count_down_script = <<<EOF
+$(document).ready(function(){\r\n\t\t\t\t\tsetInterval(function(){\r\n\t\t\t\t\t\tvar timer = $('.timer');\r\n\t\t\t\t\t\tfor (var i = 0; i < timer.length; i++) {\r\n\t\t\t\t\t\t\tvar dead = $(timer.get(i)).attr('data');\r\n\t\t\t\t\t\t\tvar deadtime = dead.replace(/-/g,'/');\r\n\t\t\t\t\t\t\tdeadtime = new Date(deadtime).getTime();\r\n\t\t\t\t\t\t\tvar nowtime = Date.parse(Date());\r\n\t\t\t\t\t\t\tvar diff = deadtime - nowtime > 0 ? deadtime - nowtime : 0;\r\n\t\t\t\t\t\t\tvar res = {};\r\n\t\t\t\t\t\t\tres.day = parseInt(diff / (24 * 60 * 60 * 1000));\r\n\t\t\t\t\t\t\tres.hour = parseInt(diff / (60 * 60 * 1000) % 24);\r\n\t\t\t\t\t\t\tres.min = parseInt(diff / (60 * 1000) % 60);\r\n\t\t\t\t\t\t\tres.sec = parseInt(diff / 1000 % 60);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .day').text(res.day);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .hours').text(res.hour);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .minutes').text(res.min);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .seconds').text(res.sec);\r\n\t\t\t\t\t\t};\r\n\t\t\t\t\t}, 1000);\r\n\t\t\t\t});
+EOF;
+	$add_num_acript = <<<EOF
+$(document).ready(function() {\r\n\t\t\t\t\tvar patt = new RegExp('c=home&a=page');\r\n\t\t\t\t\tif (patt.exec(window.location.href)) {\r\n\t\t\t\t\t\t$.post(window.location.href, {'do' : 'getnum'}, function(data) {\r\n\t\t\t\t\t\t\tif (data.message.errno == 0) {\r\n\t\t\t\t\t\t\t\t$('.counter-num').text(data.message.message.goodnum);\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}, 'json');\r\n\t\t\t\t\t\t$(".app-good .element").click(function() {\r\n\t\t\t\t\t\t\tvar id=GetQueryString("id");\r\n\t\t\t\t\t\t\tif(id !=null && id.toString().length>=1 && localStorage.havegood != id){\r\n\t\t\t\t\t\t\t\t$.post(window.location.href, {'do': 'addnum'}, function(data) {\r\n\t\t\t\t\t\t\t\t\tif (data.message.errno == 0) {\r\n\t\t\t\t\t\t\t\t\t\tvar now = $('.counter-num').text();\r\n\t\t\t\t\t\t\t\t\t\tnow = parseInt(now)+1;\r\n\t\t\t\t\t\t\t\t\t\t$('.counter-num').text(now);\r\n\t\t\t\t\t\t\t\t\t\tlocalStorage.havegood = id;\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t}, 'json');\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t});\r\n\t\t\t\t\t\tfunction GetQueryString(name){\r\n\t\t\t\t\t\t\tvar reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");\r\n\t\t\t\t\t\t\tvar r = window.location.search.substr(1).match(reg);\r\n\t\t\t\t\t\t\tif(r!=null)return  unescape(r[2]); return null;\r\n\t\t\t\t\t\t}\t\t\t\t\t\t\r\n\t\t\t\t\t};\r\n\t\t\t\t});
+EOF;
+	if (strexists($html, $script_start . $add_num_acript . $script_end)) {
+		$html = str_replace($script_start . $add_num_acript . $script_end, '<script type="text/javascript">' . $add_num_acript . '</script>', $html);
+	}
+
+	if (strexists($html, $script_start . $count_down_script . $script_end)) {
+		$html = str_replace($script_start . $count_down_script . $script_end, '<script type="text/javascript">' . $count_down_script . '</script>', $html);
+	}
+
+	$link_error = '<li<x>nk href="./resource/components/swiper/swiper.min.css" rel="stylesheet">';
+	if (strexists($html, $link_error)) {
+		$html = str_replace($link_error, '<link href="./resource/components/swiper/swiper.min.css" rel="stylesheet">', $html);
+	}
+	$svg_start = 'xm<x>lns="http://www.w3.org/2000/svg" xm<x>lns:xli<x>nk="http://www.w3.org/1999/xli<x>nk"';
+	$svg_end = 'xm<x>l:space="preserve" preserveAspectRatio="none">';
+	if (strexists($html, $svg_start)) {
+		$html = str_replace($svg_start, 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"', $html);
+	}
+	if (strexists($html, $svg_end)) {
+		$html = str_replace($svg_end, 'xml:space="preserve" preserveAspectRatio="none">', $html);
+	}
+	return $html;
+}
+
 function template_page($id, $flag = TEMPLATE_DISPLAY) {
 	global $_W;
 	$page = table('site_page')->getById($id);
@@ -27,17 +66,7 @@ function template_page($id, $flag = TEMPLATE_DISPLAY) {
 	if (empty($page['html'])) {
 		return '';
 	}
-	$page['html'] = str_replace(array('<?', '<%', '<?php', '{php'), '_', $page['html']);
-	$page['html'] = preg_replace('/<\s*?script.*(src|language)+/i', '_', $page['html']);
-
-	$script_start = "<sc<x>ript type=\"text/ja<x>vasc<x>ript\">";
-	$script_end = "</sc<x>ript>";
-	$count_down_script = <<<EOF
-$(document).ready(function(){\r\n\t\t\t\t\tsetInterval(function(){\r\n\t\t\t\t\t\tvar timer = $('.timer');\r\n\t\t\t\t\t\tfor (var i = 0; i < timer.length; i++) {\r\n\t\t\t\t\t\t\tvar dead = $(timer.get(i)).attr('data');\r\n\t\t\t\t\t\t\tvar deadtime = dead.replace(/-/g,'/');\r\n\t\t\t\t\t\t\tdeadtime = new Date(deadtime).getTime();\r\n\t\t\t\t\t\t\tvar nowtime = Date.parse(Date());\r\n\t\t\t\t\t\t\tvar diff = deadtime - nowtime > 0 ? deadtime - nowtime : 0;\r\n\t\t\t\t\t\t\tvar res = {};\r\n\t\t\t\t\t\t\tres.day = parseInt(diff / (24 * 60 * 60 * 1000));\r\n\t\t\t\t\t\t\tres.hour = parseInt(diff / (60 * 60 * 1000) % 24);\r\n\t\t\t\t\t\t\tres.min = parseInt(diff / (60 * 1000) % 60);\r\n\t\t\t\t\t\t\tres.sec = parseInt(diff / 1000 % 60);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .day').text(res.day);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .hours').text(res.hour);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .minutes').text(res.min);\r\n\t\t\t\t\t\t\t$('.timer[data="'+dead+'"] .seconds').text(res.sec);\r\n\t\t\t\t\t\t};\r\n\t\t\t\t\t}, 1000);\r\n\t\t\t\t});
-EOF;
-	if (strexists($page['html'], $script_start . $count_down_script . $script_end)) {
-		$page['html'] = str_replace($script_start . $count_down_script . $script_end, "<script type=text/javascript>" . $count_down_script . "</script>", $page['html']);
-	}
+	$page['html'] = template_design($page['html']);
 
 	$page['params'] = json_decode($page['params'], true);
 	$GLOBALS['title'] = htmlentities($page['title'], ENT_QUOTES, 'UTF-8');
@@ -49,7 +78,7 @@ EOF;
 		load()->func('file');
 		mkdirs($path);
 	}
-	$content = template_parse($page['html']);
+	$content = $page['html'];
 	if (!empty($page['params'][0]['params']['bgColor'])) {
 		$content .= '<style>body{background-color:'.$page['params'][0]['params']['bgColor'].' !important;}</style>';
 	}
@@ -396,6 +425,7 @@ function site_category($params = array()) {
 	global $_GPC, $_W;
 	extract($params);
 	$where['uniacid'] = $_W['uniacid'];
+	$where['enabled'] = 1;
 	if (isset($parentid)) {
 		$parentid = intval($parentid);
 		$where['parentid'] = $parentid;
@@ -571,7 +601,7 @@ function site_quickmenu() {
 		return false;
 	}
 
-	echo $quickmenu['html'];
+	echo template_design($quickmenu['html']);
 	echo "<script type=\"text/javascript\">
 	$('.js-quickmenu').find('a').each(function(){
 		if ($(this).attr('href')) {

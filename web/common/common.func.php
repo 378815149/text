@@ -177,11 +177,12 @@ function buildframes($framename = '') {
 					}
 				}
 				
-					if ('wxapp' != $nav_id) {
+				
+					if ('wxapp' != $nav_id && 'store' != $nav_id) {
 						$section_show = false;
 						$secion['if_fold'] = !empty($_GPC['menu_fold_tag:' . $section_id]) ? 1 : 0;
 						foreach ($secion['menu'] as $menu_id => $menu) {
-							if (!in_array($menu['permission_name'], $user_permission) && 'platform_module' != $section_id) {
+							if (!in_array($menu['permission_name'], $user_permission) && 'platform_module' != $section_id && 'phoneapp_profile' != $section_id) {
 								$frames[$nav_id]['section'][$section_id]['menu'][$menu_id]['is_display'] = false;
 							} else {
 								$section_show = true;
@@ -191,7 +192,6 @@ function buildframes($framename = '') {
 							$frames[$nav_id]['section'][$section_id]['is_display'] = $section_show;
 						}
 					}
-				
 				
 			}
 
@@ -522,6 +522,20 @@ function buildframes($framename = '') {
 			}
 		}
 		
+			if (!empty($entries['system_welcome']) && $_W['isfounder']) {
+				$frames['account']['section']['platform_module_welcome']['title'] = '';
+				foreach ($entries['system_welcome'] as $key => $row) {
+					if (empty($row)) {
+						continue;
+					}
+					$frames['account']['section']['platform_module_welcome']['menu']['platform_module_welcome' . $row['eid']] = array(
+						'title' => "<i class='wi wi-appsetting'></i> {$row['title']}",
+						'url' => $row['url'],
+						'is_display' => 1,
+					);
+				}
+			}
+		
 	}
 
 		if (defined('FRAME') && FRAME == 'wxapp') {
@@ -566,7 +580,7 @@ function buildframes($framename = '') {
 				}
 				if (!empty($wxapp_section['menu']) && 'platform_module' != $wxapp_section_id) {
 					foreach ($wxapp_section['menu'] as $wxapp_menu_id => $wxapp_menu) {
-						if (in_array($wxapp_section_id, array('wxapp_profile', 'wxapp_entrance', 'statistics', 'mc', 'wxapp_api'))) {
+						if (in_array($wxapp_section_id, array('wxapp_profile', 'wxapp_entrance', 'statistics', 'mc'))) {
 							$frames['wxapp']['section'][$wxapp_section_id]['menu'][$wxapp_menu_id]['url'] .= 'version_id=' . $version_id;
 						}
 						if (!in_array('wxapp*', $wxapp_permission) && !in_array($wxapp_menu['permission_name'], $wxapp_permission)) {
@@ -598,6 +612,12 @@ function frames_top_menu($frames) {
 			continue;
 		}
 
+		
+			if (is_array($_W['setting']['store']['blacklist']) && in_array($_W['username'], $_W['setting']['store']['blacklist']) && !empty($_W['setting']['store']['permission_status']) && $_W['setting']['store']['permission_status']['blacklist'] && 'store' == $menuid ||
+				is_array($_W['setting']['store']['whitelist']) && !in_array($_W['username'], $_W['setting']['store']['whitelist']) && !empty($_W['setting']['store']['permission_status']) && $_W['setting']['store']['permission_status']['whitelist'] && !($_W['isfounder'] && !$is_vice_founder) && 'store' == $menuid ||
+				$_W['setting']['store']['status'] == 1 && 'store' == $menuid && !in_array($_W['uid'], $founders)) {
+				continue;
+			}
 		
 
 		$top_nav[] = array(

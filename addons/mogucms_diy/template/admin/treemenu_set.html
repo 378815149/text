@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>网站设置</title>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/colorpicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/inspiniatext.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/main.js"></script>
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/colorpicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./resource/css/common.css?v=20170426" rel="stylesheet">
+	<link href="../addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}
+		{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'isfounder': {if !empty($_W['isfounder'])}1{else}0{/if},
+		'family': '{IMS_FAMILY}',
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		'module' : {'url' : '{if defined('MODULE_URL')}{MODULE_URL}{/if}', 'name' : '{if defined('IN_MODULE')}{IN_MODULE}{/if}'},
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'},
+		'account' : {php echo json_encode($_W['account'])},
+		'server' : {'php' : '{php echo phpversion()}'},
+	};
+	</script>
+	<script>var require = { urlArgs: 'v=20170426' };</script>
+	<script type="text/javascript" src="./resource/js/app/util.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/app/common.min.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/require.js?v=20170426"></script>
+<body><div class="warpcont">
+{template "admin/top"}
+
+<div class="allwrapper">
+  <div class="leftsidebar" >
+  
+    {template "admin/left"}
+  </div><!--leftsidebar-->
+  <div class="page-wrapper hmmidcon">
+      <div class="row welctop lhgray-bg padding20">
+          <div class="col-lg-9 col-md-6 col-xs-7 border">
+              <div class="subtitle themetxtcolor">菜单设置</div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-5 ">
+          </div>
+      </div><!--row welctop-->
+      
+     <div class="row padding20 white-bg">
+      
+          <form name="form1" method="POST" action="">
+          <div class="col-lg-12 cpadlf">
+             <div class="title"><span class="themebgcolor"></span>菜单设置</div>
+             
+			  <div class="posmabox">
+                  <span class="lf1">首页</span>
+                  <div class="inbox">
+                      <input type="text" name="home" class="textinput" value="{$setting['home']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1"></span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="appshow" value="1" id="RadioGroup1_0" {if $setting['appshow']=="1"}checked{/if}><label for="RadioGroup1_0" {if $setting['appshow']=="1"}class="themebgcolor"{/if}></label>应用中心不显示</div>
+                        <div class="radio bdradio"><input type="radio" name="appshow" value="0" id="RadioGroup1_1" {if $setting['appshow']!="1"}checked{/if}><label for="RadioGroup1_1" {if $setting['appshow']!="1"}class="themebgcolor"{/if}></label>应用中心显示</div>
+                </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">应用中心</span>
+                  <div class="inbox">
+                      <input type="text" name="app" class="textinput" value="{$setting['app']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">应用中心排序</span>
+                  <div class="inbox">
+					   数字大的在前
+                      <input type="text" name="apporder" class="textinput" value="{$setting['apporder']}">
+                  </div>
+              </div>
+				
+			  <div class="posmabox">
+                  <span class="lf1"></span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="xcxshow" value="1" id="RadioGroup1_2" {if $setting['xcxshow']=="1"}checked{/if}><label for="RadioGroup1_2" {if $setting['xcxshow']=="1"}class="themebgcolor"{/if}></label>小程序大未来不显示</div>
+                        <div class="radio bdradio"><input type="radio" name="xcxshow" value="0" id="RadioGroup1_3" {if $setting['xcxshow']!="1"}checked{/if}><label for="RadioGroup1_3" {if $setting['xcxshow']!="1"}class="themebgcolor"{/if}></label>小程序大未来显示</div>
+                </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">小程序大未来</span>
+                  <div class="inbox">
+                      <input type="text" name="xcx" class="textinput" value="{$setting['xcx']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">小程序排序</span>
+                  <div class="inbox">
+                      <input type="text" name="xcxorder" class="textinput" value="{$setting['xcxorder']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1"></span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="qudaoshow" value="1" id="RadioGroup1_4" {if $setting['qudaoshow']=="1"}checked{/if}><label for="RadioGroup1_4" {if $setting['qudaoshow']=="1"}class="themebgcolor"{/if}></label>渠道合作不显示</div>
+                        <div class="radio bdradio"><input type="radio" name="qudaoshow" value="0" id="RadioGroup1_5" {if $setting['qudaoshow']!="1"}checked{/if}><label for="RadioGroup1_5" {if $setting['qudaoshow']!="1"}class="themebgcolor"{/if}></label>渠道合作显示</div>
+                </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">渠道合作</span>
+                  <div class="inbox">
+                      <input type="text" name="qudao" class="textinput" value="{$setting['qudao']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">渠道合作排序</span>
+                  <div class="inbox">
+                      <input type="text" name="qudaoorder" class="textinput" value="{$setting['qudaoorder']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1"></span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="aboutshow" value="1" id="RadioGroup1_6" {if $setting['aboutshow']=="1"}checked{/if}><label for="RadioGroup1_6" {if $setting['aboutshow']=="1"}class="themebgcolor"{/if}></label>关于我们不显示</div>
+                        <div class="radio bdradio"><input type="radio" name="aboutshow" value="0" id="RadioGroup1_7" {if $setting['aboutshow']!="1"}checked{/if}><label for="RadioGroup1_7" {if $setting['aboutshow']!="1"}class="themebgcolor"{/if}></label>关于我们显示</div>
+                </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">关于我们</span>
+                  <div class="inbox">
+                      <input type="text" name="about" class="textinput" value="{$setting['about']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">关于我们排序</span>
+                  <div class="inbox">
+                      <input type="text" name="aboutorder" class="textinput" value="{$setting['aboutorder']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1"></span>
+                  <div class="inbox">
+                        <div class="radio bdradio"><input type="radio" name="helpshow" value="1" id="RadioGroup1_8" {if $setting['helpshow']=="1"}checked{/if}><label for="RadioGroup1_8" {if $setting['helpshow']=="1"}class="themebgcolor"{/if}></label>帮助中心不显示</div>
+                        <div class="radio bdradio"><input type="radio" name="helpshow" value="0" id="RadioGroup1_9" {if $setting['helpshow']!="1"}checked{/if}><label for="RadioGroup1_9" {if $setting['helpshow']!="1"}class="themebgcolor"{/if}></label>帮助中心显示</div>
+                </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">帮助中心</span>
+                  <div class="inbox">
+                      <input type="text" name="help" class="textinput" value="{$setting['help']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">帮助中心排序</span>
+                  <div class="inbox">
+                      <input type="text" name="helporder" class="textinput" value="{$setting['helporder']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">外链-名称1</span>
+                  <div class="inbox">
+                      <input type="text" name="xxx" class="textinput" value="{$setting['xxx']}">
+                  </div>
+              </div>
+			  
+			   <div class="posmabox">
+                  <span class="lf1">外链-链接1</span>
+                  <div class="inbox">
+                      <input type="text" name="xxx2" class="textinput" value="{$setting['xxx2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">外链1排序</span>
+                  <div class="inbox">
+                      <input type="text" name="xxxorder" class="textinput" value="{$setting['xxxorder']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">外链-名称2</span>
+                  <div class="inbox">
+                      <input type="text" name="yyy" class="textinput" value="{$setting['yyy']}">
+                  </div>
+              </div>
+			   <div class="posmabox">
+                  <span class="lf1">外链-链接2</span>
+                  <div class="inbox">
+                      <input type="text" name="yyy2" class="textinput" value="{$setting['yyy2']}">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">外链2排序</span>
+                  <div class="inbox">
+                      <input type="text" name="yyyorder" class="textinput" value="{$setting['yyyorder']}">
+                  </div>
+              </div>
+			  
+            
+              <div class="posmabox">
+                  <div class="inbox">
+                      <div class="marginrg bn"><input name="" type="submit" class=" btn themebgcolor" value="保存"></div>
+                  </div>
+              </div>
+              
+          </div>
+		</form>
+      
+      </div><!--row -->
+    
+
+      
+      
+  </div><!-- page-wrapper-->
+  
+    
+  
+    
+    
+</div>
+</div>
+<script type="text/javascript">
+ $(function () {
+	 
+	 		 
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	
+	var selcolor; 
+	var $toli=$('.toggle').find('li');
+	function toggleCon(n){
+		var selele='<i class="icon iconfont icon-right"></i>'
+		  $toli.eq(n).append('<i class="icon iconfont icon-right"></i>').siblings("li").find(".icon").remove();
+	      var bgcor=$toli.eq(n).find('a').attr('data-url');
+		  selcolor=bgcor;
+	 };
+	 toggleCon(1);
+	 
+	 $('#colorpickerField1').click(function(){
+		
+		var $input = $(this);
+		$input.colorpicker({success : function(dom, color){
+			selcolor=color;
+		}
+		});
+	});
+	
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	 
+	 	/*单选	*/	
+		$(".selbox li").click(function(e){
+			
+		 if($(this).find(".checked").length==0){
+			$(this).addClass('checked').addClass('themetxtcolor');
+			$(this).append('<i class="sel"></i>');
+			$(this).siblings('li').removeClass('checked').removeClass('themetxtcolor');
+			$(this).siblings('li').find('i.sel').remove();
+			
+		 }
+		})
+		
+		
+    });
+  
+</script>
+</body>
+</html>

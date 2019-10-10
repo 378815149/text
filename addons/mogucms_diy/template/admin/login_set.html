@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>登录设置</title>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/colorpicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/inspiniatext.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/main.js"></script>
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/colorpicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./resource/css/common.css?v=20170426" rel="stylesheet">
+	<link href="../addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}
+		{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'isfounder': {if !empty($_W['isfounder'])}1{else}0{/if},
+		'family': '{IMS_FAMILY}',
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		'module' : {'url' : '{if defined('MODULE_URL')}{MODULE_URL}{/if}', 'name' : '{if defined('IN_MODULE')}{IN_MODULE}{/if}'},
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'},
+		'account' : {php echo json_encode($_W['account'])},
+		'server' : {'php' : '{php echo phpversion()}'},
+	};
+	</script>
+	<script>var require = { urlArgs: 'v=20170426' };</script>
+	<script type="text/javascript" src="./resource/js/app/util.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/app/common.min.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/require.js?v=20170426"></script>
+<body><div class="warpcont">
+{template "admin/top"}
+
+<div class="allwrapper">
+  <div class="leftsidebar" >
+  
+    {template "admin/left"}
+  </div><!--leftsidebar-->
+  <div class="page-wrapper hmmidcon">
+      <div class="row welctop lhgray-bg padding20">
+          <div class="col-lg-9 col-md-6 col-xs-7 border">
+              <div class="subtitle themetxtcolor">登录设置</div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-5 ">
+          </div>
+      </div><!--row welctop-->
+      
+     <div class="row padding20 white-bg">
+      
+          <form name="form1" method="POST" action="">
+          <div class="col-lg-12 cpadlf">
+             <div class="title"><span class="themebgcolor"></span>登录设置</div>
+			 
+			  <div class="posmabox">
+                  <span class="lf1">登录样式</span>
+                  <div class="inbox">
+                      <select class="textinput" name="loginskin">
+                         <option value="default">默认样式</option>
+                         <option value="js" {if $setting['loginskin']=="js"}selected{/if}>js动画</option>
+                         <option value="phone" {if $setting['loginskin']=="phone"}selected{/if}>手机注册登录版</option>
+                         <option value="zdy" {if $setting['loginskin']=="zdy"}selected{/if}>自定义登录注册(login4.html register4.html)</option>
+                        </select>
+                  </div>
+              </div>
+			  
+             <div class="posmabox">
+                  <span class="lf1">背景图片</span>
+                  <div class="inbox">
+					  图片背景 建议尺寸>1366*768
+					 {php echo tpl_form_field_image('corp', $setting['corp'], '');}
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">登录Logo</span>
+                  <div class="inbox">
+					 有logo的登录注册模板才显示
+					{php echo tpl_form_field_image('logo', $setting['logo'], '');}
+                  </div>
+              </div>
+			  
+              
+			  <div class="posmabox">
+                  <span class="lf1">页面标题</span>
+                  <div class="inbox">
+                     <input type="text" name="title" class="form-control" value="{$setting['title']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">中文标题</span>
+                  <div class="inbox">
+                      <input type="text" name="zhongwen" class="form-control" value="{$setting['zhongwen']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">英文标题</span>
+                  <div class="inbox">
+                      <input type="text" name="yingwen" class="form-control" value="{$setting['yingwen']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">短信签名</span>
+                  <div class="inbox">
+                      <input type="text" name="smssign" class="form-control" value="{$setting['smssign']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">短信接口</span>
+                  <div class="inbox">
+                      <select class="textinput" name="smsapi">
+                         <option value="weiqing" {if $setting['smsapi']=="weiqing"}selected{/if}>官方接口</option>
+                         <option value="juhe" {if $setting['smsapi']=="juhe"}selected{/if}>聚合短信</option>
+                         <option value="ali" {if $setting['smsapi']=="ali"}selected{/if}>阿里短信</option>
+                        </select>
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">聚合短信</span>
+                  <div class="inbox">
+					  短信模板ID
+                      <input type="text" name="juheid" class="form-control" value="{$setting['juheid']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">聚合短信</span>
+                  <div class="inbox">
+					  Key
+                      <input type="text" name="juhekey" class="form-control" value="{$setting['juhekey']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">阿里短信</span>
+                  <div class="inbox">
+					  AccessKey ID
+                      <input type="text" name="aliid" class="form-control" value="{$setting['aliid']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">阿里短信</span>
+                  <div class="inbox">
+					  Access Key Secret
+                      <input type="text" name="alisecret" class="form-control" value="{$setting['alisecret']}" />
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">阿里短信</span>
+                  <div class="inbox">
+					  模版ID
+                      <input type="text" name="alimoban" class="form-control" value="{$setting['alimoban']}" />
+                  </div>
+              </div>
+              <div class="posmabox">
+                  <div class="inbox">
+                      <div class="marginrg bn"><input name="" type="submit" class=" btn themebgcolor" value="保存"></div>
+                  </div>
+              </div>
+              
+          </div>
+		</form>
+      
+      </div><!--row -->
+    
+
+      
+      
+  </div><!-- page-wrapper-->
+  
+    
+  
+    
+    
+</div>
+</div>
+<script type="text/javascript">
+ $(function () {
+	 
+	 		 
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	
+	var selcolor; 
+	var $toli=$('.toggle').find('li');
+	function toggleCon(n){
+		var selele='<i class="icon iconfont icon-right"></i>'
+		  $toli.eq(n).append('<i class="icon iconfont icon-right"></i>').siblings("li").find(".icon").remove();
+	      var bgcor=$toli.eq(n).find('a').attr('data-url');
+		  selcolor=bgcor;
+	 };
+	 toggleCon(1);
+	 
+	 $('#colorpickerField1').click(function(){
+		
+		var $input = $(this);
+		$input.colorpicker({success : function(dom, color){
+			selcolor=color;
+		}
+		});
+	});
+	
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	 
+	 	/*单选	*/	
+		$(".selbox li").click(function(e){
+			
+		 if($(this).find(".checked").length==0){
+			$(this).addClass('checked').addClass('themetxtcolor');
+			$(this).append('<i class="sel"></i>');
+			$(this).siblings('li').removeClass('checked').removeClass('themetxtcolor');
+			$(this).siblings('li').find('i.sel').remove();
+			
+		 }
+		})
+		
+		
+    });
+  
+</script>
+</body>
+</html>

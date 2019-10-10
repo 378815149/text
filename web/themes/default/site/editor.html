@@ -12,6 +12,20 @@
 			<input type="hidden" name="wapeditor[params]" id="wapeditor-params" value="{{submit.params}}" />
 			<input type="hidden" name="wapeditor[html]" id="wapeditor-html" value="{{submit.html}}" />
 			<input type="hidden" name="wapeditor[nav]" id="wapeditor-nav" value="{{activeMenus}}" />
+			<div class="app-region">
+				<div class="panel">
+					<div class="panel-body">
+						<label class="text-center col-sm-1">基础</label>
+						<ul class="app-add-filed clearfix">
+							<li ng-repeat="m in modules" ng-if="m.isbase == true" ng-click="addItem(m['id'])"><a id="{{m['id']}}" class="btn btn-default" href="#" ng-bind="m['name']"></a></li>
+						</ul>
+						<label class="text-center col-sm-1">组件</label>
+						<ul class="app-add-filed clearfix">
+							<li ng-repeat="m in modules" ng-if="!m.issystem && !m.isbase" ng-click="addItem(m['id'])"><a id="{{m['id']}}" class="btn btn-default" href="#" ng-bind="m['name']"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 			<div class="app-header"><div class="app-header-content" ></div></div>
 			<div class="app-preview">
 				<div class="app-content">
@@ -53,7 +67,7 @@
 										</li>
 										{/if}
 									</ul>
-									<div class="modules hidden" we7-edit-key-map>
+									<div class="modules" we7-edit-key-map>
 										<div ng-if="module['id'] && module['id'] != 'UCheader'" id="module-{{module.index}}" name="{{module.id}}" index="{{module.index}}" ng-class="{'js-sorttable' : !module.issystem}" ng-repeat="module in activeModules"	ng-style="{'border' : module.issystem ? 'none' : ''}">
 											<div ng-init="displayPanel = ('widget-'+(module['id'].toLowerCase())+'-display.html')" ng-include="displayPanel" ng-click="editItem(module.index)"></div>
 										</div>
@@ -82,9 +96,19 @@
 						</div>
 					</div>
 				</div>
+				<div ng-init="editorPanel = ('widget-'+(activeItem['id'].toLowerCase())+'-editor.html'.toLowerCase())" ng-show="activeItem.id == editorid" ng-repeat="editorid in editors" ng-include="editorPanel" id="editor{{editorid}}" class="editor"></div>
+				<div ng-show="activeItem['id'] && activeItem['id'] != 'UCheader'" we7-style></div>
 			</div>
+			<div class="app-footer"><div we7-pagelength></div></div>
 		</div>
 	</div>
+	<nav class="navbar navbar-default navbar-uc" role="navigation">
+		<div class=" text-center we7-margin-vertical-sm">
+			<div class="js-editor-submit-div">
+				<button type="button" class="btn btn-primary btn-submit js-editor-submit single-submit">上架</button>
+			</div>
+		</div>
+	</nav>
 </form>
 <script type="text/javascript">
 	$(function(){

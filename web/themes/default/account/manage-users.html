@@ -19,6 +19,19 @@
 			</th>
 		</tr>
 		
+		<tr ng-if="vice_founder">
+			<td>副创始人</td>
+			<td class="text-left" ng-bind="vice_founder.username"></td>
+			<td class="text-right ">
+				<div class="link-group">
+					{if permission_check_account_user('see_account_manage_users_edit_vicefounder')}
+						<a href="javascript:;" ng-click="changeVice(vice_founder.username)">修改</a>
+						<we7-modal-tip on-confirm="delPermission(vice_founder.uid)" content="'确认删除当前选择的用户?'"><a href="javascript:;" >删除</a></we7-modal-tip>
+					{/if}
+				</div>
+			</td>
+		</tr>
+		
 		<tr>
 			<td>主管理员</td>
 			<td class="text-left" ng-bind="owner.username" ng-if="owner"></td>
@@ -102,6 +115,11 @@
 							<label for="addtype-1" class="radio-inline">操作员</label>
 							<input class="addtype" type="radio" id="addtype-2" name="addtype" value="{ACCOUNT_MANAGE_TYPE_MANAGER}">
 							<label class="radio-inline" for="addtype-2">管理员</label>
+							
+								{if permission_check_account_user('see_account_manage_users_add_viceuser')}
+									<input class="addtype" type="radio" id="addtype-4" name="addtype" value="{ACCOUNT_MANAGE_TYPE_VICE_FOUNDER}">
+									<label class="radio-inline" for="addtype-4">副创始人</label>
+								{/if}
 							
 							{if permission_check_account_user('see_account_manage_users_adduser')}<a style="float: right" class="color-default" target = '_blank' href="{url 'user/create'}">+添加用户</a>{/if}
 						</div>

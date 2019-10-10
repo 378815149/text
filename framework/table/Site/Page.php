@@ -20,7 +20,6 @@ class Page extends \We7Table {
 		'status',
 		'createtime',
 		'goodnum',
-		'exchange_status',
 	);
 	protected $default = array(
 		'uniacid' => 0,
@@ -34,10 +33,8 @@ class Page extends \We7Table {
 		'status' => 1,
 		'createtime' => 0,
 		'goodnum' => 0,
-		'exchange_status' => 1,
 	);
-	public function searchWithMultiid($id)
-	{
+	public function searchWithMultiid($id) {
 		return $this->query->where('multiid', $id);
 	}
 }

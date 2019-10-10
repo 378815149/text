@@ -62,6 +62,11 @@ if ('display' == $do) {
 		}
 
 		
+			if (user_is_vice_founder()) {
+				$founder_own_uids = table('users_founder_own_users')->getFounderOwnUsersList($_W['uid']);
+				$users_table->where('u.uid', is_array($founder_own_uids) ? array_keys($founder_own_uids) : array());
+			}
+		
 
 		$users_table->searchWithoutFounder();
 		$users_table->searchWithPage($pindex, $psize);
@@ -107,6 +112,10 @@ if ('operate' == $do) {
 	if (empty($uid_user)) {
 		exit('未指定用户,无法删除.');
 	}
+	
+		if (ACCOUNT_MANAGE_GROUP_GENERAL != $uid_user['founder_groupid']) {
+			iajax(-1, '非法操作', referer());
+		}
 	
 	switch ($type) {
 		case 'check_pass':

@@ -1,0 +1,28 @@
+<div class="row padding15-30 pagebot white-bg">
+        <div class="pagebotrg">
+           <nav class="table-control-item">
+             <ul class="pagination">
+							{if $page >1}
+                            <li>
+                                 <a aria-label="Previous" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r={php echo $_GPC['r']}&page={php echo $page-1;}">
+                                 <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                  </a>
+                            </li>
+							{/if}
+							{php for($i=1;$i<=$allpages;$i++){}
+                            <li class="ng-scope">
+                                <a class="{if $i==$page}themebgcolor {/if}ng-binding" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r={php echo $_GPC['r']}&page={php echo $i;}">{$i}</a>
+                            </li>
+							{php }}
+							
+							{if $allpages>$page}
+                            <li>
+                               <a aria-label="Next" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r={php echo $_GPC['r']}&page={php echo $page+1;}">
+								<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </li>
+							{/if}
+        </ul>
+    </nav>
+        </div>
+      </div>
+  </div><!-- page-wrapper-->

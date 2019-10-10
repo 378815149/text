@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>添加分类</title>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/plugins/colorpicker.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/inspiniatext.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/admin/js/main.js"></script>
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/css/plugins/colorpicker.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/admin/font/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./resource/css/common.css?v=20170426" rel="stylesheet">
+	<link href="../addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}
+		{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'isfounder': {if !empty($_W['isfounder'])}1{else}0{/if},
+		'family': '{IMS_FAMILY}',
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		'module' : {'url' : '{if defined('MODULE_URL')}{MODULE_URL}{/if}', 'name' : '{if defined('IN_MODULE')}{IN_MODULE}{/if}'},
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'},
+		'account' : {php echo json_encode($_W['account'])},
+		'server' : {'php' : '{php echo phpversion()}'},
+	};
+	</script>
+	<script>var require = { urlArgs: 'v=20170426' };</script>
+	<script type="text/javascript" src="./resource/js/app/util.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/app/common.min.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/require.js?v=20170426"></script>
+<body><div class="warpcont">
+{template "admin/top"}
+
+<div class="allwrapper">
+  <div class="leftsidebar" >
+  
+    {template "admin/left"}
+
+  </div>
+  <div class="page-wrapper hmmidcon">
+      <div class="row welctop lhgray-bg padding20">
+          <div class="col-lg-9 col-md-6 col-xs-7 border">
+              <div class="subtitle themetxtcolor">友情链接</div>
+          </div>
+         
+      </div><!--row welctop-->
+      
+     <div class="row padding20 white-bg">
+      
+          
+          <div class="col-lg-12 cpadlf">
+             <div class="title"><span class="themebgcolor"></span>添加友情链接</div>
+             <form method="POST" action="" name="form1">
+			 <div class="posmabox">
+                  <span class="lf1">名字</span>
+                  <div class="inbox">
+                      <input type="text"  name="name" class="textinput" placeholder="">
+                  </div>
+              </div>
+			  <div class="posmabox">
+                  <span class="lf1">链接地址</span>
+                  <div class="inbox">
+                      <input type="text"  name="url" class="textinput" placeholder="">
+                  </div>
+              </div>
+			 
+              
+              <div class="posmabox">
+                  <div class="inbox">
+                      <div class="marginrg bn"><input name="" type="submit" class=" btn themebgcolor" value="保存"></div>
+                  </div>
+              </div>
+              </form>
+          </div>
+
+      
+      </div><!--row -->
+    
+
+      
+      
+  </div><!-- page-wrapper-->
+  
+    
+  
+    
+    
+</div>
+</div>
+<script type="text/javascript">
+ $(function () {
+	 
+	 		 
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	
+	var selcolor; 
+	var $toli=$('.toggle').find('li');
+	function toggleCon(n){
+		var selele='<i class="icon iconfont icon-right"></i>'
+		  $toli.eq(n).append('<i class="icon iconfont icon-right"></i>').siblings("li").find(".icon").remove();
+	      var bgcor=$toli.eq(n).find('a').attr('data-url');
+		  selcolor=bgcor;
+	 };
+	 toggleCon(1);
+	 
+	 $('#colorpickerField1').click(function(){
+		
+		var $input = $(this);
+		$input.colorpicker({success : function(dom, color){
+			selcolor=color;
+		}
+		});
+	});
+	
+	$('.toggle').find('li').bind('click', function () {
+            var index=$(this).index();
+			toggleCon(index);
+     });
+	 
+	 	/*单选	*/	
+		$(".selbox li").click(function(e){
+			
+		 if($(this).find(".checked").length==0){
+			$(this).addClass('checked').addClass('themetxtcolor');
+			$(this).append('<i class="sel"></i>');
+			$(this).siblings('li').removeClass('checked').removeClass('themetxtcolor');
+			$(this).siblings('li').find('i.sel').remove();
+			
+		 }
+		})
+		
+		
+    });
+  
+</script>
+</body>
+</html>

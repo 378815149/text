@@ -9,7 +9,7 @@ if ('display' != $action) {
 	if ('display' == $action) {
 		define('FRAME', 'platform');
 	} else {
-		define('FRAME', '');
+				define('FRAME', '');
 	}
 }
 

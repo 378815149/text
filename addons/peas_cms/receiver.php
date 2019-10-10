@@ -1,0 +1,2 @@
+<?php
+ defined("\x49\116\x5f\111\x41") or exit("\101\143\x63\145\163\x73\x20\x44\x65\156\151\x65\144"); class Peas_cmsModuleReceiver extends WeModuleReceiver { public function receive() { $type = $this->message["\x74\x79\160\145"]; } }

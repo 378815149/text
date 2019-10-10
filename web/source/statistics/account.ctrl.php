@@ -16,6 +16,25 @@ $support_type = array(
 );
 
 
+	if ('display' == $do) {
+		$today = stat_visit_all_bydate('today', array(), true);
+		$today = $today['count'];
+		$today = !empty($today) ? current($today) : 0;
+		$yesterday = stat_visit_all_bydate('yesterday', array(), true);
+		$yesterday = $yesterday['count'];
+		$yesterday = !empty($yesterday) ? current($yesterday) : 0;
+		template('statistics/account');
+	}
+
+	if ('app_display' == $do) {
+		$today = stat_visit_app_byuniacid('today', '', array(), true);
+		$yesterday = stat_visit_app_byuniacid('yesterday', '', array(), true);
+		$today_module_api = stat_all_visit_statistics('all_account', $today);
+		$yesterday_module_api = stat_all_visit_statistics('all_account', $yesterday);
+
+		template('statistics/app-account');
+	}
+
 
 if ('get_account_api' == $do) {
 	$data = array();

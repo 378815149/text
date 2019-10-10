@@ -1,0 +1,18 @@
+<div class="header themebgcolor clearfix">
+   <div class="logo">后台管理</div>
+   <a class="navbar-minimalize themebgcolor btn-primary " href="javascript:;"><i class="fa fa-bars"></i> </a>
+   <ul class="nav navbar-top-links">
+     <li> 
+       <div class="usertopinfo">
+         <img src="../addons/mogucms_diy/static/admin/images/userpor.png" width="50" height="50">
+         <div class="txt">
+           <p class="name">{$_W['username']}</p>
+           <p class="post">{if $_W['role']=="founder"}创始人{elseif $_W['role']=="vice_founder"}代理商{else}普通会员{/if}</p>
+         </div>
+       </div>
+     </li>
+     <li><a href="/web/index.php?c=account&a=display&"  class=" themebgcolor" ><i class="fa fa-external-link"></i></a></li>
+     <li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}"  class=" themebgcolor" ><i class="fa fa-cog"></i></a></li>
+     <li><a href="/web/index.php?c=user&a=logout"  class=" themebgcolor" ><i class="fa fa-power-off"></i></a></li>
+   </ul>  
+</div>

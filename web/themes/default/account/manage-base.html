@@ -109,6 +109,19 @@
 		</tr>
 		{/if}
 		
+		{if in_array($account->typeSign, array(ACCOUNT_TYPE_SIGN, WXAPP_TYPE_SIGN, WEBAPP_TYPE_SIGN, XZAPP_TYPE_SIGN, BAIDUAPP_TYPE_SIGN, TOUTIAOAPP_TYPE_SIGN))}
+		<tr>
+			<td class="table-label">月访问总次数</td>
+			<td ng-if="account.highest_visit"><span ng-bind="account.highest_visit"></span><span class="color-gray"> 次 / 月</span></td>
+			<td ng-if="!account.highest_visit">不限次数</span></td>
+			<td class="text-right">
+				{if user_is_founder($_W['uid'])}
+				<div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#visit" ng-click="editInfo('highest_visit', account.highest_visit)">修改</a></div>
+				{/if}
+			</td>
+		</tr>
+		{/if}
+		
 		<tr ng-if="account.createtime">
 			<td class="table-label">创建时间</td>
 			<td><span ng-bind="account.createtime"></span></td>
@@ -122,6 +135,20 @@
 			<td class="text-right">
 				<div class="link-group" ng-if="founder || owner">
 					<a href="javascript:;" data-toggle="modal" data-target="#endtype" ng-click="editInfo('endtype', account.endtype)">修改</a>
+					
+					{if $account['endtime'] > 0}
+					{if $account->typeSign == ACCOUNT_TYPE_SIGN}
+					<a href="{php echo url('site/entry/goodsbuyer', array('direct' => 1, 'm' => 'store', 'type' => STORE_TYPE_ACCOUNT_RENEW))}">续费</a>
+					{elseif $account_param->typeSign == WXAPP_TYPE_SIGN}
+					<a href="{php echo url('site/entry/goodsbuyer', array('direct' => 1, 'm' => 'store', 'type' => STORE_TYPE_WXAPP_RENEW))}">续费</a>
+					{elseif $account_param->typeSign == PHONEAPP_TYPE_SIGN}
+					<a href="{php echo url('site/entry/goodsbuyer', array('direct' => 1, 'm' => 'store', 'type' => STORE_TYPE_WXAPP_RENEW))}">续费</a>
+					{elseif $account_param->typeSign == XZAPP_TYPE_SIGN}
+					<a href="{php echo url('site/entry/goodsbuyer', array('direct' => 1, 'm' => 'store', 'type' => STORE_TYPE_ACCOUNT_RENEW))}">续费</a>
+					{elseif $account_param->typeSign == ALIAPP_TYPE_SIGN}
+					<a href="{php echo url('site/entry/goodsbuyer', array('direct' => 1, 'm' => 'store', 'type' => STORE_TYPE_WXAPP_RENEW))}">续费</a>
+					{/if}
+					{/if}
 					
 				</div>
 			</td>
@@ -363,6 +390,43 @@
 			</div>
 		</div>
 	</div>
+	
+	{if in_array($account->typeSign, array(ACCOUNT_TYPE_SIGN, WXAPP_TYPE_SIGN, WEBAPP_TYPE_SIGN, XZAPP_TYPE_SIGN, BAIDUAPP_TYPE_SIGN, TOUTIAOAPP_TYPE_SIGN))}
+	<div class="modal fade" id="visit" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="we7-modal-dialog modal-dialog we7-form">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<div class="modal-title">修改访问总次数（单位：月）</div>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="" class="control-label col-sm-2">是否启用</label>
+						<div class="form-controls col-sm-8">
+							<div class="switch" ng-class="{switchOn: middleAccount.highest_visit > 0}" ng-click="middleAccount.highest_visit = middleAccount.highest_visit ? 0 : (middleAccountCopy.highest_visit ? middleAccountCopy.highest_visit : 2000)"></div>
+						</div>
+					</div>
+					<div class="form-group" ng-show="middleAccount.highest_visit > 0">
+						<label for="" class="control-label col-sm-2">设置月访问量</label>
+						<div class="form-controls col-sm-8">
+							<div class="input-group">
+								<input type="number" step="1" ng-model="middleAccount.highest_visit" class="form-control" placeholder="每月访问总次数" />
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default color-gray">次/月</button>
+								</span>
+							</div>
+							<!-- <span class="help-block">设置为0，表示无任何限制</span> -->
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="httpChange('highest_visit')">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
 	
 	{if in_array($account->typeSign, array(ACCOUNT_TYPE_SIGN, WXAPP_TYPE_SIGN))}
 	<div class="modal fade" id="jointype" role="dialog">

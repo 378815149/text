@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="key" content="{$config['key']}">
+        <meta name="description" content="{$config['description']}">
+        
+        <meta name="author" content="Muhammad Morshed">
+		
+        <title>Meghna</title>
+		
+		<!-- Mobile Specific Meta
+		================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="{$_W['attachurl']}{$config['favicon']}" />
+		
+		<!-- CSS
+		================================================== -->
+		<!-- Fontawesome Icon font -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/font-awesome.min.css">
+		<!-- bootstrap.min css -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/bootstrap.min.css">
+		<!-- Animate.css -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/animate.css">
+		<!-- Owl Carousel -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/owl.carousel.css">
+		<!-- Grid Component css -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/component.css">
+		<!-- Slit Slider css -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/slit-slider.css">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/main.css">
+		<!-- Media Queries -->
+        <link rel="stylesheet" href="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/css/media-queries.css">
+		
+		<!-- Modernizer Script for old Browsers -->		
+        <script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/modernizr-2.6.2.min.js"></script>
+
+
+		
+	
+    </head>
+	
+    <body id="body">
+	    <!--
+	    Start Preloader
+	    ==================================== -->
+		<div id="loading-mask">
+			<div class="loading-img">
+				<img alt="Meghna Preloader" src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/img/preloader.gif"  />
+			</div>
+		</div>
+        <!--
+        End Preloader
+        ==================================== -->
+		
+        <!--
+        Welcome Slider
+        ==================================== -->
+		<section id="home">	    
+		
+            <div id="slitSlider" class="sl-slider-wrapper">
+				<div class="sl-slider">
+					
+					<!-- single slide item -->
+					{loop $banner $l}
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+						<div class="sl-slide-inner">
+							<div class="bg-img" style="background-image:url({$_W['attachurl']}{$l['img']})"></div>
+						<div class="carousel-caption">
+							<div>
+								<h2 data-wow-duration="500ms"  data-wow-delay="500ms" class="heading animated fadeInRight">{$l['title1']}</h2>
+								<h3 class="animated fadeInUp">{$l['title2']}</h3>
+							</div>
+						</div>
+						</div>
+					</div>
+					{/loop}
+					<!-- /single slide item -->
+					
+
+				</div><!-- /sl-slider -->
+				
+				<nav id="nav-arrows" class="nav-arrows">
+					<span class="nav-arrow-prev">Previous</span>
+					<span class="nav-arrow-next">Next</span>
+				</nav>
+
+				<nav id="nav-dots" class="nav-dots">
+					<span class="nav-dot-current"></span>
+					<span></span>
+					<span></span>
+				</nav>
+
+			</div><!-- /slider-wrapper -->
+		</section>
+		<!--/#home section-->
+		
+        <!-- 
+        Fixed Navigation
+        ==================================== -->
+        <header id="navigation" class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+					<!-- /responsive nav button -->
+					
+					<!-- logo -->
+                    <a class="navbar-brand" href="#body">
+						<h1 id="logo">
+							<img src="{$_W['attachurl']}{$config['logo']}" width="180" alt="Meghna" />
+						</h1>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="Navigation">
+                    <ul id="nav" class="nav navbar-nav">
+                        <li class="current"><a href="#home">首页</a></li>
+                        {if $nav['is_show1']}<li class="current"><a href="#about">{$nav['title1']}</a></li>{/if}
+                        {if $nav['is_show2']}<li><a href="#services">{$nav['title2']}</a></li>{/if}
+                        {if $nav['is_show3']}<li><a href="#showcase">{$nav['title3']}</a></li>{/if}
+                        {if $nav['is_show4']}<li><a href="#our-team">{$nav['title4']}</a></li>{/if}
+                        {if $nav['is_show5']}<li><a href="#pricing">{$nav['title5']}</a></li>{/if}
+                        {if $nav['is_show6']}<li><a href="#contact-us">{$nav['title6']}</a></li>{/if}
+                        <li><a href="{php echo $config['login_url']?$config['login_url']:'/web/index.php?c=user&a=login'}">登录</a></li>
+                        <li><a href="{php echo $config['register_url']?$config['register_url']:'/web/index.php?c=user&a=register'}">注册</a></li>
+                    </ul>
+                </nav>
+				<!-- /main nav -->
+				
+            </div>
+        </header>
+        <!--
+        End Fixed Navigation
+        ==================================== -->
+		{if $nav['is_show1']}
+		<!--
+		Start About Section
+		==================================== -->
+		<section id="about" class="bg-one">
+			<div class="container">
+				<div class="row">
+				
+					<!-- section title -->
+					<div class="title text-center wow fadeIn" data-wow-duration="1500ms" >
+						<h2><span class="color">{$nav['title1']}</span></h2>
+						<div class="border"></div>
+					</div>
+					<!-- /section title -->
+					
+					<!-- About item -->					
+					<div class="col-md-4 text-center wow fadeInUp" data-wow-duration="500ms" >
+						<div class="wrap-about">							
+							<div class="icon-box">
+								<i class="fa {$page1['icon1']} fa-4x"></i>
+							</div>					
+							<!-- Express About Yourself -->
+							<div class="about-content text-center">
+								<h3 class="ddd">{$page1['title1']}</h3>								
+								<p>{$page1['content1']}</p>
+							</div>
+						</div>
+					</div> 
+					<!-- End About item -->
+					
+					<!-- About item -->
+					<div class="col-md-4 text-center wow fadeInUp" data-wow-duration="500ms" >
+						<div class="wrap-about">							
+							<div class="icon-box">
+								<i class="fa {$page1['icon2']} fa-4x"></i>
+							</div>					
+							<!-- Express About Yourself -->
+							<div class="about-content text-center">
+								<h3 class="ddd">{$page1['title2']}</h3>								
+								<p>{$page1['content2']}</p>
+							</div>
+						</div>
+					</div> 
+					<!-- End About item -->
+					
+					<!-- About item -->
+					<div class="col-md-4 text-center wow fadeInUp" data-wow-duration="500ms" >
+						<div class="wrap-about">							
+							<div class="icon-box">
+								<i class="fa {$page1['icon3']} fa-4x"></i>
+							</div>					
+							<!-- Express About Yourself -->
+							<div class="about-content text-center">
+								<h3 class="ddd">{$page1['title3']}</h3>								
+								<p>{$page1['content3']}</p>
+							</div>
+						</div>
+					</div> 
+					<!-- End About item -->
+					
+				</div> 		<!-- End row -->
+			</div>   	<!-- End container -->
+		</section>   <!-- End section -->
+	
+		<!--
+		Start Counter Section
+		==================================== -->
+		
+		<section id="counter" class="parallax-section">
+			<div class="container">
+				<div class="row">
+				
+					<!-- first count item -->
+					<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms">
+						<div class="counters-item">
+							<div>
+							    <span data-speed="3000" data-to="{$page1['num1']}">{$page1['num1']}</span>
+							</div>
+							<i class="fa f{$page1['num_icon1']} fa-3x"></i>
+							<h3>{$page1['num_text1']}</h3>
+						</div>
+					</div>
+					<!-- end first count item -->
+				
+					<!-- second count item -->
+					<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms">
+						<div class="counters-item">
+							<div>
+							    <span data-speed="3000" data-to="{$page1['num2']}">{$page1['num2']}</span>
+							</div>
+							<i class="fa f{$page1['num_icon2']} fa-3x"></i>
+							<h3>{$page1['num_text2']}</h3>
+						</div>
+					</div>
+					<!-- end second count item -->
+				
+					<!-- third count item -->
+					<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms">
+						<div class="counters-item">
+							<div>
+							    <span data-speed="3000" data-to="{$page1['num3']}">{$page1['num3']}</span>
+							</div>
+							<i class="fa f{$page1['num_icon3']} fa-3x"></i>
+							<h3>{$page1['num_text3']}</h3>
+						</div>
+					</div>
+					<!-- end third count item -->
+					
+					<!-- fourth count item -->
+					<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms">
+						<div class="counters-item">
+							<div>
+							    <span data-speed="3000" data-to="{$page1['num4']}">{$page1['num4']}</span>
+							</div>
+							<i class="fa f{$page1['num_icon4']} fa-3x"></i>
+							<h3>{$page1['num_text4']}</h3>
+						</div>
+					</div>
+					<!-- end fourth count item -->
+					
+				</div> 		<!-- end row -->
+			</div>   	<!-- end container -->
+		</section>   <!-- end section -->
+		{/if}
+		{if $nav['is_show2']}
+		<!-- Start Services Section
+		==================================== -->
+		
+		<section id="services" class="bg-one">
+			<div class="container">
+				<div class="row">
+					
+					<!-- section title -->
+					<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+						<h2><span class="color">{$nav['title2']}</span></h2>
+						<div class="border"></div>
+					</div>
+					<!-- /section title -->
+					
+                    <!-- Single Service Item -->
+                    {loop $page2 $l}
+					<article class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="500ms">
+						<div class="service-block text-center">
+							<div class="service-icon text-center">
+								<i class="fa {$l['icon']} fa-5x"></i>
+							</div>
+							<h3>{$l['title']}</h3>
+							<p>{$l['content']}</p>
+						</div>
+					</article>
+					{/loop}
+                    <!-- End Single Service Item -->
+                    
+						
+				</div> 		<!-- End row -->
+			</div>   	<!-- End container -->
+		</section>   <!-- End section -->
+		{/if}
+		
+		<!-- Start Portfolio Section
+		=========================================== -->
+
+		{if $nav['is_show3']}
+		<section id="showcase">
+			<div class="container">
+				<div class="row wow fadeInDown" data-wow-duration="500ms">
+					<div class="col-lg-12">
+					
+						<!-- section title -->
+						<div class="title text-center">
+							<h2><span class="color">{$nav['title3']}</span></h2>
+							<div class="border"></div>
+						</div>
+						<!-- /section title -->
+					
+						<!-- portfolio item filtering -->
+						<!-- <div class="portfolio-filter clearfix">
+							<ul class="text-center">
+							    <li><a href="javascript:void(0)" class="filter" data-filter="all">All</a></li>
+								<li><a href="javascript:void(0)" class="filter" data-filter=".app">Mobile App</a></li>
+								<li><a href="javascript:void(0)" class="filter" data-filter=".web">Web Design</a></li>
+								<li><a href="javascript:void(0)" class="filter" data-filter=".photoshop">Photoshop</a></li>
+								<li><a href="javascript:void(0)" class="filter" data-filter=".illustrator">Illustrator</a></li>
+							</ul>
+						</div> -->
+						<!--  item filtering -->
+						
+					</div> <!-- /end col-lg-12 -->
+				</div> <!-- end row -->
+			</div>	<!-- end container -->
+	
+			<!-- portfolio items -->
+			<div class="portfolio-item-wrapper wow fadeInUp" id="team-skills" data-wow-duration="500ms">
+                <ul id="og-grid" class="og-grid">
+				
+					<!-- single portfolio item -->
+					{loop $page3 $l}
+					<li class="mix app">
+						<a href="{$l['url']}" data-largesrc="{$_W['siteroot']}{$l['img']}" data-title="{$l['title']}" data-description="{$l['content']}">
+							<img src="{$_W['attachurl']}{$l['img']}" alt="Meghna">
+							<div class="hover-mask">
+								<h3>{$l['title']}</h3>
+								<span>
+									<i class="fa {$l['icon']} fa-2x"></i>
+								</span>
+							</div>
+						</a>
+					</li>
+					{/loop}
+					<!-- /single portfolio item -->
+					
+					
+				</ul> <!-- end og grid -->
+			</div>  <!-- portfolio items wrapper -->
+			
+		</section>   <!-- End section -->
+		{/if}
+		{if $nav['is_show4']}
+		<section id="our-team">
+			<div class="container">
+				<div class="row">
+				
+					<!-- section title -->
+					<div class="title text-center wow fadeInUp" data-wow-duration="500ms">
+						<h2><span class="color">{$nav['title4']}</span></h2>
+						<div class="border"></div>
+					</div>
+					<!-- /section title -->
+					
+					<!-- team member -->
+					{loop $page4 $l}
+					<div class="col-md-3 col-sm-6 wow fadeInDown" data-wow-duration="500ms">
+                       <article class="team-mate">
+							<div class="member-photo">
+								<!-- member photo -->
+								<img class="img-responsive" src="{$_W['attachurl']}{$l['img']}" alt="Meghna">
+								<!-- /member photo -->
+
+							</div>
+							
+							<!-- member name & designation -->
+							<div class="member-title">
+								<h3>{$l['title']}</h3>
+							</div>
+							<!-- /member name & designation -->
+							
+							<!-- about member -->
+                           <div class="member-info">
+                               <p>{$l['content']}</p>
+                           </div>
+						   <!-- /about member -->
+						   
+                       </article>
+                    </div>
+                    {/loop}
+					<!-- end team member -->
+					
+					
+				</div>  	<!-- End row -->
+			</div>   	<!-- End container -->
+		</section>   <!-- End section -->
+		{/if}
+		{if $nav['is_show5']}
+		
+		<!-- Start Twitter Feed
+		=========================================== -->
+		
+		<section id="twitter-feed" class="parallax-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+					
+						<!-- twitter bird -->
+						<div class="twitter-bird wow fadeInDown" data-wow-duration="500ms">
+							<span>
+								<i class="fa fa-twitter fa-4x"></i>
+							</span>
+						</div>
+						<!-- /twitter bird -->
+						
+						<!-- fetching tweet -->
+						<div class="tweet wow fadeIn" data-wow-duration="2000ms"></div>
+						<!-- /fetching tweet -->
+					
+						
+					</div>
+				</div>       <!-- End row -->
+			</div>   	<!-- End container -->
+		</section>   <!-- End section -->
+		
+		<!-- Start Pricing section
+		=========================================== -->
+		
+		<section id="pricing" class="bg-one">
+			<div class="container">
+				<div class="row">
+					
+					<!-- section title -->
+				    <div class="title text-center wow fadeInDown" data-wow-duration="500ms">
+			        	<h2><span class="color">{$nav['title5']}</span></h2>
+				        <div class="border"></div>
+				    </div>
+				    <!-- /section title -->
+					
+					<!-- single pricing table -->
+					{loop $page5 $l}
+					<article class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp" data-wow-duration="200ms">
+						<div class="pricing">
+							
+							<!-- plan name & value -->
+							<div class="price-title">
+								<h3>{$l['title']}</h3>
+								<p><strong class="value">${$l['money']}</strong></p>
+							</div>
+							<!-- /plan name & value -->
+							
+							<!-- plan description -->
+							<ul>
+								<li>{$l['text1']}</li>
+								<li>{$l['text2']}</li>
+								<li>{$l['text3']}</li>
+								<li>{$l['text4']}</li>
+								<li>{$l['text5']}</li>
+								<li>{$l['text6']}</li>
+							</ul>
+							<!-- /plan description -->
+							
+							<!-- signup button -->
+							<a class="btn btn-transparent" href="{$l['url']}">Signup</a>
+							<!-- /signup button -->
+							
+						</div>
+					</article>
+					{/loop}
+					<!-- end single pricing table -->
+					
+				</div>       <!-- End row -->
+			</div>   	<!-- End container -->
+		</section>   <!-- End section -->
+		{/if}
+				
+		
+		<!-- Srart Contact Us
+		=========================================== -->		
+		<section id="contact-us">
+			<div class="container">
+				<div class="row">
+					
+					<!-- Contact Details -->
+					<div class="contact-info col-md-6 wow fadeInUp" data-wow-duration="500ms">
+						<h3>关于我们</h3>
+						<p>{$config['contact']}</p>
+						<div class="contact-details">
+							<div class="con-info clearfix">
+								<i class="fa fa-home fa-lg"></i>
+								<span>{$config['address']}</span>
+							</div>
+							
+							<div class="con-info clearfix">
+								<i class="fa fa-phone fa-lg"></i>
+								<span>Phone: {$config['mobile']}</span>
+							</div>
+							
+							<div class="con-info clearfix">
+								<i class="fa fa-fax fa-lg"></i>
+								<span>Fax: {$config['fax']}</span>
+							</div>
+							
+							<div class="con-info clearfix">
+								<i class="fa fa-envelope fa-lg"></i>
+								<span>Email: {$config['email']}</span>
+							</div>
+						</div>
+					</div>
+					<!-- / End Contact Details -->
+						
+					<!-- Contact Form -->
+					<div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+						<div class="copyright text-center">
+							<div style="padding:20px 0;">
+								<img src="{$_W['attachurl']}{$config['ewm']}" style="width:200px;" alt="Meghna" /> 
+							</div>
+							<br />
+							
+						</div>
+					</div>
+					<!-- ./End Contact Form -->
+					
+				</div> <!-- end row -->
+			</div> <!-- end container -->
+			<div class="copyright text-center">
+							<p>{$config['copyright']}</p>
+						</div>
+			
+			
+		</section> <!-- end section -->
+		
+		<!-- end Contact Area
+
+		
+		<!-- Back to Top
+		============================== -->
+		<a href="javascript:;" id="scrollUp">
+			<i class="fa fa-angle-up fa-2x"></i>
+		</a>
+		
+		<!-- end Footer Area
+		========================================== -->
+		
+		<!-- 
+		Essential Scripts
+		=====================================-->
+		
+		<!-- Main jQuery -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery-1.11.0.min.js"></script>
+		<!-- Bootstrap 3.1 -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/bootstrap.min.js"></script>
+		<!-- Slitslider -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.slitslider.js"></script>
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.ba-cond.min.js"></script>
+		<!-- Parallax -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.parallax-1.1.3.js"></script>
+		<!-- Owl Carousel -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/owl.carousel.min.js"></script>
+		<!-- Portfolio Filtering -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.mixitup.min.js"></script>
+		<!-- Custom Scrollbar -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.nicescroll.min.js"></script>
+		<!-- Jappear js -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.appear.js"></script>
+		<!-- Pie Chart -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/easyPieChart.js"></script>
+		<!-- jQuery Easing -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.easing-1.3.pack.js"></script>
+		<!-- tweetie.min -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/tweetie.min.js"></script>
+
+		<!-- Highlight menu item -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.nav.js"></script>
+		<!-- Sticky Nav -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.sticky.js"></script>
+		<!-- Number Counter Script -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.countTo.js"></script>
+		<!-- wow.min Script -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/wow.min.js"></script>
+		<!-- For video responsive -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/jquery.fitvids.js"></script>
+		<!-- Grid js -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/grid.js"></script>
+		<!-- Custom js -->
+		<script src="{$_W['siteroot']}addons/cds_index3/template/systemwelcome/home/js/custom.js"></script>
+
+    </body>
+</html>

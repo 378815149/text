@@ -27,6 +27,15 @@ if ('display' == $do) {
 	$pager = pagination($total, $pageindex, $pagesize);
 
 	
+		if (user_is_vice_founder()) {
+			$table = table('users_founder_own_create_groups');
+			$create_groups = $table->getGroupsByFounderUid($_W['uid'], $pageindex, $pagesize);
+			$create_groups['pager'] = pagination($create_groups['total'], $pageindex, $pagesize, '', array('ajaxcallback' => true, 'callbackfuncname' => 'changePage'));
+			$lists = $create_groups['groups'];
+			$total = $create_groups['total'];
+			$page = $create_groups['pager'];
+		}
+	
 
 	template('user/create-group-display');
 }

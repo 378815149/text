@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['qudao'])}{$title['qudao']}{else}渠道合作{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['qudao'])}{$_W['attachurl']}{$banner['qudao']}{else}../addons/mogucms_diy/static/default/images/hz_banner.jpg{/if}) no-repeat center center; background-size:cover;">
+    <div class="wrapper">
+        <div class="yyzx_bantxt">
+            <h2 class="wow fadeInUp">{if !empty($banner['qudaot1'])}{$banner['qudaot1']}{else}优秀合伙人·全国招募{/if}<span></span></h2>
+            <div class="wow fadeInUp animated delay-2s">
+            	<div class="ban_hzp">{if !empty($banner['qudaot2'])}{$banner['qudaot2']}{else}共建小程序 服务大生态{/if}</div>
+                <a class="ban_hzbtn" href="{$banner['qudaot3']}">成为合作伙伴</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['agent_title1'])}{$webset['agent_title1']}{else}六大模式助你轻松盈利{/if}</h2></div>
+        <div class="hz_sexbox wow fadeInUp">
+            <div class="hz_sexui">
+            	<dl>
+                	<dt class="hz_sexico1"></dt>
+                    <dd><h2>{if !empty($agent1['title1'])}{$agent1['title1']}{else}利润高{/if}</h2><h3>{if !empty($agent1['desc1'])}{$agent1['desc1']}{else}总部给予渠道伙伴最低的优惠，有足够的盈利空间；{/if}</h3></dd>
+                </dl>
+            	<dl>
+                	<dt class="hz_sexico2"></dt>
+                    <dd><h2>{if !empty($agent1['title2'])}{$agent1['title2']}{else}研发强{/if}</h2><h3>{if !empty($agent1['desc2'])}{$agent1['desc2']}{else}多人研发团队，专业打磨产品{/if}</h3></dd>
+                </dl>
+            	<dl>
+                	<dt class="hz_sexico2"></dt>
+                    <dd><h2>{if !empty($agent1['title3'])}{$agent1['title3']}{else}定制开发{/if}</h2><h3>{if !empty($agent1['desc3'])}{$agent1['desc3']}{else}总部提供定制开发服务，渠道伙伴可向总部提交开发需求，从中获利；{/if}</h3></dd>
+                </dl>
+            </div>
+        	<div class="hz_seximg"><img src="{if !empty($agent1['image'])}{$_W['attachurl']}{$agent1['image']}{else}../addons/mogucms_diy/static/default/images/hz_ylimg.png{/if}"></div>
+            <div class="hz_sexui">
+            	<dl>
+                	<dt class="hz_sexico4"></dt>
+                    <dd><h2>{if !empty($agent1['title4'])}{$agent1['title4']}{else}后续维护{/if}</h2><h3>{if !empty($agent1['desc4'])}{$agent1['desc4']}{else}后续维护费：渠道伙伴在次年可收取客户技术维护费，作为盈利来源；{/if}</h3></dd>
+                </dl>
+            	<dl>
+                	<dt class="hz_sexico5"></dt>
+                    <dd><h2>{if !empty($agent1['title5'])}{$agent1['title5']}{else}长期回报{/if}</h2><h3>{if !empty($agent1['desc5'])}{$agent1['desc5']}{else}复购率高，一次锁定客户，多次收益{/if}</h3></dd>
+                </dl>
+            	<dl>
+                	<dt class="hz_sexico6"></dt>
+                    <dd><h2>{if !empty($agent1['title6'])}{$agent1['title6']}{else}独立招商{/if}</h2><h3>{if !empty($agent1['desc6'])}{$agent1['desc6']}{else}采用 OEM 贴牌模式，渠道伙伴拥有独立品牌，独立 LOGO，独立域名，自主定价，自行招商获利{/if}</h3></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['agent_title2'])}{$webset['agent_title2']}{else}合作，你能获得什么？{/if}</h2></div>
+        <div class="hz_hdbox wow fadeInUp">
+        	<ul>
+            	<li><h3><img src="{if !empty($agent2['image1'])}{$_W['attachurl']}{$agent2['image1']}{else}../addons/mogucms_diy/static/default/images/hz_hico1.png{/if}"></h3><h2>{if !empty($agent2['title1'])}{$agent2['title1']}{else}平台支持{/if}</h2><p>{if !empty($agent2['desc1'])}{$agent2['desc1']}{else}OEM贴牌模式/赠送整套系统权限/独立合伙人系统{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image2'])}{$_W['attachurl']}{$agent2['image2']}{else}../addons/mogucms_diy/static/default/images/hz_hico2.png{/if}"></h3><h2>{if !empty($agent2['title2'])}{$agent2['title2']}{else}市场支持{/if}</h2><p>{if !empty($agent2['desc2'])}{$agent2['desc2']}{else}合作商经验交流、月度交流会、线上沙龙{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image3'])}{$_W['attachurl']}{$agent2['image3']}{else}../addons/mogucms_diy/static/default/images/hz_hico3.png{/if}"></h3><h2>{if !empty($agent2['title3'])}{$agent2['title3']}{else}资源支持{/if}</h2><p>{if !empty($agent2['desc3'])}{$agent2['desc3']}{else}共享合伙人客户案例，市场推广建议{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image4'])}{$_W['attachurl']}{$agent2['image4']}{else}../addons/mogucms_diy/static/default/images/hz_hico4.png{/if}"></h3><h2>{if !empty($agent2['title4'])}{$agent2['title4']}{else}培训支持{/if}</h2><p>{if !empty($agent2['desc4'])}{$agent2['desc4']}{else}专业的研发团队，优先处理合伙人的反馈&需求&定制{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image5'])}{$_W['attachurl']}{$agent2['image5']}{else}../addons/mogucms_diy/static/default/images/hz_hico5.png{/if}"></h3><h2>{if !empty($agent2['title5'])}{$agent2['title5']}{else}物料支持{/if}</h2><p>{if !empty($agent2['desc5'])}{$agent2['desc5']}{else}宣传海报/宣传彩页、产品手册、产品操作/招商手册（电子版）{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image6'])}{$_W['attachurl']}{$agent2['image6']}{else}../addons/mogucms_diy/static/default/images/hz_hico6.png{/if}"></h3><h2>{if !empty($agent2['title6'])}{$agent2['title6']}{else}售后支持{/if}</h2><p>{if !empty($agent2['desc6'])}{$agent2['desc6']}{else}提供技术顾问7*12 小时售后咨询{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image7'])}{$_W['attachurl']}{$agent2['image7']}{else}../addons/mogucms_diy/static/default/images/hz_hico7.png{/if}"></h3><h2>{if !empty($agent2['title7'])}{$agent2['title7']}{else}团队建设{/if}</h2><p>{if !empty($agent2['desc7'])}{$agent2['desc7']}{else}技术培训，新人培养{/if}</p></li>
+            	<li><h3><img src="{if !empty($agent2['image8'])}{$_W['attachurl']}{$agent2['image8']}{else}../addons/mogucms_diy/static/default/images/hz_hico8.png{/if}"></h3><h2>{if !empty($agent2['title8'])}{$agent2['title8']}{else}其它支持{/if}</h2><p>{if !empty($agent2['desc8'])}{$agent2['desc8']}{else}双方协商的其他支持{/if}</p></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['agent_title3'])}{$webset['agent_title3']}{else}我们需要这样的你{/if}</h2></div>
+        <div class="hz_xybox wow fadeInUp">
+        	<div class="hz_xyimg"><img src="../addons/mogucms_diy/static/default/images/hz_ximg1.png"></div>
+            <div class="hz_xytxt hzxy_t1">{if !empty($agent3['title1'])}{$agent3['title1']}{else}注册资金10万以上{/if}</div>
+            <div class="hz_xytxt hzxy_t2">{if !empty($agent3['title2'])}{$agent3['title2']}{else}团队核心成员5人以上{/if}</div>
+            <div class="hz_xytxt hzxy_t3">{if !empty($agent3['title3'])}{$agent3['title3']}{else}优先考虑有设计能力或者拥有设计师团队的代理商{/if}</div>
+            <div class="hz_xytxt hzxy_t4">{if !empty($agent3['title4'])}{$agent3['title4']}{else}有互联网行业经验优先，具备管理经验者优先 {/if}</div>
+        </div>
+    </div>
+</div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['agent_title4'])}{$webset['agent_title4']}{else}成为渠道伙伴 简单快速{/if}</h2></div>
+        <div class="hz_hbbox wow fadeInUp">
+        	<ul>
+                <li class="hz_hbui">
+                    <h1><img src="{if !empty($agent4['image1'])}{$_W['attachurl']}{$agent4['image1']}{else}../addons/mogucms_diy/static/default/images/hz_lcimg1.png{/if}"></h1>
+                    <h2>{if !empty($agent4['title1'])}{$agent4['title1']}{else}合作准备{/if}</h2>
+                    <h3>{if !empty($agent4['desc1'])}{$agent4['desc1']}{else}深度沟通，共议长远发展计划{/if}</h3>
+                    <div class="hz_hbico"></div>
+                </li>
+                <li class="hz_hbui">
+                    <h1><img src="{if !empty($agent4['image2'])}{$_W['attachurl']}{$agent4['image2']}{else}../addons/mogucms_diy/static/default/images/hz_lcimg2.png{/if}"></h1>
+                    <h2>{if !empty($agent4['title2'])}{$agent4['title2']}{else}充值汇款{/if}</h2>
+                    <h3>{if !empty($agent4['desc2'])}{$agent4['desc2']}{else}按合作模式，汇相应款项{/if}</h3>
+                </li>
+                <li class="hz_hbui">
+                    <h1><img src="{if !empty($agent4['image3'])}{$_W['attachurl']}{$agent4['image3']}{else}../addons/mogucms_diy/static/default/images/hz_lcimg3.png{/if}"></h1>
+                    <h2>{if !empty($agent4['title3'])}{$agent4['title3']}{else}配置系统{/if}</h2>
+                    <h3>{if !empty($agent4['desc3'])}{$agent4['desc3']}{else}开通独立域名，管理账号{/if}</h3>
+                </li>
+                <li class="hz_hbui">
+                    <h1><img src="{if !empty($agent4['image4'])}{$_W['attachurl']}{$agent4['image4']}{else}../addons/mogucms_diy/static/default/images/hz_lcimg4.png{/if}"></h1>
+                    <h2>{if !empty($agent4['title4'])}{$agent4['title4']}{else}开展业务{/if}</h2>
+                    <h3>{if !empty($agent4['desc4'])}{$agent4['desc4']}{else}宣传自己平台，开展业务{/if}</h3>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{if $webset['message']==1}
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['agent_title5'])}{$webset['agent_title5']}{else}申请代理商{/if}</h2></div>
+        <div class="dilform wow fadeInUp">
+        	<ul>
+            	<li><input class="inp" type="text" placeholder="您的姓名*" id="name"></li>
+            	<li><input class="inp" type="text" placeholder="您的单位*" id="company"></li>
+            	<li><input class="inp" type="text" placeholder="所在城市*" id="city"></li>
+            	<li><input class="inp" type="text" placeholder="手机号码*" id="phone"></li>
+            </ul>
+            <div class="dilbtn"><button class="dilsubmit" onclick="message()">提交</button></div>
+        </div>
+    </div>
+</div>
+<script>
+	function message(){
+		
+		var name = $.trim($("#name").val());
+		if (name == "") {
+			$("#name").attr("placeholder","请输入您的姓名");
+			$("#name").focus();
+			return false;
+		}
+		var company = $.trim($("#company").val());
+		if (company == "") {
+			$("#company").attr("placeholder","请输入您的单位");
+			$("#company").focus();
+			return false;
+		}
+		var city = $.trim($("#city").val());
+		if (city == "") {
+			$("#city").attr("placeholder","请输入您所在的城市");
+			$("#city").focus();
+			return false;
+		}
+		var phone = $.trim($("#phone").val());
+		if (phone == "") {
+			$("#phone").attr("placeholder","请输入您的电话");
+			$("#phone").focus();
+			return false;
+		}
+		var params = {
+			"name": name,
+			"company": company,
+			"city": city,
+			"phone": phone
+		};
+		$(".dilsubmit").attr('disabled',"true");
+		$(".dilsubmit").addClass('on');
+		$.post("/web/index.php?c=account&a=welcome&do=message", params, function (data) {
+			if(data=="10000"){
+				window.alert("留言成功，我们会尽快联系您。");
+				window.location.reload();
+			}else{
+				window.alert("留言失败。");
+				window.location.reload();
+			}
+		});
+	}
+</script>
+{/if}
+
+{template 'default/footer'}

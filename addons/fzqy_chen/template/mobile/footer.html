@@ -1,0 +1,113 @@
+
+<!--<div class="fixedNavBut" id="fixed_nav_but" style="display:block;">-->
+    <!--<div class="navMoreBut_1">-->
+      <!--<i class="i-1"></i>-->
+      <!--<i class="i-2"></i>-->
+      <!--<i class="i-3"></i>-->
+      <!--<b class="b-1"></b>-->
+      <!--<b class="b-2"></b>-->
+      <!--<b class="b-3"></b>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div id="NMore" class="NMore_1002">-->
+    <!--<div class="moreSetup">-->
+		<!--<ul>-->
+			<!--<li class="hover_icon">-->
+				<!--<a id="foot_index_link" href="{php echo $this->createWebUrl('index',array('act'=>'index'));}">-->
+					<!--<span class="altIcon icon-shouye" ></span>-->
+					<!--<span>首页</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li class="hover_icon">-->
+				<!--<a href="{php echo $this->createWebUrl('index',array('act'=>'contact'));}">-->
+					<!--<span class="altIcon icon-contact" ></span>-->
+					<!--<span>联系我们</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li class="hover_icon">-->
+				<!--<a href="{php echo $this->createWebUrl('index',array('act'=>'about'));}">-->
+					<!--<span class="altIcon icon-about" ></span>-->
+					<!--<span>关于我们</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li class="hover_icon">-->
+				<!--<a href="{php echo $this->createWebUrl('index',array('act'=>'news'));}">-->
+					<!--<span class="altIcon icon-dongtai" ></span>-->
+					<!--<span>企业动态</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li class="hover_icon">-->
+				<!--<a href="{php echo $this->createWebUrl('index',array('act'=>'products'));}">-->
+					<!--<span class="altIcon icon-procenter" ></span>-->
+					<!--<span>产品中心</span>-->
+				<!--</a>-->
+			<!--</li>-->
+		<!--</ul>-->
+	<!--</div>-->
+<!--</div>-->
+
+<!-- 右侧菜单 -->
+<!--<div class="Nzz" id="Nzz"></div>-->
+<!-- 遮罩 -->
+<br>
+<br>
+<br>
+<br>
+<div class="nav">
+	<ul>
+		{if $menu=='index'}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'index'));}"><span><img src="{MOBILE_PATH}images/index_css.png" height="20"></span><span style="color:#d81e06">首页</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'index'));}"><span><img src="{MOBILE_PATH}images/index.png" height="20"></span><span>首页</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='products'}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'products'));}"><span><img src="{MOBILE_PATH}images/chanping_css.png" height="20"></span><span style="color:#d81e06">产品</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'products'));}"><span><img src="{MOBILE_PATH}images/chanping.png" height="20"></span><span>产品</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='news'}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'news'));}"><span><img src="{MOBILE_PATH}images/dongtai_css.png" height="20"></span><span style="color:#d81e06">动态</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'news'));}"><span><img src="{MOBILE_PATH}images/dongtai.png" height="20"></span><span>动态</span></a>
+		</li>
+		{/if}
+
+
+		{if $menu=='about'}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'about'));}"><span><img src="{MOBILE_PATH}images/about_css.png" height="20"></span><span style="color:#d81e06">关于</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'about'));}"><span><img src="{MOBILE_PATH}images/about.png" height="20"></span><span>关于</span></a>
+		</li>
+		{/if}
+
+		{if $menu=='contact'}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'contact'));}"><span><img src="{MOBILE_PATH}images/contact_css.png" height="20"></span><span style="color:#d81e06">联系</span></a>
+		</li>
+		{else}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'contact'));}"><span><img src="{MOBILE_PATH}images/contact.png" height="20"></span><span>联系</span></a>
+		</li>
+		{/if}
+
+	</ul>
+</div>
+<div style="display: none">
+	{php echo config('statsCode');}
+</div>

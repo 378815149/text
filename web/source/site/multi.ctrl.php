@@ -94,10 +94,9 @@ if ($do == 'post') {
 	$temtypes = ext_template_type();
 	$temtypes[] = array('name' => 'all', 'title' => '全部');
 	$styles = table('site_styles')
-		->searchWithTemplates('a.*, b.`name` AS `tname`, b.`title`, b.`type`')
+		->searchWithTemplates('a.*, b.`id` as `tid`, b.`name` AS `tname`, b.`title`, b.`type`, b.`sections`')
 		->where(array('a.uniacid' => $_W['uniacid']))
-		->getall();
-
+		->getall('id');
 	if (empty($multi)) {
 		$multi = array(
 			'site_info' => array(),

@@ -22,6 +22,10 @@
 			<select name="" id="" class="we7-margin-right">
 				<option value="" data-url="{php echo url('message/notice')}" {if empty($type)} selected {/if}>消息类型</option>
 				
+				{if permission_check_account_user('see_message_order')}
+				<option data-url="{php echo url('message/notice', array('type' => MESSAGE_ORDER_TYPE))}" {if $type == MESSAGE_ORDER_TYPE} selected {/if}>订单消息</option>
+				{/if}
+				
 				<option data-url="{php echo url('message/notice', array('type' => MESSAGE_ACCOUNT_EXPIRE_TYPE))}" {if $type == MESSAGE_ACCOUNT_EXPIRE_TYPE} selected {/if}>到期消息</a>
 				{if permission_check_account_user('see_message_register')}
 				<option data-url="{php echo url('message/notice', array('type' => MESSAGE_REGISTER_TYPE))}" {if $type == MESSAGE_REGISTER_TYPE} selected {/if}>注册提醒</a>
@@ -59,6 +63,8 @@
 			<td class="text-muted text-center" ng-bind = "list.create_time"></td>
 			<td>
 				<div class="link-group">
+					
+					<a ng-href="{{list.url}}" ng-if="list.type==1 || list.type==13">查看我的订单</a>
 					
 					<a ng-href="{{list.url}}" ng-if="list.type==3">进入工单</a>
 					<a ng-href="{{list.url}}" ng-if="list.type==2">查看公众号</a>

@@ -42,5 +42,3 @@ $module_all_support = module_support_type();
 $module_support_name = safe_gpc_string($_GPC['support']);
 $module_support = !empty($module_all_support[$module_support_name]) ? $module_all_support[$module_support_name]['type'] : 'all';
 
-	$_GPC['account_type'] = !empty($_GPC['account_type']) ? $_GPC['account_type'] : ACCOUNT_TYPE_OFFCIAL_NORMAL;
-

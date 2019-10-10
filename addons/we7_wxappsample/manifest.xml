@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="">
+	<application setting="false">
+		<name><![CDATA[微擎小程序模块示例]]></name>
+		<identifie><![CDATA[we7_wxappsample]]></identifie>
+		<version><![CDATA[1.3]]></version>
+		<type><![CDATA[other]]></type>
+		<ability><![CDATA[小K小程序示例]]></ability>
+		<description><![CDATA[小程序官网示例 增删改查 上传图片 支付]]></description>
+		<author><![CDATA[微擎团队]]></author>
+		<url><![CDATA[http://s.we7.cc]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+		</handles>
+		<rule embed="false" />
+		<card embed="false" />
+		<supports>
+			<item type="wxapp" />
+		</supports>
+	</platform>
+	<bindings>
+		<menu>
+			<entry title="日记列表" do="list" state="" direct="false" />
+          	<entry title="用户中心" do="user" state="" direct="false" />
+		</menu>
+      
+		<page>
+			<entry title="首页" do="/we7_wxappsample/pages/index/index" state="" direct="" />
+		</page>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

@@ -149,12 +149,22 @@ if ('base' == $do) {
 					iajax(1, '参数错误！');
 				}
 				
+					$store_create_account_info = table('site_store_create_account')->getByUniacid($uniacid);
+				
 				if (user_is_founder($_W['uid'], true)) {
 					$endtime = 1 != $_GPC['endtype'] ? $endtime : 0;
+					
+						if (!empty($store_create_account_info)) {
+							pdo_update('site_store_create_account', array('endtime' => $endtime), array('uniacid' => $uniacid));
+						}
 					
 				} else {
 					$owner_id = pdo_getcolumn('uni_account_users', array('uniacid' => $uniacid, 'role' => 'owner'), 'uid');
 					$user_endtime = pdo_getcolumn('users', array('uid' => $owner_id), 'endtime');
+					
+						if (!empty($store_create_account_info)) {
+							$user_endtime = max($user_endtime, $store_create_account_info['endtime']);
+						}
 					
                     if ($user_endtime != USER_ENDTIME_GROUP_UNLIMIT_TYPE && $user_endtime != USER_ENDTIME_GROUP_EMPTY_TYPE && $user_endtime < $endtime && !empty($user_endtime)) {
                         iajax(1, '设置到期日期不能超过' . user_end_time($owner_id));
@@ -242,6 +252,8 @@ if ('base' == $do) {
     $account['endtime'] = strlen($account['endtime']) == 10 ? $account['endtime'] : time();
 	$uniaccount = array();
 	$uniaccount = pdo_get('uni_account', array('uniacid' => $uniacid));
+	
+		$account_api = uni_site_store_buy_goods($uniacid, STORE_TYPE_API);
 	
 	template('account/manage-base');
 }
@@ -373,6 +385,22 @@ if ('modules_tpl' == $do) {
 			iajax(0, '修改成功！', '');
 		}
 		
+			if ('store_endtime' == $_GPC['type'] && user_is_founder($_W['uid']) && !user_is_vice_founder()) {
+				$order_id = intval($_GPC['order_id']);
+				$new_endtime = safe_gpc_string($_GPC['new_time']);
+				if (empty($order_id)) {
+					iajax(-1, '参数错误！');
+				}
+				$condition = array('uniacid' => $uniacid, 'type' => STORE_ORDER_FINISH,  'id' => $order_id);
+				$order_exist = pdo_get('site_store_order', $condition);
+				if (!empty($order_exist)) {
+					pdo_update('site_store_order', array('endtime' => strtotime($new_endtime)), $condition);
+				} else {
+					iajax(-1, '您未购买该权限组！');
+				}
+				iajax(0, '修改成功！', referer());
+			}
+		
 
 		iajax(40035, '参数错误！', '');
 	}
@@ -500,12 +528,46 @@ if ('modules_tpl' == $do) {
 
 	$canmodify = false;
 	
-	
-		if (ACCOUNT_MANAGE_NAME_FOUNDER == $_W['role'] && !in_array($owner['uid'], $founders)) {
+		if (ACCOUNT_MANAGE_NAME_FOUNDER == $_W['role'] && !in_array($owner['uid'], $founders) || ACCOUNT_MANAGE_NAME_VICE_FOUNDER == $_W['role'] && $owner['uid'] != $_W['uid']) {
 			$canmodify = true;
 		}
 	
+	
 
+	
+				$type_info = uni_account_type(intval($_GPC['account_type']));
+		$account_buy_modules = uni_site_store_buy_goods($uniacid, empty($type_info['store_type_module']) ? 0 : $type_info['store_type_module']);
+		if (!empty($account_buy_modules) && is_array($account_buy_modules)) {
+			foreach ($account_buy_modules as &$module) {
+				$module = module_fetch($module);
+				$module['goods_id'] = pdo_getcolumn('site_store_goods', array('module' => $module['name'], 'status' => 1), 'id');
+				$order_info = pdo_get('site_store_order', array('uniacid' => $uniacid, 'type' => STORE_ORDER_FINISH,  'goodsid' => $module['goods_id']), array('id', 'max(endtime) as endtime'));
+				$module['order_id'] = $order_info['id'];
+				$module['expire_time'] = $order_info['endtime'];
+			}
+		}
+		unset($module);
+				$account_buy_package = array();
+		$account_buy_group = uni_site_store_buy_goods($uniacid, STORE_TYPE_PACKAGE);
+		if (is_array($account_buy_group) && !empty($account_buy_group)) {
+			foreach ($account_buy_group as $group) {
+				$account_buy_package[$group] = current(uni_groups(array($group)));
+				$account_buy_package[$group]['goods_id'] = pdo_getcolumn('site_store_goods', array('module_group' => $group), 'id');
+				$order_info = pdo_fetch(
+					'SELECT id, endtime from ' . tablename('site_store_order') . ' WHERE (uniacid = :uniacid OR wxapp = :wxapp) AND `type` = :status AND goodsid = :goodsid ORDER BY endtime DESC LIMIT 1', array(':uniacid' => $uniacid, ':wxapp' => $uniacid, ':status' => STORE_ORDER_FINISH,  ':goodsid' => $account_buy_package[$group]['goods_id'])
+				);
+				$account_buy_package[$group]['order_id'] = $order_info['id'];
+				$account_buy_package[$group]['expire_time'] = $order_info['endtime'];
+				if (TIMESTAMP > $account_buy_package[$group]['expire_time']) {
+					$account_buy_package[$group]['expire'] = true;
+				} else {
+					$account_buy_package[$group]['expire'] = false;
+					$account_buy_package[$group]['near_expire'] = strtotime('-1 week', $account_buy_package[$group]['expire_time']) < time() ? true : false;
+				}
+				$account_buy_package[$group]['expire_time'] = date('Y-m-d', $account_buy_package[$group]['expire_time']);
+			}
+		}
+		unset($group);
 	
 	template('account/manage-modules-tpl');
 }

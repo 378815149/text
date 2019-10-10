@@ -1,0 +1,74 @@
+{template "admin/header"}
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>控制面板</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <a style="color: #03a9f3;" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&p=home.bannerpost"><i class="fa fa-plus"></i>&nbsp; 添加banner</a>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+               <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">首页Banner</strong>
+                            </div>
+                            <div class="table-stats order-table ov-h">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th class="serial">ID</th>
+                                            <th>图片</th>
+                                            <th>标题</th>
+                                            <th>管理</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									{loop $banners $banner}
+                                        <tr>
+                                            <td class="serial">{$banner['id']}.</td>
+                                            <td class="avatar">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="{$_W['attachurl']}{$banner['image']}" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td>  <span class="name">{$banner['title']}</span> </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" style="color:#ffffff" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&p=home.bannerpost&id={$banner['id']}"><i class="fa fa-edit"></i>&nbsp; 编辑</a>
+												<a class="btn btn-danger btn-sm" style="color:#ffffff" href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&p=home.bannerdel&id={$banner['id']}"><i class="fa fa-trash-o"></i>&nbsp; 删除</a>
+                                            </td>
+                                        </tr>
+									{/loop}	
+                                    </tbody>
+                                </table>
+                            </div> <!-- /.table-stats -->
+                        </div>
+						<div style="text-align:center;">
+						{$pager}
+						</div>
+                    </div>
+                  
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+	{template "admin/footer"}

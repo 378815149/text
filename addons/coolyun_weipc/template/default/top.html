@@ -1,0 +1,44 @@
+	{if $_W["os"] == "windows"}
+	<style>
+.li-loginq{
+ margin-right: 45px;
+}
+.li-login{
+ margin-top: 10px;
+ margin-right: 10px;
+}
+.btn-login {
+    width: 90px;
+    border: solid 1px #ea5106;
+	padding-top: 10px!important;
+    padding-bottom: 10px!important;
+	line-height: 10px!important;
+    border-radius: 2px;
+}
+.li-register{
+ margin-top: 10px;
+}
+.btn-register {
+    width: 90px;
+    border: solid 1px #ea5106;
+    background: #ea5106;
+	padding-top: 10px!important;
+    padding-bottom: 10px!important;
+	line-height: 10px!important;
+    border-radius: 2px;
+}
+</style>
+{/if}        
+		<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" {if empty($_GPC["do"])}class="active"{/if}>首页</a></li>
+                    <li><a href="./index.php?c=account&a=welcome&do=about" {if $_GPC["do"] == "about"}class="active"{/if}>关于</a></li>
+                    <li><a href="./index.php?c=account&a=welcome&do=service" {if $_GPC["do"] == "service"}class="active"{/if}>业务</a></li>
+                    <li><a href="./index.php?c=account&a=welcome&do=customer" {if $_GPC["do"] == "customer"}class="active"{/if}>案例</a></li>
+                    <li><a href="./index.php?c=account&a=welcome&do=newslist" {if $_GPC["do"] == "newslist"}class="active"{/if}>信息</a></li>
+                    <li class="li-loginq"><a href="./index.php?c=account&a=welcome&do=contact" {if $_GPC["do"] == "contact"}class="active"{/if}>联系</a></li>
+					<li class="li-login"><a target="_blank" class="btn-login" href="{php echo url('user/login');}">登录</a></li>
+					<li class="li-register"><a target="_blank" class="btn-register" href="{php echo url('user/register');}">注册</a></li>
+                </ul>
+                <span class="follow"></span>
+            </div>

@@ -10,6 +10,32 @@ $do = in_array($do, $dos) ? $do : 'bind_domain';
 
 if ('bind_domain' == $do) {
 	
+		if (checksubmit('submit')) {
+			$bind_domain = safe_gpc_string($_GPC['bind_domain']);
+			if (!starts_with($bind_domain, 'http')) {
+				iajax(-1, '要绑定的域名请以http://或以https://开头');
+			}
+			$special_domain = array('.com.cn', '.net.cn', '.gov.cn', '.org.cn', '.com.hk', '.com.tw');
+			$domain = str_replace($special_domain, '.com', $bind_domain);
+			$domain_array = explode('.', $domain);
+			if (count($domain_array) > 3 || count($domain_array) < 2) {
+				iajax(-1, '只支持一级域名和二级域名！');
+			}
+			$nohttp_domain = preg_replace('/^https?/', '', $bind_domain);
+			$uniacid = table('uni_settings')
+				->where(array('bind_domain' => array('http' . $nohttp_domain, 'https' . $nohttp_domain)))
+				->getcolumn('uniacid');
+			if (empty($uniacid) || $uniacid == $_W['uniacid']) {
+				uni_setting_save('bind_domain', $bind_domain);
+				iajax(0, '绑定成功！', referer());
+			} else {
+				$account_name = table('uni_account')
+					->where(array('uniacid' => $uniacid))
+					->getcolumn('name');
+				iajax(-1, "绑定失败, 该域名已被 {$account_name} 绑定！", referer());
+			}
+		}
+	
 	$modulelist = uni_modules();
 	if (!empty($modulelist)) {
 		foreach ($modulelist as $key => $module_val) {

@@ -21,6 +21,20 @@
 				</div>
 			</div>
 			
+			<div class="col-sm-6">
+				<div class="title">
+					<span class="wi wi-wxapp-pack"></span>
+					打包普通应用为小程序
+				</div>
+				<div class="con">
+					打包生成小程序，选择一个公众号应用/多个公众号应用打包为小程序
+				</div>
+				<div>
+					<a href="{php echo url('wxapp/post/post', array('design_method' => WXAPP_MODULE, 'uniacid' => $uniacid, 'create_type'=>WXAPP_CREATE_MODULE))}" class="btn btn-primary">打包一个</a>
+					<a href="{php echo url('wxapp/post/post', array('design_method' => WXAPP_MODULE, 'uniacid' => $uniacid, 'create_type'=>WXAPP_CREATE_MUTI_MODULE))}" class="btn btn-primary">打包多个</a>
+				</div>
+			</div>
+			
 		</div>
 
 	</div>

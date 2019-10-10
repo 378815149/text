@@ -185,6 +185,13 @@ if ('save_account' == $do) {
 			cache_build_account_modules($uniacid);
 		}
 		
+			if (user_is_vice_founder()) {
+				uni_user_account_role($uniacid, $_W['uid'], ACCOUNT_MANAGE_NAME_VICE_FOUNDER);
+			}
+			if (!empty($_W['user']['owner_uid'])) {
+				uni_user_account_role($uniacid, $_W['user']['owner_uid'], ACCOUNT_MANAGE_NAME_VICE_FOUNDER);
+			}
+		
 
 				if (in_array($sign, array(ACCOUNT_TYPE_SIGN, XZAPP_TYPE_SIGN))) {
 			pdo_insert('mc_groups', array('uniacid' => $uniacid, 'title' => '默认会员组', 'isdefault' => 1));
@@ -271,6 +278,11 @@ if ('save_account' == $do) {
 			} else {
 				uni_user_account_role($uniacid, $post['owner_uid'], ACCOUNT_MANAGE_NAME_OWNER);
 			}
+			
+				$user_vice_id = pdo_getcolumn('users', array('uid' => $post['owner_uid']), 'owner_uid');
+				if ($_W['user']['founder_groupid'] != ACCOUNT_MANAGE_GROUP_VICE_FOUNDER && !empty($user_vice_id)) {
+					uni_user_account_role($uniacid, $user_vice_id, ACCOUNT_MANAGE_NAME_VICE_FOUNDER);
+				}
 			
 		}
 

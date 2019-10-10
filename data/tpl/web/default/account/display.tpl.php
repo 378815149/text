@@ -22,37 +22,31 @@
 					</div>
 				</form>
 				
-	
-				
 				<div class="creat" ng-switch="type">
 					<a ng-switch-when="all" href="javascript:;" data-toggle="modal" data-target="#owner-modal" class="btn btn-primary">新增平台</a>
-
-					<?php  if(!empty($account_info['account_limit']) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
-					<a href="./index.php?c=account&a=post-step" class="color-primary" ng-if="type == 'account'">
+	
+					<?php  if(!empty($account_info['account_limit']) && (!empty($account_info['founder_account_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
+					<a ng-switch-when="account" href="./index.php?c=account&a=post-step" class="btn btn-primary">
 						新增公众号
 					</a>
 					<?php  } ?>
 	
-					<?php  if(!empty($account_info['wxapp_limit']) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
-					<a href="<?php  echo url('wxapp/post/design_method')?>" class="btn btn-primary" ng-if="type == 'wxapp'">
-						新建微信小程序
-					</a>
+					<?php  if(!empty($account_info['wxapp_limit']) && (!empty($account_info['founder_wxapp_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
+					<a ng-switch-when="wxapp" href="<?php  echo url('wxapp/post/design_method')?>" class="btn btn-primary">新建微信小程序</a>
 					<?php  } ?>
 	
-					<?php  if(!empty($account_info['webapp_limit']) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
-					<a href="<?php  echo url('account/create', array('sign' => 'webapp'))?>" class="btn btn-primary" ng-if="type == 'webapp'">
+					<?php  if(!empty($account_info['webapp_limit']) && (!empty($account_info['founder_webapp_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
+					<a ng-switch-when="webapp" href="<?php  echo url('account/create', array('sign' => 'webapp'))?>" class="btn btn-primary">
 						新增PC
 					</a>
 					<?php  } ?>
 	
-					<?php  if(!empty($account_info['phoneapp_limit']) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
-					<a href="<?php  echo url('account/create', array('sign' => 'phoneapp'))?>" class="btn btn-primary" ng-if="type == 'phoneapp'">
-						新建APP
-					</a>
+					<?php  if(!empty($account_info['phoneapp_limit']) && (!empty($account_info['founder_phoneapp_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
+					<a ng-switch-when="phoneapp" href="<?php  echo url('account/create', array('sign' => 'phoneapp'))?>" class="btn btn-primary">新建APP</a>
 					<?php  } ?>
 	
-					<?php  if(!empty($account_info['xzapp_limit']) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
-					<a href="<?php  echo url('xzapp/post-step')?>" class="btn btn-primary" ng-if="type == 'xzapp'">新建熊掌号</a>
+					<?php  if(!empty($account_info['xzapp_limit']) && (!empty($account_info['founder_xzapp_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
+					<a ng-switch-when="xzapp" href="<?php  echo url('xzapp/post-step')?>" class="btn btn-primary">新建熊掌号</a>
 					<?php  } ?>
 	
 					<?php  if(!empty($account_info['aliapp_limit']) && (!empty($account_info['founder_aliapp_limit']) && $_W['user']['owner_uid'] || empty($_W['user']['owner_uid'])) || $_W['isfounder'] && !user_is_vice_founder()) { ?>
@@ -65,6 +59,8 @@
 					<a ng-switch-when="toutiaoapp" href="<?php  echo url('account/create', array('sign' => 'toutiaoapp'))?>" class="btn btn-primary">新建头条小程序</a>
 					<?php  } ?>
 				</div>
+				
+	
 				
 			</div>
 			<div class="account-display-list" infinite-scroll='loadMore()' infinite-scroll-disabled='busy' infinite-scroll-distance='0' infinite-scroll-use-document-bottom="true">

@@ -18,7 +18,6 @@ if (!empty($eid)) {
 			'do' => trim($_GPC['do'])
 		))
 		->get();
-
 	if (empty($entry)) {
 		$entry = array(
 			'module' => $_GPC['m'],
@@ -28,15 +27,21 @@ if (!empty($eid)) {
 		);
 	}
 }
-
 if (empty($entry) || empty($entry['do'])) {
 	itoast('非法访问.', '', '');
 }
 
 $module = module_fetch($entry['module']);
 
-
 if (empty($module)) {
+	
+		if ('store' == $entry['module']) {
+			$store_data = array('name' => 'store', 'type' => 'business', 'title' => '站内商城', 'title_initial' => 'Z', 'version' => '1.0', 'ability' => '站内商城', 'description' => '站内商城', 'author' => 'we7team', 'issystem' => 1, 'account_support' => 2);
+			$result = table('modules')->fill($store_data)->save();
+			if ($result) {
+				itoast('', referer());
+			}
+		}
 	
 	itoast("访问非法, 没有操作权限. (module: {$entry['module']})", '', '');
 }
@@ -52,14 +57,14 @@ if (!$entry['direct']) {
 		itoast('', $_W['siteurl'] . '&version_id=' . $referer['version_id']);
 	}
 	
-	
-		if (empty($_W['uniacid'])) {
+		if (empty($_W['uniacid']) && 'system_welcome' != $entry['entry'] && 'system_welcome' != $_GPC['module_type']) {
 			if (!empty($_GPC['version_id'])) {
 				itoast('', url('account/display', array('type' => WXAPP_TYPE_SIGN)));
 			} else {
 				itoast('', url('account/display'));
 			}
 		}
+	
 	
 
 	if ('menu' == $entry['entry']) {
@@ -93,12 +98,16 @@ $_GPC['do'] = $entry['do'];
 $_W['current_module'] = $module;
 
 
+	if ('system_welcome' == $entry['entry'] || 'system_welcome' == $_GPC['module_type']) {
+		$_GPC['module_type'] = 'system_welcome';
+		define('SYSTEM_WELCOME_MODULE', true);
+		$site = WeUtility::createModuleSystemWelcome($entry['module']);
+	} else {
+		$site = WeUtility::createModuleSite($entry['module']);
+	}
 
 
-$site = WeUtility::createModuleSite($entry['module']);
 
-//$func = new ReflectionClass('WeUtility');
-//var_dump( $func->getFileName());die;
 
 define('IN_MODULE', $entry['module']);
 
@@ -110,7 +119,11 @@ if (!is_error($site)) {
 	if (in_array($m, $sysmodule)) {
 		$site_urls = $site->getTabUrls();
 	}
-	$method = 'doWeb' . ucfirst($entry['do']);
+	
+	
+		$do_function = defined('SYSTEM_WELCOME_MODULE') ? 'doPage' : 'doWeb';
+		$method = $do_function . ucfirst($entry['do']);
+	
 	exit($site->$method());
 }
 itoast("访问的方法 {$method} 不存在.", referer(), 'error');

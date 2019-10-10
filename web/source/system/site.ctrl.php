@@ -17,6 +17,29 @@ if (empty($settings) || !is_array($settings)) {
 
 if ('basic' == $do) {
 	
+		$path = IA_ROOT . '/web/themes/';
+		if (is_dir($path)) {
+			if ($handle = opendir($path)) {
+				while (false !== ($templatepath = readdir($handle))) {
+					if ('.' != $templatepath && '..' != $templatepath) {
+						if (is_dir($path . $templatepath)) {
+							$template[] = $templatepath;
+						}
+					}
+				}
+			}
+		}
+
+		$template_ch_name = system_template_ch_name();
+		$templates_ch = array_keys($template_ch_name);
+		if (!empty($template)) {
+			foreach ($template as $template_val) {
+				if (!in_array($template_val, $templates_ch)) {
+					$template_ch_name[$template_val] = $template_val;
+				}
+			}
+		}
+	
 	if (!empty($settings['autosignout'])) {
 		if ($settings['autosignout'] >= 60){
 			$hour = floor($settings['autosignout']/60);

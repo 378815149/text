@@ -144,7 +144,7 @@ function ihttp_response_parse($data, $chunked = false) {
 		$pos = strpos($v, ':');
 		$key = substr($v, 0, $pos);
 		$value = trim(substr($v, $pos + 1));
-		if (is_array($rlt['headers'][$key])) {
+		if (isset($rlt['headers'][$key]) && is_array($rlt['headers'][$key])) {
 			$rlt['headers'][$key][] = $value;
 		} elseif (!empty($rlt['headers'][$key])) {
 			$temp = $rlt['headers'][$key];
@@ -280,7 +280,7 @@ function ihttp_build_curl($url, $post, $extra, $timeout) {
 		$urlset['host'] = $extra['ip'];
 		unset($extra['ip']);
 	}
-	curl_setopt($ch, CURLOPT_URL, $urlset['scheme'] . '://' . $urlset['host'] . (empty($urlset['port']) || '80' == $urlset['port'] ? '' : ':' . $urlset['port']) . $urlset['path'] . $urlset['query']);
+	curl_setopt($ch, CURLOPT_URL, $urlset['scheme'] . '://' . $urlset['host'] . (empty($urlset['port']) || '80' == $urlset['port'] ? '' : ':' . $urlset['port']) . $urlset['path'] . (!empty($urlset['query']) ? $urlset['query'] : ''));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($ch, CURLOPT_HEADER, 1);

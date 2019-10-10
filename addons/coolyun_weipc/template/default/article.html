@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>{$webset['webname']}</title>
+    <meta name="keywords" content="" />
+    <meta name="Description" content="" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{MODULE_URL}public/default/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{MODULE_URL}public/default/css/grayscale.css" rel="stylesheet">
+    <link href="{MODULE_URL}public/default/css/main.css" rel="stylesheet">
+    <link href="{MODULE_URL}public/default/img/favicon.ico" rel="shortcut icon" />
+</head>
+<body class="bg_gary" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div class="nav_mask"></div>
+    <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i></i><i></i><i></i>
+                </button>
+                <h1><a class="navbar-brand" href="{$_W[‘siteroot’]}"><img src="{if !empty($webset['logo'])}{$_W['attachurl']}{$webset['logo']}{else}{MODULE_URL}public/default/img/logo.png{/if}" alt="{$webset['webname']}"></a></h1>
+            </div>
+{template 'default/top'}
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="header_hd" style="background-image:url({MODULE_URL}public/default/img/news.jpg); background-repeat:no-repeat">
+            <div class="container">
+                <h3>{$cid['title']}</h3>
+                <h2>{$cid['desc']}</h2>
+                <div id="case_tab" class="tab">
+                    <div>
+                        {loop $cates $cate}
+                         <a href="newscenter.html" class="">{$cate['title']}</a>
+                        {/loop}
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h4 class="text-c">文章</h4>
+                    <div class="brand_list">
+			<h1>{$article['title']}</h1>
+            <h2>{php echo date("Y-m-d h:m:s",$article['updatetime'])}</h2>
+            <div class="newstext">
+            {$article['content']}
+			</div>
+            <div class="pageflip">
+        <div class="l">上一篇：{if !empty($particle)}<a href="/web/index.php?c=account&a=welcome&do=article&id={$particle['id']}" title="{$particle['title']}">{$particle['title']}</a>{else} 没有了 {/if}</div>
+        <div class="r">下一篇：{if !empty($narticle)}<a href="/web/index.php?c=account&a=welcome&do=article&id={$narticle['id']}" title="{$narticle['title']}">{$narticle['title']}</a>{else} 没有了 {/if}</div>
+        </div>
+        
+        <div class="moretext">
+        	<div class="l">
+            <h1>延伸阅读</h1>
+<ul>   
+{loop $articles $art}         
+<li>• <a href="#">{$art['title']}</a> [{php echo date("Y-m-d",$art['updatetime'])}] </li>
+{/loop}
+</ul>
+            </div>
+            
+            <div class="r">
+            <h1>TAGS关键字</h1>
+            <p>
+                <a href="#">用户体验</a> 
+                <a href="#">青岛网站制作</a> 
+                <a href="#">青岛网站建设</a> 
+                <a href="#">青岛网站设计</a> 
+                <a href="#">苹果系统</a> 
+                <a href="#">织梦</a> 
+                <a href="">cms</a> 
+                <a href="#">力图数字科技</a> 
+                <a href="">网站建设</a> 
+                <a href="#">网站SEO</a> 
+                <a href="">SEO</a> 
+                <a href="h">网页设计</a> 
+                <a href="">青岛SEO</a> 
+                <a href="">HTML5</a> 
+                <a href="">搜索引擎蜘蛛</a> 
+                <a href="">响应式网站</a> 
+                <a href="">搜索引擎</a> 
+                <a href="">青岛网站SEO</a> 
+                <a href="">青岛IT资讯</a> 
+                <a href="">青岛轮胎网站设计</a> 
+                <a href="">交互设计</a> 
+                <a href="">网站制作</a> 
+                <a href="">青岛网站案例</a> 
+                <a href="">扁平化设计</a> 
+                <a href="">营销型网站</a> 
+                <a href="">青岛网页设计</a> 
+                <a href="">IT咨询</a> 
+                <a href="">青岛网站优化</a> 
+                <a href="">GOOGLE</a> 
+                <a href="">青岛flash网站</a> 
+                <a href="">网站交互设计</a> 
+                <a href="">IT资讯</a> 
+                <a href="">网站设计</a> 
+                <a href="">青岛网络公司</a> 
+                <a href="">robots</a> 
+                <a href="">网站设计趋势</a> 
+                <a href="">网站设计资讯</a> 
+                <a href="">青岛网站营销</a> 
+            </p>            
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        
+        
+		</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <p>{$webset['name']} 版权所有 {$webset['beian']}</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <p class="link"><a href="index.html" target="_blank">青岛网站建设</a> <a href="index.html" target="_blank">青岛网站设计</a> <a href="index.html" target="_blank">青岛网站制作</a> <a href="index.html" target="_blank">青岛网络公司</a></p>
+            </div>
+</div>
+    </div>
+    <div id="chat" class="chat">
+        <div>
+        <div>
+            <a href="tel:{$webset['phone']}" class="tel" target="_blank"><span><i class="iconfont icon-tel"></i>{$webset['phone']}</span></a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={$webset['qq']}&site=qq&menu=yes" class="qq" target="_blank"><span><i class="iconfont icon-qq"></i>{$webset['qq']}</span></a>
+            <a href="mailto:{$webset['email']}" class="mail" target="_blank"><span><i class="iconfont icon-mail"></i>{$webset['email']}</span></a>
+        </div>
+        </div>
+    </div>
+    <script src="{MODULE_URL}public/default/js/jquery.js"></script>
+    <script src="{MODULE_URL}public/default/js/bootstrap.min.js"></script>
+    <script src="{MODULE_URL}public/default/js/verder.min.js"></script>
+    <script src="{MODULE_URL}public/default/js/grayscale.js"></script>
+    <script src="{MODULE_URL}public/default/js/main.js"></script>
+</body>
+</html>

@@ -146,6 +146,14 @@ $we7_system_menu['user_manage'] = array(
 					'sub_permission' => array(),
 				),
 				
+				'user_manage_founder' => array(
+					'title' => '副站长',
+					'url' => url('founder/display'),
+					'permission_name' => 'user_manage_founder',
+					'sub_permission' => array(),
+					'founder' => true,
+				),
+				
 				'user_manage_clerk' => array(
 					'title' => '店员管理',
 					'url' => url('user/display', array('type' => 'clerk')),
@@ -202,6 +210,14 @@ $we7_system_menu['permission'] = array(
 					'url' => url('user/group'),
 					'permission_name' => 'permission_user_group',
 					'sub_permission' => array(),
+				),
+				
+				'permission_founder_group' => array(
+					'title' => '副站长权限组合',
+					'url' => url('founder/group'),
+					'permission_name' => 'permission_founder_group',
+					'sub_permission' => array(),
+					'founder' => true,
 				),
 				
 			),
@@ -276,7 +292,49 @@ $we7_system_menu['system'] = array(
 			'founder' => true,
 		),
 		
+		'system_welcome' => array(
+			'title' => '系统首页',
+			'menu' => array(
+				'system_welcome' => array(
+					'title' => '系统首页应用',
+					'url' => url('module/manage-system', array('support' => MODULE_SUPPORT_SYSTEMWELCOME_NAME)),
+					'icon' => 'wi wi-system-welcome',
+					'permission_name' => 'system_welcome',
+				),
+				'system_news' => array(
+					'title' => '系统新闻',
+					'url' => url('article/news'),
+					'icon' => 'wi wi-article',
+					'permission_name' => 'system_news',
+					'sub_permission' => array(
+						array(
+							'title' => '新闻列表 ',
+							'permission_name' => 'system_article_news_list',
+						),
+						array(
+							'title' => '新闻分类 ',
+							'permission_name' => 'system_article_news_category',
+						),
+					),
+				),
+			),
+			'founder' => true,
+		),
+		
 
+		
+		'system_statistics' => array(
+			'title' => '统计',
+			'menu' => array(
+				'system_account_analysis' => array(
+					'title' => '访问统计',
+					'url' => url('statistics/account'),
+					'icon' => 'wi wi-statistical',
+					'permission_name' => 'system_account_analysis',
+				),
+			),
+			'founder' => true,
+		),
 		
 		'cache' => array(
 			'title' => '缓存',
@@ -913,7 +971,6 @@ $we7_system_menu['account'] = array(
 					'is_display' => array(
 						ACCOUNT_TYPE_OFFCIAL_NORMAL,
 						ACCOUNT_TYPE_OFFCIAL_AUTH,
-						ACCOUNT_TYPE_WEBAPP_NORMAL,
 					),
 					'sub_permission' => array(
 						'profile_payment_pay' => array(
@@ -944,6 +1001,19 @@ $we7_system_menu['account'] = array(
 					),
 				),
 				
+				'profile_bind_domain' => array(
+					'title' => '域名绑定',
+					'url' => url('profile/bind-domain'),
+					'icon' => 'wi wi-bind-domain',
+					'permission_name' => 'profile_bind_domain',
+					'is_display' => array(
+						ACCOUNT_TYPE_OFFCIAL_NORMAL,
+						ACCOUNT_TYPE_OFFCIAL_AUTH,
+						ACCOUNT_TYPE_XZAPP_NORMAL,
+						ACCOUNT_TYPE_XZAPP_AUTH,
+					),
+				),
+				
 				'webapp_module_link' => array(
 					'title' => '数据同步',
 					'url' => url('profile/module-link-uniacid'),
@@ -964,6 +1034,74 @@ $we7_system_menu['account'] = array(
 					),
 				),
 				
+				'webapp_bind_domain' => array(
+					'title' => '域名访问设置',
+					'url' => url('webapp/bind-domain'),
+					'icon' => 'wi wi-bind-domain',
+					'permission_name' => 'webapp_bind_domain',
+					'is_display' => array(
+						ACCOUNT_TYPE_WEBAPP_NORMAL,
+					),
+				),
+				
+			),
+			'permission_display' => array(
+				ACCOUNT_TYPE_OFFCIAL_NORMAL,
+				ACCOUNT_TYPE_OFFCIAL_AUTH,
+				ACCOUNT_TYPE_XZAPP_NORMAL,
+				ACCOUNT_TYPE_XZAPP_AUTH,
+				ACCOUNT_TYPE_WEBAPP_NORMAL,
+			),
+		),
+		
+		'statistics' => array(
+			'title' => '统计',
+			'menu' => array(
+				'statistics_visit' => array(
+					'title' => '访问统计',
+					'url' => url('statistics/app'),
+					'icon' => 'wi wi-statistical',
+					'permission_name' => 'statistics_visit',
+					'is_display' => array(
+						ACCOUNT_TYPE_OFFCIAL_NORMAL,
+						ACCOUNT_TYPE_OFFCIAL_AUTH,
+						ACCOUNT_TYPE_XZAPP_NORMAL,
+						ACCOUNT_TYPE_XZAPP_AUTH,
+						ACCOUNT_TYPE_WEBAPP_NORMAL,
+					),
+					'sub_permission' => array(
+						'statistics_visit_app' => array(
+							'title' => 'app端访问统计信息',
+							'url' => url('statistics/app/display'),
+							'permission_name' => 'statistics_visit_app',
+							'active' => 'app',
+						),
+						'statistics_visit_site' => array(
+							'title' => '所有用户访问统计',
+							'url' => url('statistics/site/current_account'),
+							'permission_name' => 'statistics_visit_site',
+							'active' => 'site',
+						),
+						'statistics_visit_setting' => array(
+							'title' => '访问统计设置',
+							'url' => url('statistics/setting/display'),
+							'permission_name' => 'statistics_visit_setting',
+							'active' => 'setting',
+						),
+					),
+				),
+				'statistics_fans' => array(
+					'title' => '用户统计',
+					'url' => url('statistics/fans'),
+					'icon' => 'wi wi-statistical',
+					'permission_name' => 'statistics_fans',
+					'is_display' => array(
+						ACCOUNT_TYPE_OFFCIAL_NORMAL,
+						ACCOUNT_TYPE_OFFCIAL_AUTH,
+						ACCOUNT_TYPE_XZAPP_NORMAL,
+						ACCOUNT_TYPE_XZAPP_AUTH,
+					),
+				),
 			),
 			'permission_display' => array(
 				ACCOUNT_TYPE_OFFCIAL_NORMAL,
@@ -1002,7 +1140,7 @@ $we7_system_menu['wxapp'] = array(
 				ACCOUNT_TYPE_APP_NORMAL,
 				ACCOUNT_TYPE_APP_AUTH,
 				ACCOUNT_TYPE_WXAPP_WORK,
-			)
+			),
 		),
 		'platform_module' => array(
 			'title' => '应用',
@@ -1324,6 +1462,158 @@ $we7_system_menu['appmarket'] = array(
 	'founder' => true,
 );
 
+
+	$we7_system_menu['store'] = array(
+		'title' => '商城',
+		'icon' => 'wi wi-store',
+		'url' => url('home/welcome/ext', array('m' => 'store')),
+		'section' => array(
+			'store_goods' => array(
+				'title' => '商品分类',
+				'menu' => array(
+					'store_goods_module' => array(
+						'title' => '应用模块',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1, 'type' => 'module')),
+						'icon' => 'wi wi-apply',
+						'type' => 'module',
+					),
+					'store_goods_account' => array(
+						'title' => '平台个数',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1, 'type' => 'account_num')),
+						'icon' => 'wi wi-account',
+						'type' => 'account_num',
+					),
+					'store_goods_account_renew' => array(
+						'title' => '平台续费',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1,  'type' => 'renew')),
+						'icon' => 'wi wi-appjurisdiction',
+						'type' => 'renew',
+					),
+					'store_goods_package' => array(
+						'title' => '应用权限组',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1,  'type' => STORE_TYPE_PACKAGE)),
+						'icon' => 'wi wi-appjurisdiction',
+						'type' => STORE_TYPE_PACKAGE,
+					),
+					'store_goods_users_package' => array(
+						'title' => '用户权限组',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1, 'type' => STORE_TYPE_USER_PACKAGE)),
+						'icon' => 'wi wi-userjurisdiction',
+						'type' => STORE_TYPE_USER_PACKAGE,
+					),
+					'store_goods_api' => array(
+						'title' => '应用访问流量(API)',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1,  'type' => STORE_TYPE_API)),
+						'icon' => 'wi wi-api',
+						'type' => STORE_TYPE_API,
+					),
+				),
+			),
+			'store_wish_goods' => array(
+				'title' => '预购应用',
+				'menu' => array(
+					'store_wish_goods_list' => array(
+						'title' => '应用列表',
+						'url' => url('site/entry/goodsbuyer', array('m' => 'store', 'direct' => 1, 'type' => 'module_wish', 'is_wish' => 1)),
+						'icon' => 'wi wi-apply',
+						'type' => 'module_wish',
+					),
+					'store_wish_goods_edit' => array(
+						'title' => '添加/设置应用',
+						'url' => url('site/entry/wishgoodsEdit', array('m' => 'store', 'direct' => 1, 'op' => 'wishgoods', 'status' => 1)),
+						'icon' => 'wi wi-goods-add',
+						'type' => 'wish_goods_edit',
+					),
+				),
+			),
+			'store_manage' => array(
+				'title' => '商城管理',
+				'founder' => true,
+				'menu' => array(
+					'store_manage_goods' => array(
+						'title' => '添加商品',
+						'url' => url('site/entry/goodsSeller', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-goods-add',
+						'type' => 'goodsSeller',
+					),
+					'store_manage_setting' => array(
+						'title' => '商城设置',
+						'url' => url('site/entry/setting', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-store',
+						'type' => 'setting',
+					),
+					'store_manage_payset' => array(
+						'title' => '支付设置',
+						'url' => url('site/entry/paySetting', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-money',
+						'type' => 'paySetting',
+					),
+					'store_manage_permission' => array(
+						'title' => '商城访问权限',
+						'url' => url('site/entry/permission', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-blacklist',
+						'type' => 'blacklist',
+					),
+				),
+			),
+			'store_orders' => array(
+				'title' => '订单管理',
+				'menu' => array(
+					'store_orders_my' => array(
+						'title' => '我的订单',
+						'url' => url('site/entry/orders', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-sale-record',
+						'type' => 'orders',
+					),
+					'store_cash_orders' => array(
+						'title' => '分销订单',
+						'url' => url('site/entry/cash', array('m' => 'store', 'operate' => 'cash_orders', 'direct' => 1)),
+						'icon' => 'wi wi-order',
+						'type' => 'cash_orders',
+					),
+				),
+			),
+			'store_payments' => array(
+				'title' => '收入明细',
+				'menu' => array(
+					'payments' => array(
+						'title' => '收入明细',
+						'url' => url('site/entry/payments', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-sale-record',
+						'type' => 'payments',
+					),
+				),
+			),
+			'store_cash_manage' => array(
+				'title' => '分销管理',
+				'menu' => array(
+					'store_manage_cash_setting' => array(
+						'title' => '分销设置',
+						'url' => url('site/entry/cashsetting', array('m' => 'store', 'direct' => 1)),
+						'icon' => 'wi wi-site-setting',
+						'type' => 'cashsetting',
+					),
+					'store_check_cash' => array(
+						'title' => '提现审核',
+						'url' => url('site/entry/cash', array('m' => 'store', 'operate' => 'consume_order', 'direct' => 1)),
+						'icon' => 'wi wi-check-select',
+						'type' => 'consume_order',
+					),
+				),
+			),
+			'store_cash' => array(
+				'title' => '佣金管理',
+				'menu' => array(
+					'payments' => array(
+						'title' => '我的佣金',
+						'url' => url('site/entry/cash', array('m' => 'store', 'operate' => 'mycash', 'direct' => 1)),
+						'icon' => 'wi wi-list',
+						'type' => 'mycash',
+					),
+				),
+			),
+		),
+	);
 
 
 $we7_system_menu['workorder'] = array(

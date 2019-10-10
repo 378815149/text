@@ -193,8 +193,12 @@ if ('post' == $do) {
 	}
 
 	
+		if (user_is_vice_founder($_W['uid'])) {
+			$template_list = user_founder_templates($_W['user']['groupid']);
+		} else {
+			$template_list = pdo_getall('site_templates');
+		}
 	
-		$template_list = pdo_getall('site_templates');
 	
 
 	foreach ($template_list as $temp) {

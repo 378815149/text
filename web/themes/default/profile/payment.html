@@ -118,6 +118,27 @@
 		
 		<tr>
 			<td>
+				服务商支付
+			</td>
+			<td>
+				<div class="related-info">
+				</div>
+			</td>
+			<td>
+				{{  paysetting.wechat_facilitator.has_config === true ? '已配置' : '未配置'  }}
+			</td>
+			<td>无需设置</td>
+			<td >
+				<div class="link-group">
+					<a href="javascript:;" class="color-default" data-toggle="modal" data-target="#wechat_fa">
+						{{  paysetting.wechat_facilitator.has_config === true ? '修改配置' : '去配置'  }}
+					</a>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
 				一码支付
 			</td>
 			<td>
@@ -326,6 +347,9 @@
 								<input ng-if="borrows" id='radio-12' type="radio" name='wechat[switch]' ng-checked='paysetting.wechat.switch == 2' ng-click="changeSwitch('wechat', 2)" value="2"/>
 								<label ng-if="borrows" for="radio-12">借用支付  </label>
 								
+								<input ng-if="services" id='radio-13' type="radio" name='wechat[switch]' ng-checked='paysetting.wechat.switch == 3' ng-click="changeSwitch('wechat', 3)" value="3"/>
+								<label ng-if="services" for="radio-13">服务商支付  </label>
+								
 								{/if}
 							<!-- 	<input id='radio-24' type="radio" name='wechat[switch]' ng-checked='paysetting.wechat.switch == 4 || paysetting.wechat.switch === false' ng-click="changeSwitch('wechat', 4)" value="4" checked=""/>
 								<label for="radio-24">关闭 </label> -->
@@ -442,11 +466,76 @@
 							</div>
 						</div>
 						
+						<div ng-if="services" ng-show="paysetting.wechat.switch == 3">
+							<div class="form-group">
+								<label for="" class="control-label col-sm-2">服务商公众号</label>
+								<div class="form-controls col-sm-10">
+									<select name="service" class="we7-select" ng-model="paysetting.wechat.service">
+										<option value="">请选择服务商公众号</option>
+										<option value="{{key}}" ng-selected="paysetting.wechat.service == key" ng-repeat="(key, account) in services track by key">{{ account }}</option>
+									</select>
+									<span class="help-block">借用认证服务号支付权限完成支付。</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label col-sm-2">子商户号</label>
+								<div class="form-controls col-sm-10">
+									<input type="text" name="" ng-model="paysetting.wechat.sub_mch_id" class="form-control" placeholder="">
+										<span class="help-block">
+											子商户的商户号
+										</span>
+								</div>
+							</div>
+						</div>
+						
 						{/if}
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" ng-click='saveEdit("wechat")'>确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="wechat_fa" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="we7-modal-dialog modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<div class="modal-title">服务商支付</div>
+				</div>
+				<div class="modal-body">
+					<div class="we7-form">
+						<div class="form-group">
+							<label for="" class="control-label col-sm-2">服务商支付</label>
+							<div class="form-controls col-sm-10">
+								<input id='radio-111' type="radio" name='wechat_facilitator' value="true" ng-checked="paysetting.wechat_facilitator.switch === true" ng-click="changeSwitch('wechat_facilitator', true)"/>
+								<label for="radio-111">开启 </label>
+								<input id='radio-222' type="radio" name='wechat_facilitator' value="false" ng-checked="paysetting.wechat_facilitator.switch === false" ng-click="changeSwitch('wechat_facilitator', false)"/>
+								<label for="radio-222">关闭 </label>
+								<span class="help-block">设置为服务商，其他商户可以授权给服务商，让服务商完成支付。</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label col-sm-2">服务商商户号</label>
+							<div class="form-controls col-sm-10">
+								<input name="" ng-model="paysetting.wechat_facilitator.mchid" class="form-control" placeholder="" >
+								<span class="help-block">需要填写申请为服务商的商户号。注：服务商的商户号与微信支付的商户号不是同一个号。</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label col-sm-2">商户支付密钥</label>
+							<div class="form-controls col-sm-10">
+								<input type="text" name="" ng-model="paysetting.wechat_facilitator.signkey" class="form-control" placeholder="">
+								<span class="help-block">此商户密钥为服务商商户号对应的支付密钥，与微信支付的支付密钥不相同。</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-click="saveEdit('wechat_facilitator')">确定</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 				</div>
 			</div>

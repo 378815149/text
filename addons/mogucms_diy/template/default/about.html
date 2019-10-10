@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['about'])}{$title['about']}{else}关于我们{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['about'])}{$_W['attachurl']}{$banner['about']}{else}../addons/mogucms_diy/static/default/images/about_banner.jpg{/if}) no-repeat center center; background-size:cover;"></div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['about_title1'])}{$webset['about_title1']}{else}我们是谁{/if}</h2></div>
+        <div class="about_txt wow fadeInUp">
+        	<img style="float:left; width:45%; margin:10px 30px 10px 0;" src="{$_W['attachurl']}{$about['image']}">{php echo html_entity_decode($about['content'])}
+
+        </div>
+		{if !empty($certs)}
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['about_title2'])}{$webset['about_title2']}{else}资质证书{/if}</h2></div>
+        <div class="zsbox">
+        	<ul>
+				{loop $certs $c}
+            	<li class="wow fadeInUp"><img src="{$_W['attachurl']}{$c['image']}"></li>
+            	{/loop}
+            </ul>
+        </div>
+		{/if}
+    </div>
+</div>
+{if !empty($teams)}
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['about_title3'])}{$webset['about_title3']}{else}我们的团队{/if}</h2><p>{if !empty($webset['about_sub3'])}{$webset['about_sub3']}{else}力求打造您最满意的网站{/if}</p></div>
+        <div class="tdbox">
+        	<ul>
+				{loop $teams $c}
+            	<li class="wow fadeInUp">
+                	<h1><img src="{$_W['attachurl']}{$c['image']}"></h1>
+                    <h3><strong>{$c['name']}</strong>{$c['zhiwei']}</h3>
+                </li>
+				{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+{/if}
+<div class="content pad70 contactbg">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['about_title4'])}{$webset['about_title4']}{else}联系我们{/if}</h2></div>
+        <div class="wow fadeInUp">
+        <div class="tact_sm">{$webset['company']}</div>
+        <div class="contact_info">
+        	<dl>
+            	<dt><img src="../addons/mogucms_diy/static/default/images/abt_icotel.png"></dt>
+                <dd><h2>联系电话</h2><p>{$webset['tel']} <br>{$webset['lxr']}</p></dd>
+            </dl>
+        	<dl>
+            	<dt><img src="../addons/mogucms_diy/static/default/images/abt_icoqq.png"></dt>
+                <dd><h2>QQ</h2><p>{$webset['qq']}</p></dd>
+            </dl>
+        	<dl>
+            	<dt><img src="../addons/mogucms_diy/static/default/images/abt_icoemail.png"></dt>
+                <dd><h2>电子邮箱</h2><p>{$webset['email']}</p></dd>
+            </dl>
+        	<dl>
+            	<dt><img src="../addons/mogucms_diy/static/default/images/abt_icomap.png"></dt>
+                <dd><h2>公司地址</h2><p>{$webset['address']}</p></dd>
+            </dl>
+        </div>
+        <div class="contact_ewm"><h2><img src="{if !empty($webset['erweima'])}{$_W['attachurl']}{$webset['erweima']}{else}../addons/mogucms_diy/static/default/images/ct3_ewm.jpg{/if}"></h2><p>扫描关注我们</p></div>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

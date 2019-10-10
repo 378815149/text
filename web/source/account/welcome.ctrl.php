@@ -13,6 +13,13 @@ if (!empty($_W['uid'])) {
 
 $settings = $_W['setting'];
 
+	if (!empty($settings['site_welcome_module'])) {
+		$site = WeUtility::createModuleSystemWelcome($settings['site_welcome_module']);
+		if (!is_error($site)) {
+			exit($site->systemWelcomeDisplay());
+		}
+	}
+
 $copyright = $settings['copyright'];
 $copyright['slides'] = iunserializer($copyright['slides']);
 if (isset($copyright['showhomepage']) && empty($copyright['showhomepage'])) {

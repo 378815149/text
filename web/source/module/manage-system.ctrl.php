@@ -23,6 +23,23 @@ $dos = array('subscribe', 'check_subscribe', 'check_upgrade', 'get_local_upgrade
 $do = in_array($do, $dos) ? $do : 'installed';
 
 
+	if (user_is_vice_founder() && !empty($_GPC['system_welcome'])) {
+		itoast('无权限操作！');
+	}
+	if ('set_site_welcome_module' == $do) {
+		if (!$_W['isfounder']) {
+			iajax(1, '非法操作');
+		}
+		if (!empty($_GPC['name'])) {
+			$site = WeUtility::createModuleSystemWelcome($_GPC['name']);
+			if (!method_exists($site, 'systemWelcomeDisplay')) {
+				iajax(1, '应用未实现系统首页功能！');
+			}
+		}
+		setting_save(trim($_GPC['name']), 'site_welcome_module');
+		iajax(0);
+	}
+
 
 $permission_check = array(
 	'see_module_manage_system_install' => permission_check_account_user('see_module_manage_system_install') ? 1 : 0,
@@ -287,6 +304,12 @@ if ('upgrade' == $do) {
 	cache_build_uni_group();
 	if ($has_new_support) {
 		
+			foreach ($module_support_type as $support_name => $info) {
+				if ($module_upgrade[$support_name] == $info['support']) {
+					module_delete_store_wish_goods($module_name, $support_name);
+				}
+			}
+		
 		itoast('模块安装成功！', url('module/manage-system/installed'), 'success');
 	} else {
 		itoast('模块更新成功！', url('module/manage-system/installed'), 'success');
@@ -471,6 +494,12 @@ if ('install' == $do) {
 			}
 		}
 		
+			foreach ($all_support as $support => $value) {
+				if ($module[$support] == $value['support']) {
+					module_delete_store_wish_goods($module_name, $support);
+				}
+			}
+		
 		$store_goods_id = pdo_getcolumn('site_store_goods', array('module' => $module['name'], 'is_wish' => 1), 'id');
 		if (!empty($store_goods_id)) {
 			$store_goods_orders = pdo_getall('site_store_order', array('goodsid' => $store_goods_id));
@@ -555,6 +584,10 @@ if ('save_module_info' == $do) {
 		$result = utility_image_rename($module_icon_map[$module_info_type]['url'], $image_destination_url);
 	}
 
+	
+		if (!empty($module_update['title']) || !empty($module_update['logo'])) {
+			update_wish_goods_info($module_update, $module_name);
+		}
 	
 
 	cache_build_module_info($module_name);

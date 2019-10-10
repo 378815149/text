@@ -11,6 +11,10 @@ $title = $_W['account']['name'] . '微站';
 $dos = array('index', 'editprofile', 'personal_info', 'contact_method', 'education_info', 'jobedit', 'avatar', 'address', 'addressadd');
 $do = in_array($do, $dos) ? $do : 'index';
 $navs = site_app_navs('profile');
+$operate = safe_gpc_string($_GPC['operate']);
+$operates = array('index', 'personal_info', 'contact_method', 'education_info', 'jobedit');
+$operate = in_array($operate, $operates) ? $operate : 'index';
+
 if (empty($_W['member']['uid'])) {
 	message('请先登录!', url('auth/login', array('i' => $_W['uniacid'])), 'error');
 }
@@ -52,8 +56,8 @@ if(!empty($_W['openid'])) {
 
 
 $mcFields = table('mc_member_fields')
-	->select(array('mf.*', 'pf.field'))
 	->searchWithProfileFields()
+	->select(array('mf.*', 'pf.field'))
 	->where(array(
 		'mf.uniacid' => $_W['uniacid'],
 		'mf.available' => 1
@@ -66,16 +70,57 @@ $jobedit_hide = mc_card_settings_hide('jobedit');
 
 if ($do == 'editprofile'){
 	if ($_W['isajax'] && $_W['ispost']) {
-		$data = array(
-			'nickname' => safe_gpc_string($_GPC['nickname']),
-			'realname' => safe_gpc_string($_GPC['realname']),
-			'birth' => array(
-				'year' => intval($_GPC['birth']['year']),
-				'month' => intval($_GPC['birth']['month']),
-				'day' => intval($_GPC['birth']['day'])
-			),
-			'gender' => intval($_GPC['gender']),
-		);
+		if ($operate == 'index') {
+			$data = array(
+				'nickname' => safe_gpc_string($_GPC['nickname']),
+				'realname' => safe_gpc_string($_GPC['realname']),
+				'birth' => array(
+					'year' => safe_gpc_int($_GPC['birth']['year']),
+					'month' => safe_gpc_int($_GPC['birth']['month']),
+					'day' => safe_gpc_int($_GPC['birth']['day'])
+				),
+				'gender' => safe_gpc_int($_GPC['gender']),
+			);
+		}
+		if ($operate == 'personal_info') {
+			$data = array(
+				'idcard' => safe_gpc_string($_GPC['idcard']),
+				'height' => safe_gpc_int($_GPC['height']),
+				'weight' => safe_gpc_int($_GPC['weight']),
+				'bloodtype' => safe_gpc_string($_GPC['bloodtype']),
+				'zodiac' => safe_gpc_string($_GPC['zodiac']),
+				'constellation' => safe_gpc_string($_GPC['constellation']),
+				'site' => safe_gpc_string($_GPC['site']),
+				'bio' => safe_gpc_string($_GPC['bio']),
+				'affectivestatus' => safe_gpc_string($_GPC['affectivestatus']),
+				'lookingfor' => safe_gpc_string($_GPC['lookingfor']),
+				'interest' => safe_gpc_string($_GPC['interest']),
+			);
+		}
+		if ($operate == 'contact_method') {
+			$data = array(
+				'telephone' => safe_gpc_string($_GPC['telephone']),
+				'qq' => safe_gpc_string($_GPC['qq']),
+				'msn' => safe_gpc_string($_GPC['msn']),
+				'taobao' => safe_gpc_string($_GPC['taobao']),
+				'alipay' => safe_gpc_string($_GPC['alipay']),
+			);
+		}
+		if ($operate == 'education_info') {
+			$data = array(
+				'education' => safe_gpc_string($_GPC['education']),
+				'graduateschool' => safe_gpc_string($_GPC['graduateschool']),
+				'studentid' => safe_gpc_string($_GPC['studentid']),
+			);
+		}
+		if ($operate == 'jobedit') {
+			$data = array(
+				'company' => safe_gpc_string($_GPC['company']),
+				'occupation' => safe_gpc_string($_GPC['occupation']),
+				'position' => safe_gpc_string($_GPC['position']),
+				'revenue' => safe_gpc_string($_GPC['revenue']),
+			);
+		}
 		$result = mc_update($_W['member']['uid'], $data);
 		if ($result) {
 			message('更新资料成功！', referer(), 'success');

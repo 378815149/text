@@ -1,6 +1,6 @@
 {php define('MUI', true);}
 {template 'common/header'}
-<form class="tab-content clearfix js-ajax-form {if $_W['container'] !== 'wechat'}profile-form{/if}" action="{url 'mc/profile/editprofile'}" method="post" enctype="multipart/form-data">
+<form class="tab-content clearfix js-ajax-form {if $_W['container'] !== 'wechat'}profile-form{/if}" action="{url 'mc/profile/editprofile' array('operate' => $do)}" method="post" enctype="multipart/form-data">
 <div class="mui-content {if $do == 'index'}mc-profile{/if}">
 {if $do == 'index'}
 	{if !empty($mcFields['avatar'])}

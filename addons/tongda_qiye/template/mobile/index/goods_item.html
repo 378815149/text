@@ -1,8 +1,0 @@
-{loop $list $key $item}
-<li>
-    <a href="{php echo $this->createMobileUrl('index',array('act'=>'info','goods_id'=>$item['goods_id']));}">
-        <img src="{php echo tomedia($item['image'])}">
-        <span class="urlfont">{$item['title']}</span>
-    </a>
-</li>
-{/loop}

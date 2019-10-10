@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$info['name']}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="/addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="/addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="/addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="/addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="/addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+<script>
+$(function(){
+	$(".cjbtn").live("click",function(){
+		var login="{php echo $this->mogucms_url('login')}";
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=islogin",
+		   success: function(msg){
+			 if(msg==1){
+				window.location.href="{$info['buyurl']}";
+			 }else{
+				window.location.href=login;
+			 }
+		   }
+		});
+	})
+})
+</script>
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['app'])}{$_W['attachurl']}{$banner['app']}{else}/addons/mogucms_diy/static/default/images/application_banner.jpg{/if}) no-repeat center center; background-size:cover;">
+    <div class="wrapper">
+        <div class="yyzx_bantxt">
+            <h2 class="wow fadeInUp">{if !empty($banner['apptitle'])}{$banner['apptitle']}{else}全行业解决方案{/if}<span></span></h2>
+            <div class="yyzx_blst wow fadeInUp animated delay-2s">
+            	<dl><img class="yyzximg" src="/addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle1'])}{$banner['apptitle1']}{else}按需购买{/if}</dl>
+            	<dl><img class="yyzximg" src="/addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle2'])}{$banner['apptitle2']}{else}即买即用{/if}</dl>
+            	<dl><img class="yyzximg" src="/addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle3'])}{$banner['apptitle3']}{else}无需程序基础{/if}</dl>
+            	<dl><img class="yyzximg" src="/addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle4'])}{$banner['apptitle4']}{else}免费更新{/if}</dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="yyzx_detail">
+        	<div class="yyzx_detail_top wow fadeInUp">
+            	<dl>
+                	<dt><img class="yyzximg" src="{$_W['attachurl']}{$info['smallimage']}"></dt>
+                    <dd>
+                    	<h2>{$info['name']}</h2>
+                        <div class="p">{$info['desc']}</div>
+                		{if !empty($info['buyurl'])}<a class="cjbtn" href="javascript:;">立即创建</a>{/if}
+                    </dd>
+                </dl>
+            </div>
+            <div class="yyzx_detail_ct wow fadeInUp">
+            	{php echo html_entity_decode($info['content'])}
+            </div>
+        </div>
+        <div class="xgcase">
+        	<div class="title wow fadeInUp animated zoomIn"><h2>相关案例</h2></div>
+            <div class="xgcase_list wow fadeInUp">
+            	<ul>
+					{loop $cates $c}
+                	<li>
+                    	<h3><img src="{$_W['attachurl']}{$c['image']}"></h3>
+                        <h2>{$c['name']}</h2>
+                        <p>{$cate['name']}</p>
+                    	<div class="case_ewmico"><img src="/addons/mogucms_diy/static/default/images/case_ewm.png"></div>
+                        <div class="case_ewmbg"></div>
+                        <div class="case_ewm">
+                            <em>扫描小程序码查看详情</em>
+                        	<span><img src="{$_W['attachurl']}{$c['erweima']}"></span>
+                        </div>
+                    </li>
+                	{/loop}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

@@ -1,0 +1,27 @@
+<div class="header">
+	<div class="wrapper">
+    	<a class="logo" href="/"><img src="{if !empty($webset['logo'])}{$_W['attachurl']}{$webset['logo']}{else}/addons/mogucms_diy/static/default/images/logo.png{/if}"></a>
+        <div class="nav">
+        	<a class="navico" href="javascript:;"><img src="/addons/mogucms_diy/static/default/images/nav_ico.png"></a>
+            <a class="close" href="javascript:;"><img src="/addons/mogucms_diy/static/default/images/close.png"></a>
+            <div class="hsbg"></div>
+        	<ul>
+            	<li {if empty($_GPC["do"])}class="on"{/if}><a href="{php echo $this->mogucms_url()}">{if !empty($menu['home'])}{$menu['home']}{else}首页{/if}</a></li>
+				{php foreach($this->getmenu() as $k=>$v){}
+				<?php 
+					$kk = str_replace("order","",$k);
+				?>
+            	{if $kk=="app" && $menu['appshow']!='1'}<li {if $_GPC["do"]=="application" || $_GPC['do']=="applicationdetail"}class="on"{/if}><a href="{php echo $this->mogucms_url('application')}">{if !empty($menu['app'])}{$menu['app']}{else}应用中心{/if}</a><!--<div class="nav_uix"><a href="javascript:;"><span><img src="/addons/mogucms_diy/static/default/images/nav_icon1.png"></span><em>智慧门店</em></a><a href="javascript:;"><span><img src="/addons/mogucms_diy/static/default/images/nav_icon1.png"></span><em>万能门店系统</em></a><a href="javascript:;"><span><img src="/addons/mogucms_diy/static/default/images/nav_icon1.png"></span><em>智能名片小程序</em></a><a href="javascript:;"><span><img src="/addons/mogucms_diy/static/default/images/nav_icon1.png"></span><em>智能名片小程序</em></a></div>--></li>{/if}
+				
+            	{if $kk=="xcx"  && $menu['xcxshow']!='1'}<li {if $_GPC["do"]=="mini"}class="on"{/if}><a href="{php echo $this->mogucms_url('mini')}">{if !empty($menu['xcx'])}{$menu['xcx']}{else}小程序大未来{/if}</a></li>{/if}
+            	{if $kk=="qudao"  && $menu['qudaoshow']!='1'}<li {if $_GPC["do"]=="agent"}class="on"{/if}><a href="{php echo $this->mogucms_url('agent')}">{if !empty($menu['qudao'])}{$menu['qudao']}{else}渠道合作{/if}</a></li>{/if}
+            	{if $kk=="about"  && $menu['aboutshow']!='1'}<li {if $_GPC["do"]=="about"}class="on"{/if}><a href="{php echo $this->mogucms_url('about')}">{if !empty($menu['about'])}{$menu['about']}{else}关于我们{/if}</a></li>{/if}
+            	{if $kk=="help"  && $menu['helpshow']!='1'}<li {if $_GPC["do"]=="help"}class="on"{/if}><a href="{php echo $this->mogucms_url('help')}">{if !empty($menu['help'])}{$menu['help']}{else}帮助中心{/if}</a></li>{/if}
+				{if $kk=="xxx" && !empty($menu['xxx'])}<li><a href="{$menu['xxx2']}" target="_blank">{$menu['xxx']}</a></li>{/if}
+				{if $kk=="yyy"  && !empty($menu['yyy'])}<li><a href="{$menu['yyy2']}" target="_blank">{$menu['yyy']}</a></li>{/if}
+				{php }}
+            </ul>
+        </div>
+        <div class="loginreg">{if $webset['islogin']!=1}<a class="logbtn" href="{if !empty($webset['zdylogin'])}{$webset['zdylogin']}{else}{php echo $this->mogucms_url('login')}{/if}">登录</a>{/if}{if $_W['setting']['register']['open']==1}<a class="regbtn" href="{if !empty($webset['zdyreg'])}{$webset['zdyreg']}{else}{php echo $this->mogucms_url('register')}{/if}">注册</a>{/if}</div>
+    </div>
+</div>

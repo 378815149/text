@@ -1,0 +1,4 @@
+[2019-07-22 14:50:13] trace  /app/index.php?i=15&t=0&v=1.0.0&from=wxapp&c=entry&a=wxapp&do=wenzi&m=we7_wxappsample&sign=c69b7fed090d6440780a61ab74963cf1&name=%E5%B0%8F%E6%98%8E&age=20 $data
+[2019-07-22 14:51:07] trace  /app/index.php?i=15&t=0&v=1.0.0&from=wxapp&c=entry&a=wxapp&do=wenzi&m=we7_wxappsample&sign=c69b7fed090d6440780a61ab74963cf1&name=%E5%B0%8F%E6%98%8E&age=20 $data
+[2019-07-22 17:16:15] trace  /app/index.php?i=15&t=0&v=1.0.0&from=wxapp&c=entry&a=wxapp&do=wenzi&&m=we7_wxappsample&sign=0644fb154fc99a2de5abe1863ee6452d $data
+[2019-07-22 17:19:17] trace  /app/index.php?i=15&t=0&v=1.0.0&from=wxapp&c=entry&a=wxapp&do=fanhui&&m=we7_wxappsample&sign=33aa133035fd164107234699e3de1f33 $data

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['xcx'])}{$title['xcx']}{else}小程序大未来{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+<script>
+$(function(){
+	$(".category").on("click",function(){
+		var cid = $(this).attr("cid");
+		$(".category").removeClass("active");
+		$(this).addClass("active");
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=getmini&cid="+cid,
+		   success: function(msg){
+			 $(".xcx_case").html(msg);
+		   }
+		});
+	})
+})
+</script>
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['xcx'])}{$_W['attachurl']}{$banner['xcx']}{else}../addons/mogucms_diy/static/default/images/xcx_banner.jpg{/if}) no-repeat center center; background-size:cover;"></div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['xcx_title1'])}{$webset['xcx_title1']}{else}小程序入口{/if}</h2></div>
+        <div class="xcx_rkbox">
+        	<ul>
+				{loop $rukous $r}
+            	<li class="wow fadeInUp"><h1><img src="{$_W['attachurl']}{$r['image']}"></h1><h2><strong>{$r['name']}</strong><span>{$r['desc']}</span></h2></li>
+				{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['xcx_title2'])}{$webset['xcx_title2']}{else}小程序案例展示{/if}</h2><p>{if !empty($webset['xcx_sub2'])}{$webset['xcx_sub2']}{else}通过小程序自主开发的框架，多个应用实现自由组合使用，全面满足您的需求，一键生成您的专属微信小程序{/if}</p></div>
+		<div class="ct_menu">{loop $cates $c}<a class="{if $c['id']==$cate['id']}active {/if}category" href="javascript:;" cid="{$c['id']}">{$c['name']}</a>{/loop}</div>
+        <div class="xcx_case">
+        	<ul>
+				{loop $minis $m}
+            	<li class="wow fadeInUp">
+                    <div class="xcx_case_info"><img src="{$_W['attachurl']}{$m['image']}">
+                    	<div class="xcx_case_ewmico"><img src="../addons/mogucms_diy/static/default/images/case_ewm.png"></div>
+                        <div class="xcx_case_ewm"><span><img src="{$_W['attachurl']}{$m['erweima']}"></span><em>扫描二维码预览</em></div>
+                    </div>
+                    <h2>{$m['name']}</h2>
+                    <p>{$m['desc']}</p>
+                </li>
+            	{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['xcx_title3'])}{$webset['xcx_title3']}{else}适用客户{/if}</h2></div>
+        <div class="xcx_kebox wow fadeInUp">
+        	<ul>
+				{loop $kehus $k}
+            	<li><h3><img src="{$_W['attachurl']}{$k['image']}"></h3><p>{$k['name']}</p></li>
+            	{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

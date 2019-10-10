@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['app'])}{$title['app']}{else}应用中心{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="/addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+<script>
+$(function(){
+	$(".category").on("click",function(){
+		var cid = $(this).attr("cid");
+		$(".category").removeClass("active");
+		$(this).addClass("active");
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=getapp&cid="+cid,
+		   success: function(msg){
+			 $(".apply_box").html(msg);
+		   }
+		});
+	})
+
+})
+
+</script>
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['app'])}{$_W['attachurl']}{$banner['app']}{else}../addons/mogucms_diy/static/default/images/application_banner.jpg{/if}) no-repeat center center; background-size:cover;">
+    <div class="wrapper">
+        <div class="yyzx_bantxt">
+            <h2 class="wow fadeInUp">{if !empty($banner['apptitle'])}{$banner['apptitle']}{else}全行业解决方案{/if}<span></span></h2>
+            <div class="yyzx_blst wow fadeInUp animated delay-2s">
+            	<dl><img class="yyzximg" src="../addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle1'])}{$banner['apptitle1']}{else}按需购买{/if}</dl>
+            	<dl><img class="yyzximg" src="../addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle2'])}{$banner['apptitle2']}{else}即买即用{/if}</dl>
+            	<dl><img class="yyzximg" src="../addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle3'])}{$banner['apptitle3']}{else}无需程序基础{/if}</dl>
+            	<dl><img class="yyzximg" src="../addons/mogucms_diy/static/default/images/application_banico.png">{if !empty($banner['apptitle4'])}{$banner['apptitle4']}{else}免费更新{/if}</dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content pad70">
+	<div class="wrapper">
+    	<div class="title wow fadeInUp animated zoomIn"><h2>{if !empty($webset['app_title1'])}{$webset['app_title1']}{else}应用中心{/if}</h2><p>{if !empty($webset['app_sub1'])}{$webset['app_sub1']}{else}通过本平台多个应用的组合，满足您的需求，一键生成您的专属微信小程序{/if}</p></div>
+		<div class="ct_menu">{if $webset['indexall']!="1"}<a class="active category" href="javascript:;" cid="0">全部应用</a>{loop $cates $c}<a href="javascript:;" class="category" cid="{$c['id']}">{$c['name']}</a>{/loop}{else}{loop $cates $c}<a href="javascript:;" class="category {if $c['id'] == $cate['id']}active{/if}" cid="{$c['id']}">{$c['name']}</a>{/loop}{/if}</div>
+        <div class="apply_box">
+        	<ul>
+            	<!--<li class="wow fadeInUp">
+                	<h3><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>1))}"><img src="../addons/mogucms_diy/static/default/images/ct2_img1.jpg" /></a></h3>
+                    <h2><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>1))}">蘑菇云万能门店应用123</a></h2>
+                    <p>丰富的模板、组件库，完全可视化拖拽 三分钟打造自己的小程序</p>
+                </li>-->
+				{loop $apps $a}
+            	<li class="wow fadeInUp">
+                	<h3><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>$a['id']))}"><img src="{$_W['attachurl']}{$a['image']}" /></a></h3>
+                    <h2><a href="{php echo $this->mogucms_url('applicationdetail',array('id'=>$a['id']))}">{$a['name']}</a></h2>
+                    <p>{$a['desc']}</p>
+                </li>
+            	{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

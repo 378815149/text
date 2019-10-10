@@ -753,6 +753,18 @@ if ('change_group' == $do) {
 }
 
 if ('del_group' == $do) {
+
+	if ($islocal) {
+		if (empty($_W['isfounder']) && ACCOUNT_MANAGE_NAME_MANAGER != $_W['role'] && ACCOUNT_MANAGE_NAME_OWNER != $_W['role']) {
+			iajax(1, '您没有权限删除图片组');
+		}
+	} else {
+		$result_permission = permission_check_account_user('platform_material_delete',false);
+		if (!$result_permission) {
+			iajax(1, '您没有权限删除图片组');
+		}
+	}
+
 	$table = table('core_attachment_group');
 	$type = $is_local_image ? 0 : 1;
 	$id = intval($_GPC['id']);

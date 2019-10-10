@@ -52,6 +52,8 @@ function setting_load($key = '') {
 }
 
 function setting_upgrade_version($family, $version, $release) {
+	$vaild_family = array('s', 'v', 'x', 'l');
+	$family = in_array($family, $vaild_family) ? $family : 'v';
 	$verfile = IA_ROOT . '/framework/version.inc.php';
 	$verdat = <<<VER
 <?php

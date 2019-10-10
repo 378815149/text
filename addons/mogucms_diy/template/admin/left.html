@@ -1,0 +1,127 @@
+  
+    <ul class="nav" id="side-menu">
+
+        <li {if in_array($_GPC['r'],array('','mysite.add','webset.set','link.list','link.add','link.edit','banner.set','title.set','treemenu.set','login.set','mysite.domainbind','mysite.domainbind2','message.list','message.info'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-shouyeshouye"></i>
+                <span class="nav-label">站点管理</span>
+            </a>
+            <ul class="nav nav-second-level" >
+					{if $_W['role']=="founder"}
+                    <li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}" >我的站点</a></li>
+					{/if}
+                    <li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=webset.set" >网站设置</a></li>
+					<li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=login.set" >登录设置</a></li>
+                    <li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=link.list" >友情链接</a></li>
+					<li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=banner.set" >Banner设置</a></li>
+					<li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=title.set" >页面标题设置</a></li>
+					<li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=treemenu.set" >菜单设置</a></li>
+					<li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=message.list" >留言管理</a></li>
+
+            </ul>
+        </li>
+		<li {if in_array($_GPC['r'],array('app.cate','app.cateadd','app.cateedit','app.app','app.appadd','app.appedit','app.anli','app.anliadd','app.anliedit'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-chanpin"></i>
+                <span class="nav-label">应用中心</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=app.cate">应用分类</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=app.app">应用中心</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=app.anli">应用案例</a></li>
+            </ul>
+        </li>
+        <li {if in_array($_GPC['r'],array('xcx.anli','xcx.anliadd','xcx.cate','xcx.cateadd','xcx.anliedit','xcx.cateedit','xcx.rukou','xcx.rukouadd','xcx.kehu','xcx.kehuadd','xcx.kehuedit'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-yonghu"></i>
+                <span class="nav-label">小程序</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=xcx.cate">案例分类</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=xcx.anli">案例展示</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=xcx.rukou">小程序入口</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=xcx.kehu">适用客户</a></li>
+                   
+            </ul>
+        </li>
+        <li {if in_array($_GPC['r'],array('help.cate','help.cateadd','help.catedel','help.cateedit','help.list','help.add','help.edit'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-wendang"></i>
+                <span class="nav-label">帮助中心</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=help.cate">分类管理</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=help.list">帮助管理</a></li>
+            </ul>
+        </li>
+		<li {if in_array($_GPC['r'],array('about.whoami','about.cert','about.team','about.certadd'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-jigoucrm"></i>
+                <span class="nav-label">关于我们</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=about.whoami">我们是谁</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=about.cert">资质证书</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=about.team">我们的团队</a></li>
+            </ul>
+        </li>
+		<li {if in_array($_GPC['r'],array('agent.agent1','agent.agent2','agent.agent3','agent.agent4'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-wodeyeji"></i>
+                <span class="nav-label">渠道合作</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=agent.agent1">六大模式</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=agent.agent2">合作支持</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=agent.agent3">加盟条件</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=agent.agent4">合作流程</a></li>
+            </ul>
+        </li>
+		<li {if in_array($_GPC['r'],array('home.xcx','home.youshi'))}class="themetxtcolor"{/if}>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-xitong"></i>
+                <span class="nav-label">首页设置</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=home.xcx">小程序大市场</a></li>
+                    <li class=""><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}&r=home.youshi">核心优势</a></li>
+            </ul>
+        </li>
+        <!--<li class="">
+            <a href="#">
+                <i class="icon iconfont icon-quanxian"></i>
+                <span class="nav-label">权限管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="system_permissions.html">系统角色</a></li>
+                    <li class=""><a href="/Permission/Index">系统权限</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-jigoucrm"></i>
+                <span class="nav-label">组织机构</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="organizations.html">机构管理</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-wendang"></i>
+                <span class="nav-label">文档管理</span></a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/DocumentManage/DocumentType">文档分类管理</a></li>
+                    <li class=""><a href="/DocumentManage/Document">文档列表</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-xitong"></i>
+                <span class="nav-label">系统管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/SystemManage/SystemCofig">系统设置</a></li>
+            </ul>
+        </li>-->
+     </ul>

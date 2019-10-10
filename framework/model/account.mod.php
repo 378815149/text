@@ -364,6 +364,28 @@ function uni_modules_by_uniacid($uniacid) {
 		if (!empty($owner_uid) && !in_array($owner_uid, $founders)) {
 						$group_modules = table('account')->accountGroupModules($uniacid);
 						
+				$goods_type = 0;
+				$all_type_info = store_goods_type_info();
+				foreach ($all_type_info as $info) {
+					if ($info['sign'] == $account_info['type_sign']) {
+						$goods_type = $info['type'];
+						break;
+					}
+				}
+				if ($goods_type) {
+					$site_store_buy_goods = uni_site_store_buy_goods($uniacid, $goods_type);
+					if (!empty($site_store_buy_goods)) {
+						foreach ($site_store_buy_goods as $store_goods_module_name) {
+							$store_goods_info = pdo_get('site_store_goods', array('module' => $store_goods_module_name));
+							if ($store_goods_info['is_wish'] == 1) {
+								$enabled_modules[$store_goods_module_name] = pdo_get('modules_cloud', array('name' => $store_goods_module_name));
+							}
+						}
+
+						$group_modules = array_merge($group_modules, $site_store_buy_goods);
+					}
+				}
+			
 						$user_modules = user_modules($owner_uid);
 			if (!empty($user_modules)) {
 				$group_modules = array_unique(array_merge($group_modules, array_keys($user_modules)));

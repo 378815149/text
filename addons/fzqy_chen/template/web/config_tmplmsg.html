@@ -1,0 +1,85 @@
+{template 'public/header'}
+
+{template 'public/comhead'}
+
+<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->modulename}/template/public/ygcss.css">
+
+<style type="text/css">
+    .form-control{display:inline-block;}
+</style>
+
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="invitative">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+               模板消息
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单支付成功通知：</label>
+                    <div class="col-sm-9">
+                        {if $info['tid1']}
+                        <p class="form-control-static">
+                            <input type="text" name="tid1" value="{$info['tid1']}"  class="form-control" style="width: 400px;" />
+                            <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid1'))}">
+                                <span class="btn btn-md storered">点击更换</span>
+                            </a>
+                        </p>
+                        <div style="color: #999;">*模板编号AT0009,关键词(订单编号、支付时间、订单金额、订单状态、商品清单、收货地址)</div>
+                        {else}
+                        <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid1'))}">
+                            <span class="btn btn-md storered">点击启用</span>
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单发货提醒：</label>
+                    <div class="col-sm-9">
+                        {if $info['tid2']}
+                        <p class="form-control-static">
+                            <input type="text" name="tid2" value="{$info['tid2']}"  class="form-control" style="width: 400px;" />
+                            <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid2'))}">
+                                <span class="btn btn-md storered">点击更换</span>
+                            </a>
+                        </p>
+                        <div style="color: #999;">*模板编号AT0007,关键词(订单编号、物流公司、物流单号、收货地址、订单状态)</div>
+                        {else}
+                        <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid2'))}">
+                            <span class="btn btn-md storered">点击启用</span>
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">留言评论提醒：</label>
+                    <div class="col-sm-9">
+                        {if $info['tid3']}
+                        <p class="form-control-static">
+                            <input type="text" name="tid3" value="{$info['tid3']}"  class="form-control" style="width: 400px;" />
+                            <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid3'))}">
+                                <span class="btn btn-md storered">点击更换</span>
+                            </a>
+                        </p>
+                        <div style="color: #999;">*模板编号AT0813,关键词(评论主题、评论人、评论时间、评论内容)</div>
+                        {else}
+                        <a href="{php echo $this->createWebUrl('config', array('act'=>'tmplmsg','tid'=>'tid3'))}">
+                            <span class="btn btn-md storered">点击启用</span>
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{template 'public/footer-js'}

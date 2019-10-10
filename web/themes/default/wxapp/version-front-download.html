@@ -17,6 +17,12 @@
 		<a href="{php echo url('wxapp/front-download/tominiprogram', array('version_id' => $version_id))}">可跳转小程序设置</a>
 	</li>
 	
+		{if ($is_single_module_wxapp)}
+		<li class="{if $do == 'entrychoose'}active{/if}">
+			<a href="{php echo url('wxapp/front-download/entrychoose', array('version_id' => $version_id))}">小程序入口配置</a>
+		</li>
+		{/if}
+	
 </ul>
 {/if}
 {else}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.w7.cc" versionCode="">
+	
+	<application setting='false'>
+		<name><![CDATA[砸金蛋应用功能应用]]></name>
+
+		<identifie><![CDATA[yingyong_ceshi]]></identifie>
+
+		<version><![CDATA[1.0.0]]></version>
+
+		<ability><![CDATA[xxx]]></ability>
+
+		<type><![CDATA[xxx]]></type>
+
+		<description><![CDATA[微信公众号营销及推广]]></description>
+
+		<author><![CDATA[zhongfutongda]]></author>
+
+		<url><![CDATA[xxx]]></url>
+
+		<setting><![CDATA[xxx]]></setting>
+
+	</application>
+
+	
+	<platform>
+		<subscribes>
+			<message type="text" />
+
+			<message type="image" />
+
+			<message type="voice" />
+
+			<message type="video" />
+
+			<message type="shortvideo" />
+
+			<message type="location" />
+
+			<message type="link" />
+
+			<message type="subscribe" />
+
+			<message type="qr" />
+
+			<message type="trace" />
+
+			<message type="click" />
+
+			<message type="merchant_order" />
+
+			<message type="user_get_card" />
+
+			<message type="user_del_card" />
+
+			<message type="user_consume_card" />
+
+		</subscribes>
+
+		<handles>
+
+			<message type="text" />
+			<message type="image" />
+			<message type="voice" />
+			<message type="video" />
+			<message type="shortvideo" />
+			<message type="location" />
+			<message type="link" />
+			<message type="subscribe" />
+			<message type="qr" />
+			<message type="trace" />
+			<message type="click" />
+			<message type="merchant_order" />
+			<message type="user_get_card" />
+			<message type="user_del_card" />
+			<message type="user_consume_card" />
+		</handles>
+
+		<rule embed="false" />
+
+		<rule embed="false" />
+
+	<supports>
+
+			<item type="app" />
+	</supports>
+
+	</platform>
+
+	
+	<bindings>
+
+		<cover>
+			<entry title="砸金蛋首页" do="index" state="index" direct="" />
+		</cover>
+
+		<menu>
+			<entry title="金蛋配置" do="confs" state="confs" direct="" />
+			<entry title="用户信息" do="users" state="users" direct="" />
+			<entry title="订单管理" do="orders" state="orders" direct="" />
+		</menu>
+
+	</bindings>
+
+	<install><![CDATA[]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

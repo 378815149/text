@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['reg'])}{$title['reg']}{else}注册{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="/addons/mogucms_diy/static/admin/css/common.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="warpcont">
+    <div class="login_crm" style="background:url({if !empty($setting['corp'])}{$_W['attachurl']}{$setting['corp']}{else}/addons/mogucms_diy/static/admin/images/pc-login-bg.png{/if}) no-repeat center center;background-size:cover; background-attachment:fixed;">
+        <div class="login_crm_wrapper">
+            <div class="login_logo"><a href="/"><img src="{if !empty($webset['logo'])}{$_W['attachurl']}{$webset['logo']}{else}/addons/mogucms_diy/static/admin/images/login-logo.png{/if}"/></a></div>
+            <div class="login_crm_content">
+				<form id="form1" method="post" action="">
+                <div class="form-groups">
+                    <dl>
+                        <dt>账号</dt>
+                        <dd><input class="inpk" name="username" id="username" type="text" placeholder="请输入用户名"></dd>
+                    </dl>
+                    <dl>
+                        <dt>密码</dt>
+                        <dd><input class="inpk" name="password" id="password" type="password" placeholder="请输入不少于8位的密码"></dd>
+                    </dl>
+                    <dl>
+                        <dt>确认密码</dt>
+                        <dd><input class="inpk" type="password" name="repassword" id="repassword" placeholder="请再次输入不少于8位的密码"></dd>
+                    </dl>
+					{if $extendfields}
+					 {loop $extendfields $item}
+					 <dl>
+						<dt>{$item['title']}</dt>
+                        <dd><input class="inpk" type="text" name="{$item['field']}" id="{$item['field']}" placeholder="请输入{$item['title']}"></dd>
+					 </dl>
+					 {/loop}
+					{/if}
+					{if $_W['setting']['register']['code']}
+                    <dl>
+                        <dt>验证码</dt>
+                        <dd><input class="inpk2" name="code" id="code" type="text" placeholder="请输入验证码"><span class="yzmimgk"><img src="/web/index.php?c=utility&a=code&" id="imgcode" onclick="this.src='/web/index.php?c=utility&a=code&' + Math.random();"></span></dd>
+                    </dl>
+					{/if}
+                    <!--<dl>
+                        <dt>短信验证码</dt>
+                        <dd><input class="inpk2" type="text" placeholder=""><a href="javascript:;" class="yzmimga">获取验证码</a></dd>
+                    </dl>-->
+					<input name="token" value="{$_W['token']}" type="hidden"/>
+					<input name="owner_uid" value="{$owner_uid}" type="hidden"/>
+					<input name="register_type" value="" type="hidden"/>
+					<input name="do" value="register" type="hidden"/>
+                    <a href="javascript:;" class="loginBtn submit_btn">立即注册</a>
+                    <div class="login_bottom">已有账号，<a href="{php echo $this->mogucms_url('login')}">去登录</a></div>
+                </div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/addons/mogucms_diy/static/admin/js/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+  document.onkeydown = function(e){
+        if(e.keyCode === 13){
+            formcheck();
+        }
+    }
+  $(function(){
+    $(".submit_btn").click(function(){
+       var username = $("#username").val();
+       var password = $("#password").val();
+       var repassword = $("#repassword").val();
+       var code = $("#code").val();
+
+        if(username == ''){
+            alert("请输入用户名")
+            return false
+        }
+        if(password == '' || password.length<8){
+            alert("请输入至少8位密码")
+            return false
+        }
+        if(repassword == '' || repassword.length<8){
+            alert("请再次输入至少8位密码")
+            return false
+        }
+        
+        if(password !== repassword){
+            alert("输入的两次密码不一致，请重新输入")
+            return false
+        }
+        $(".regext").each(function(){
+          if(this.required){
+            if($(this).val()==""){
+              alert(this.placeholder);
+              return false
+            }
+          }
+        })
+        if(code == ''){
+            alert("请输入图形验证码");
+            return false
+        }
+        $.ajax({
+            url:"/web/index.php?c=user&a=register",
+            type:"POST",
+            dataType:'json',
+            data:$('#form1').serialize(),
+            success: function(data){
+				console.log(data);
+                alert(data.message);
+                var type = data.type;
+                if(type=="success"){
+                   window.location.href="/";
+                }else{
+                    var codesrc = "/web/index.php?c=utility&a=code&"+Math.random();
+                    $("#imgcode").attr("src",codesrc);
+                }
+            }
+        });
+
+    });
+    $("#username").blur(function(){
+        if($("#username").val()==""){
+          return;
+        }
+          $.ajax({
+            url:"/web/index.php?c=user&a=register&do=check_username&",
+            type:"POST",
+            dataType:'json',
+            data:"username="+$("#username").val(),
+            success: function(data){
+                if(data.message.errno!=0){
+                  $("#username").val("");
+                  if(data.message.message==undefined){
+					alert(data.message);
+				  }else{
+					alert(data.message.message);
+				  }
+                }
+            }
+        })
+   });
+  })
+
+
+
+</script>
+</body>
+</html>

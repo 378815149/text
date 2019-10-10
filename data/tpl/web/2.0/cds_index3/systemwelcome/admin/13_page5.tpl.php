@@ -1,0 +1,144 @@
+<?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
+<ul class="we7-page-tab">
+	<li <?php  if($op=='list') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('page5',array('op'=>'list'))?>">列表</a></li>
+	<li <?php  if($op=='modify') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('page5',array('op'=>'modify'))?>">添加</a></li>
+</ul>
+<?php  if($op == 'list') { ?>
+<table class="table we7-table table-hover vertical-middle table-manage">
+	<tr>
+		<th>标题</th>
+		<th>金额</th>
+		<th>链接</th>
+		<th>文本一</th>
+		<th>文本二</th>
+		<th>文本三</th>
+		<th>文本四</th>
+		<th>文本五</th>
+		<th>文本六</th>
+		<th width="80">排序</th>
+		<th width="80">状态</th>
+		<th class="text-right">操作</th>
+	</tr>
+	<?php  if(is_array($list)) { foreach($list as $l) { ?>
+	<tr>
+		<td><?php  echo $l['title'];?></td>
+		<td><?php  echo $l['money'];?></td>
+		<td><?php  echo $l['url'];?></td>
+		<td><?php  echo $l['text1'];?></td>
+		<td><?php  echo $l['text2'];?></td>
+		<td><?php  echo $l['text3'];?></td>
+		<td><?php  echo $l['text4'];?></td>
+		<td><?php  echo $l['text5'];?></td>
+		<td><?php  echo $l['text6'];?></td>
+		<td><?php  echo $l['sort'];?></td>
+		<td><?php echo $l['status']==1?'显示':'隐藏';?></td>
+		<td>
+			<div class="link-group">
+			<a href="<?php  echo $this->createWebUrl('page5',array('id'=>$l['id'],'op'=>'modify'))?>" >修改</a>
+			<a href="<?php  echo $this->createWebUrl('page5',array('id'=>$l['id'],'op'=>'del'))?>"  onclick="return confirm('确定要删除吗？')">删除</a>
+			</div>
+		</td>
+	</tr>
+	<?php  } } ?>
+</table>
+<?php  } ?>
+<?php  if($op == 'modify') { ?>
+<div class="clearfix">
+	<form class="we7-form" method="post" action="" enctype="multipart/form-data" id="sham_form">
+		<div class="form-group">
+			<label for="title" class="col-xs-12 col-sm-3 col-md-2 control-label">标题</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="title" name="title" placeholder="请输入标题" value="<?php  echo $tpl_data['title'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="money" class="col-xs-12 col-sm-3 col-md-2 control-label">金额</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="money" name="money" placeholder="请输入金额" value="<?php  echo $tpl_data['money'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="url" class="col-xs-12 col-sm-3 col-md-2 control-label">跳转链接</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="url" name="url" placeholder="请输入跳转链接" value="<?php  echo $tpl_data['url'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text1" class="col-xs-12 col-sm-3 col-md-2 control-label">文本一</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text1" name="text1" placeholder="请输入内容" value="<?php  echo $tpl_data['text1'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text2" class="col-xs-12 col-sm-3 col-md-2 control-label">文本二</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text2" name="text2" placeholder="请输入内容" value="<?php  echo $tpl_data['text2'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text3" class="col-xs-12 col-sm-3 col-md-2 control-label">文本三</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text3" name="text3" placeholder="请输入内容" value="<?php  echo $tpl_data['text3'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text4" class="col-xs-12 col-sm-3 col-md-2 control-label">文本四</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text4" name="text4" placeholder="请输入内容" value="<?php  echo $tpl_data['text4'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text5" class="col-xs-12 col-sm-3 col-md-2 control-label">文本五</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text5" name="text5" placeholder="请输入内容" value="<?php  echo $tpl_data['text5'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="text6" class="col-xs-12 col-sm-3 col-md-2 control-label">文本六</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="text6" name="text6" placeholder="请输入内容" value="<?php  echo $tpl_data['text6'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="sort" class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="sort" name="sort" placeholder="请输入数字排序" value="<?php  echo $tpl_data['sort'];?>">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">状态</label>
+			<div class="col-sm-8 form-control-static">
+				<input type="radio" name="status" id="status1" <?php  if($tpl_data['status'] == 1 || !isset($tpl_data['status'])){echo 'checked';} ?> value="1">
+				<label class="radio-inline" for="status1">显示</label>
+				<input type="radio" name="status" id="status0" <?php  if(isset($tpl_data['status']) && $tpl_data['status']==0){echo 'checked';} ?> value="0">
+				<label class="radio-inline" for="status0">隐藏</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="op" value="modify"/>
+				<input type="hidden" name="token" value="<?php  echo $_W['token'];?>"/>
+				<input type="hidden" name="submit" value="1"/>
+				<button type="submit" class="btn btn-primary" id="sub_sham">保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+<?php  } ?>
+<script>
+	$(function(){
+
+		$('#sham_form').submit(function(){
+			/*
+			if(!$.trim($(':textarea[name="release_agreement"]').val())) {
+				util.message('发布协议不能为空', '', 'error');
+				return false;
+			}*/
+		});
+	});
+
+</script>
+<?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('common/footer', TEMPLATE_INCLUDEPATH)) : (include template('common/footer', TEMPLATE_INCLUDEPATH));?>
+

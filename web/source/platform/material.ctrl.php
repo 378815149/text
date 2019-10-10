@@ -92,6 +92,9 @@ if ('detail' == $do) {
 }
 
 if ('delete' == $do) {
+
+	permission_check_account_user('platform_material_delete');
+
 	if (isset($_GPC['uniacid'])) { 		$requniacid = intval($_GPC['uniacid']);
 		attachment_reset_uniacid($requniacid);
 	}

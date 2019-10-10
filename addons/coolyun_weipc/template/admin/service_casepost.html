@@ -1,0 +1,211 @@
+{template "admin/header"}
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>控制面板</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title" style="display:none;">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Forms</a></li>
+                                    <li class="active">Basic</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+               
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>编辑案例</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="col-lg-10">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">案例标题</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="title" value="{$setting['title']}" class="form-control"></div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">案例描述</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="desc" value="{$setting['desc']}" class="form-control"></div>
+                                    </div>
+									<div class="row form-group">
+                                        <div class="col col-md-3"><label for="selectSm" class=" form-control-label">所属分类</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="cateid" id="selectSm" class="form-control-sm form-control">
+											{loop $cates $cate}
+                                                <option value="{$cate['id']}" {if $setting['cateid']==$cate['id']}selected{/if}>{$cate['title']}</option>
+											{/loop}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class=" form-control-label">展示位置</label></div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check-inline form-check">
+                                                <label for="position1" class="form-check-label ">
+                                                    <input type="radio" id="position1" name="position" value="1" class="form-check-input" {if $setting['position']==1} checked{/if}>顶部
+                                                </label>
+                                                <label for="position2" class="form-check-label ">
+                                                    <input type="radio" id="position2" name="position" value="2" class="form-check-input" {if $setting['position']==2} checked{/if}>中部
+                                                </label>
+                                                <label for="position3" class="form-check-label ">
+                                                    <input type="radio" id="position3" name="position" value="3" class="form-check-input" {if $setting['position']==3} checked{/if}>底部
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group" id="headthum1" {if $setting['position']==2 || $setting['position']==3 || $setting['position']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">顶部缩略图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('headthum1', $setting['headthum1'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group" id="headthum2" {if $setting['position']==2 || $setting['position']==3 || $setting['position']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">顶部遮罩图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('headthum2', $setting['headthum2'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group" id="middlethum" {if $setting['position']==1 || $setting['position']==3 || $setting['position']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">中部缩略图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('middlethum', $setting['middlethum'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group" id="bottomthum" {if $setting['position']==1 || $setting['position']==2 || $setting['position']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">底部缩略图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('bottomthum', $setting['bottomthum'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class=" form-control-label">首页展示</label></div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check-inline form-check">
+                                                <label for="home1" class="form-check-label ">
+                                                    <input type="radio" id="home1" name="home" value="1" class="form-check-input" {if $setting['home']==1} checked{/if}>是
+                                                </label>
+                                                <label for="home2" class="form-check-label ">
+                                                    <input type="radio" id="home2" name="home" value="0" class="form-check-input" {if $setting['home']==0} checked{/if}>否
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group" id="homethum" {if $setting['home']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">首页缩略图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('homethum', $setting['homethum'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class=" form-control-label">关于页面</label></div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check-inline form-check">
+                                                <label for="about1" class="form-check-label ">
+                                                    <input type="radio" id="about1" name="about" value="1" class="form-check-input" {if $setting['about']==1} checked{/if}>是
+                                                </label>
+                                                <label for="about2" class="form-check-label ">
+                                                    <input type="radio" id="about2" name="about" value="0" class="form-check-input" {if $setting['about']==0} checked{/if}>否
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group" id="aboutthum"{if $setting['about']==0} style="display:none;"{/if}>
+                                        <div class="col col-md-3"><label class="form-control-label">缩略图</label></div>
+										
+										<div class="col-12 col-md-9">
+										{php echo tpl_form_field_image('aboutthum', $setting['aboutthum'], '', array('global' => true));}
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">案例详情</label></div>
+										<div class="col-12 col-md-9">
+										{php echo tpl_ueditor('content', $setting['content']);} 
+										</div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class="form-control-label">链接地址</label></div>
+										<div class="col-12 col-md-6"><input type="text" name="url" value="{$setting['url']}" class="form-control"></div>
+                                    </div>
+								<div class="row form-group">
+								<div class="col-6">
+								<button type="submit" class="btn btn-success btn-sm">提交</button>
+								</div>
+								</div>
+								</div>
+
+                                </form>
+                            </div>
+                            <div class="card-footer">
+
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+	
+	
+	    <script>
+        $('input:radio[name="position"]').change(function () {
+            if($("#position1").is(":checked")){
+                $("#headthum1").css({"display":"block"});
+				$("#headthum2").css({"display":"block"});
+				$("#middlethum").css({"display":"none"});
+				$("#bottomthum").css({"display":"none"});
+            }
+            if($("#position2").is(":checked")){
+                $("#middlethum").css({"display":"block"});
+                $("#headthum1").css({"display":"none"});
+				$("#headthum2").css({"display":"none"});
+				$("#bottomthum").css({"display":"none"});
+            }
+            if($("#position3").is(":checked")){
+                $("#bottomthum").css({"display":"block"});
+                $("#headthum1").css({"display":"none"});
+				$("#headthum2").css({"display":"none"});
+				$("#middlethum").css({"display":"none"});
+            }
+        })
+        $('input:radio[name="home"]').change(function () {
+            if($("#home1").is(":checked")){
+                $("#homethum").css({"display":"block"});
+            }
+            if($("#home2").is(":checked")){
+				$("#homethum").css({"display":"none"});
+            }
+        })
+        $('input:radio[name="about"]').change(function () {
+            if($("#about1").is(":checked")){
+                $("#aboutthum").css({"display":"block"});
+            }
+            if($("#about2").is(":checked")){
+				$("#aboutthum").css({"display":"none"});
+            }
+        })		
+    </script>
+	{template "admin/footer"}

@@ -19,6 +19,16 @@
 			</div>
 		</div>
 		
+			{if !empty($user_vice_founder_groups)}
+			<div class="form-group">
+				<label class="col-sm-2 control-label">副创始人用户组</label>
+				<div class="form-controls col-sm-8">
+					<span class="vice-founder-group-selected">全部</span><span class="btn btn-link color-default" data-toggle="modal" data-target="#vice-founder-group">修改</span>
+					<span class="help-block">请选择哪些副创始人用户组可见，不设置代表全部副创始人用户组可见</span>
+				</div>
+			</div>
+			{/if}
+		
 		<div class="form-group">
 			<label class="col-sm-2 control-label">公告标题</label>
 			<div class="form-controls col-sm-8">

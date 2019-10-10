@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>新闻动态</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+   	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/style.css">
+	<script src="{MOBILE_PATH}js/swiper.min.js"></script>
+	<script src="{MOBILE_PATH}js/jquery-1.7.1.min.js"></script>
+	<script src="{MOBILE_PATH}js/semp.js"></script>
+</head>
+<body>
+	<div class="newsbox">
+		<h3>企业动态</h3>
+		<ul class="newslist">
+			{loop $list $key $item}
+			<li>
+				<a class="newwrap" href="{php echo $this->createWebUrl('index',array('act'=>'newdel','article_id'=>$item['article_id']));}">
+					<span>{$item['title']}</span>
+					<em>{php echo date('Y-m-d', $item['addtime'])}</em>
+				</a>
+			</li>
+			{/loop}
+
+		</ul>
+	</div>
+
+	{php include $this->template('footer');}
+</body>
+
+<script type="text/javascript" >
+    //下拉加载
+    var before_request = 1; // 上一次请求是否已经有返回来, 有才可以进行下一次请求
+    var page = 1;
+    function ajax_sourch_submit(){
+        if(before_request == 0)// 上一次请求没回来 不进行下一次请求
+            return false;
+        before_request = 0;
+        page++;
+        $.ajax({
+            type : "get",
+            url:"{php echo $this->createWebUrl('index',array('act'=>'news'));}&page="+page,
+            success: function(data)
+            {
+                if(page==1){
+                    $(".newslist").html(data);
+                    before_request = 1;
+                    return false;
+                }
+
+                if(data){
+                    $(".newslist").append(data);
+                    before_request = 1;
+                }
+            }
+        });
+
+    }
+
+
+</script>
+
+<script type="text/javascript" src="{MOBILE_PATH}js/load_more.js"></script>
+
+</html>

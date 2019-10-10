@@ -57,7 +57,8 @@ if ($do == 'list') {
 				$navs = table('site_category')
 			->where(array(
 				'uniacid' => $_W['uniacid'],
-				'parentid' => $cid
+				'parentid' => $cid,
+				'enabled' => 1
 			))
 			->orderby(array(
 				'displayorder' => 'DESC',

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+   	<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->modulename}/template/mobile/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->modulename}/template/mobile/css/style.css">
+	<script src="../addons/{php echo $this->modulename}/template/mobile/js/swiper.min.js"></script>
+    <script src="../addons/{php echo $this->modulename}/template/mobile/js/jquery-1.7.1.min.js"></script>
+    <script src="../addons/{php echo $this->modulename}/template/mobile/js/semp.js"></script>
+</head>
+<body>
+
+		<div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {loop $adlist $key $item}
+                    <div class="swiper-slide"><a href="{$item['path']}"><img src="{php echo tomedia($item['image']);}"></a></div>
+                    {/loop}
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+        </div>
+        <!-- banner图结束 -->
+        <ul class="navlist">
+        	<li><a href="{php echo $this->createWebUrl('index',array('act'=>'products'));}"><img src="{$products_logo}"><span>产品中心</span></a></li>
+        	<li><a href="{php echo $this->createWebUrl('index',array('act'=>'about'));}"><img src="{$about_logo}"><span>关于我们</span></a></li>
+        	<li><a href="{php echo $this->createWebUrl('index',array('act'=>'news'));}"><img src="{$news_logo}"><span>企业动态</span></a></li>
+        	<li><a href="{php echo $this->createWebUrl('index',array('act'=>'contact'));}"><img src="{$contact_logo}"><span>联系我们</span></a></li>
+        </ul>
+        <div class="prospecl">
+            <h2>产品特性</h2>
+            <div class="short-line"><span></span></div>
+            <ul class="protips">
+                <li>
+                    <img src="{$point['point_logo_1']}">
+                    <span>{$point['point_1']}</span>
+                </li>
+                <li>
+                    <img src="{$point['point_logo_2']}">
+                    <span>{$point['point_2']}</span>
+                </li>
+                <li>
+                    <img src="{$point['point_logo_3']}">
+                    <span>{$point['point_3']}</span>
+                </li>
+                <li>
+                    <img src="{$point['point_logo_4']}">
+                    <span>{$point['point_4']}</span>
+                </li>
+                <li>
+                    <img src="{$point['point_logo_5']}">
+                    <span>{$point['point_5']}</span>
+                </li>
+                <li>
+                    <img src="{$point['point_logo_6']}">
+                    <span>{$point['point_6']}</span>
+                </li>
+            </ul>
+        </div>
+        <!-- 产品特性结束 -->
+        <div class="prospecl">
+            <h2>推荐产品</h2>
+            <div class="short-line"><span></span></div>
+            {loop $goodslist $key  $item}
+            <dl>
+                <dt><a href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}"><img src="{php echo tomedia($item['image']);}"></a></dt>
+                <dd><a href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}">{$item['title']}</a></dd>
+            </dl>
+            {/loop}
+
+        <div class="center"><a class="viewmore" href="{php echo $this->createWebUrl('index',array('act'=>'products'));}"><span class="butText">更多 &gt;</span></a></div>
+	   </div>
+        <div class="prospecl">
+            <h2>企业动态</h2>
+            <div class="short-line"><span></span></div>
+            <ul class="news_view">
+                {loop $newslist $key  $item}
+                <li>
+                    <a href="{php echo $this->createWebUrl('index',array('act'=>'newdel','article_id'=>$item['article_id']));}">
+                        <div class="pic"><img src="{php echo tomedia($item['image']);}"></div>
+                        <div class="proAttr">
+                            <h3>{$item['title']}</h3>
+                            <p class="proIntro textfont">{$item['desc']}</p>
+                        </div>
+                    </a>
+                </li>
+                {/loop}
+
+            </ul>
+            <div class="center"><a class="viewmore" href="{php echo $this->createWebUrl('index',array('act'=>'news'));}"><span class="butText">更多 &gt;</span></a></div>
+        </div>
+       {if $copyright}
+        <div class="bottom">
+            <p>
+                {$copyright}
+            </p>
+        </div>
+        {/if}
+       {php include $this->template('footer');}
+
+ <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay : 5000
+    });
+</script>   
+</body>
+</html>

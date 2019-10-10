@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>联系我们</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="telephone=no" name="format-detection">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/style.css">
+	<script src="{MOBILE_PATH}js/swiper.min.js"></script>
+	<script src="{MOBILE_PATH}js/jquery-1.7.1.min.js"></script>
+	<script src="{MOBILE_PATH}js/semp.js"></script>
+</head>
+<body>
+
+{if $contact_banner}
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide"><img src="{php echo toimage($contact_banner);}"></div>
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+{/if}
+<div class="contact-box">
+	<h3>网站地图</h3>
+	<div class="short-line"><span></span></div>
+	<div style="width:95%; margin:10px auto; height:280px; clear:both" id="myMap">
+		<iframe id="geoPage" width="100%" height="100%" frameborder="0" scrolling="no" src="http://apis.map.qq.com/tools/poimarker?type=0&amp;marker=coord:{php echo config('address_lat');},{php echo config('address_lng');};coordtype:3;title:{php echo config('company_name');};addr:{php echo config('company_address');}&amp;key=YGSBZ-PCNLU-MMXVV-4BOBK-QXRU3-H3BO4&amp;referer=myapp"></iframe>
+	</div>
+	<h3>联系方式</h3>
+	<div class="short-line"><span></span></div>
+	<ul>
+		<li>
+			<dl>
+				<dt><img src="{php echo config('contact_tel_logo')? toimage(config('contact_tel_logo')):MOBILE_PATH.'images/tact02.png';}"></dt>
+				<dd class="font">联系电话</dd>
+				<dd><a href="tel:{php echo config('contact_tel');}">{php echo config('contact_tel');}</a></dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+				<dt><img src="{php echo config('company_email_logo')?toimage(config('company_email_logo')):MOBILE_PATH.'images/tact01.png';}"></dt>
+				<dd class="font">公司邮箱</dd>
+				<dd>{php echo config('company_email');}</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+				<dt><img src="{php echo config('company_fax_logo')?toimage(config('company_fax_logo')):MOBILE_PATH.'images/tact03.png';}"></dt>
+				<dd class="font">公司传真</dd>
+				<dd>{php echo config('company_fax');}</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+				<dt><img src="{php echo config('company_address_logo')?toimage(config('company_address_logo')):MOBILE_PATH.'images/tact04.png';}"></dt>
+				<dd class="font">公司地址</dd>
+				<dd>{php echo config('company_address');}</dd>
+			</dl>
+		</li>
+	</ul>
+</div>
+{if $copyright}
+<div class="bottom">
+	<p>
+		{$copyright}
+	</p>
+</div>
+{/if}
+{php include $this->template('footer');}
+</body>
+</html>

@@ -1,0 +1,14 @@
+a:hover{color:#c73236;}
+.nav li.on a{color:#c73236;}
+.loginreg a.logbtn{border: 1px #c73236 solid; background: #c73236;}
+.ict_menu a.active, .ict_menu a.active:hover{background:#c73236;}
+.ict_menu a:hover{color:#c73236;}
+.ct_menu a:hover{color:#c73236;}
+.ct_menu a.active, .ict_menu a.active:hover{background:#c73236; color: #fff;}
+.icase_ct dd .icase_rbtn{background:#c73236;}
+.ihelp_ct li:hover .ihelp_rmore em{color:#c73236;}
+.yyzx_detail_top .cjbtn{background:#c73236;}
+.help_box li:hover h2 a{color:#c73236;}
+.help_nrnhot li:hover a{color:#c73236;}
+.help_nlbot a:hover{background:#c73236;}
+.dilform .dilsubmit{background:#c73236;}

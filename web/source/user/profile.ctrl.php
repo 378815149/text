@@ -163,6 +163,10 @@ if ('post' == $do && $_W['isajax'] && $_W['ispost']) {
 				$endtime = strtotime($_GPC['endtime']);
 			}
 			
+				if (user_is_vice_founder() && !empty($_W['user']['endtime']) && ($endtime > $_W['user']['endtime'] || empty($endtime))) {
+					iajax(-1, '副创始人给用户设置的时间不能超过自己的到期时间');
+				}
+			
 			$result = pdo_update('users', array('endtime' => $endtime), array('uid' => $uid));
 			pdo_update('users_profile', array('send_expire_status' => 0), array('uid' => $uid));
 			$uni_account_user = pdo_getall('uni_account_users', array('uid' => $uid, 'role' => 'owner'));
@@ -249,13 +253,18 @@ if ('base' == $do) {
 	$profile = user_detail_formate($profile);
 
 	
-	
-		if (!$_W['isfounder']) {
-						$groups = user_group();
-			$group_info = user_group_detail_info($user['groupid']);
+		if (!$_W['isfounder'] || user_is_vice_founder()) {
+						if ($_W['user']['founder_groupid'] == ACCOUNT_MANAGE_GROUP_VICE_FOUNDER) {
+				$groups = user_founder_group();
+				$group_info = user_founder_group_detail_info($user['groupid']);
+			} else {
+				$groups = user_group();
+				$group_info = user_group_detail_info($user['groupid']);
+			}
 
 						$account_detail = user_account_detail_info($_W['uid']);
 		}
+	
 	
 
 	if (empty($_W['isfounder'])) {

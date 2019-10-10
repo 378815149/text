@@ -1,0 +1,106 @@
+#dataTable {
+    text-align: right;
+}
+#LAY-system-side-menu a cite{
+    color: #898989;
+}
+#LAY-system-side-menu i{
+    color: #898989;
+}
+.layui-logo span{
+    color: #898989;
+}
+
+.div-search-body {
+    height: 38px;
+}
+
+.div-search-body form {
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+
+.div-search-body:after {
+    clear: both;
+}
+
+.layui-form-label {
+    width: 120px;
+}
+.m-t-10 {
+    margin-top: 10px;
+}
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.layui-input-block {
+    margin-left: 130px;
+}
+
+
+.layui-layout-admin .layui-body {
+    top: 50px;
+}
+
+
+.layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more {
+    margin-top: -9px;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #c8c8c8 !important;
+}
+.layui-nav .layui-nav-more {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid dashed dashed;
+    border-color: #c8c8c8 transparent transparent !important;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    margin-top: -3px;
+    border-width: 6px;
+    border-top-color: rgba(255,255,255,.7);
+}
+
+.right-content {
+    /*flex: 1;*/
+    padding: 0px !important;
+}
+.main {
+    margin: 15px 0 !important;
+}
+
+.span-remark {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-style: italic;
+    color: #a4a4a4;
+    display: block;
+}
+
+.layui-header {
+    background-color: #f8f8f8 !important;
+}
+
+
+.layui-side-menu {
+    box-shadow: 0 0 0 0 #fff;
+}
+
+.layui-layout-admin .layui-logo {
+    box-shadow: -3px 1px 2px 0 rgba(0,0,0,.15) !important;
+}
+
+.icon-img {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    margin-top: -10px;
+}

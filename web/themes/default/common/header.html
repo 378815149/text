@@ -103,10 +103,10 @@
 						{loop $frames['section'] $frame_section_id $frame_section}
 
 						
-						
-						{if FRAME == 'store' && !($_W['isfounder']) && !empty($frame_section['founder'])}
+						{if FRAME == 'store' && !($_W['isfounder'] && !user_is_vice_founder()) && !empty($frame_section['founder'])}
 						{php continue;}
 						{/if}
+						
 						
 
 						{if !isset($frame_section['is_display']) || !empty($frame_section['is_display'])}

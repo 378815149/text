@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>新闻动态-详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+   	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/style.css">
+	<script src="{MOBILE_PATH}js/swiper.min.js"></script>
+	<script src="{MOBILE_PATH}js/jquery-1.7.1.min.js"></script>
+	<script src="{MOBILE_PATH}js/semp.js"></script>
+</head>
+<body>
+	<div class="newsdel-box">
+		<h1 class="news_tit">{$info['title']}<span>发布时间：{php echo date('Y-m-d', $info['addtime'])}</span></h1>
+		<div class="dicript">
+			{$info['content']}
+		</div>
+		<!--<div class="share"><em>分享</em><hr>-->
+			<!--<a class="share-btn" href="#">分享到朋友圈</a>-->
+		<!--</div>-->
+		
+	</div>
+	{php include $this->template('footer');}
+</body>
+</html>

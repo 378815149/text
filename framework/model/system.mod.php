@@ -336,6 +336,37 @@ function system_setting_items() {
 	);
 
 	
+		$more_items = array(
+			'address',
+			'blogo',
+			'baidumap',
+			'background_img',
+			'company',
+			'companyprofile',
+			'description',
+			'email',
+			'footerleft',
+			'footerright',
+			'flogo',
+			'icon',
+			'keywords',
+			'leftmenufixed',
+			'notice',
+			'oauth_bind',
+			'phone',
+			'person',
+			'qq',
+			'statcode',
+			'slides',
+			'showhomepage',
+			'sitename',
+			'template',
+			'url',
+			'verifycode',
+			'slide_logo',
+		);
+		$items = array_merge($items, $more_items);
+	
 
 	return $items;
 }

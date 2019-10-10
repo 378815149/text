@@ -1,0 +1,9 @@
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=get_module_info&m=peas_cms&uniacid=15 ==== __construct ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=get_module_info&m=peas_cms&uniacid=15 ==== http://xiaochengxu.tongdatuiguang.com/attachment/ ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=get_module_info&m=peas_cms&uniacid=15 ==== http://xiaochengxu.tongdatuiguang.com/attachment/ ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=get_module_info&m=peas_cms&uniacid=15 ==== ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=welcome_display&m=peas_cms&uniacid=15&version_id=0 ==== __construct ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=welcome_display&m=peas_cms&uniacid=15&version_id=0 ==== http://xiaochengxu.tongdatuiguang.com/attachment/ ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=welcome_display&m=peas_cms&uniacid=15&version_id=0 ==== http://xiaochengxu.tongdatuiguang.com/attachment/ ===
+[2019-09-24 10:49:27] trace admin /web/index.php?c=module&a=welcome&do=welcome_display&m=peas_cms&uniacid=15&version_id=0 ==== ===
+[2019-09-24 10:49:32] trace admin /web/index.php?c=site&a=entry&do=goods_edit&m=peas_cms ==== __construct ===

@@ -1,0 +1,25 @@
+{
+    "name": "we7/sun",
+    "description": "sun",
+    "type": "project",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "chen",
+            "email": "234552367@qq.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "files":[
+            "core/functions.php",
+            "core/helper.php"
+        ],
+        "psr-4": {
+            "core\\": "core",
+            "application\\": "application",
+            "model\\":"model"
+        }
+    }
+}

@@ -1,0 +1,98 @@
+{template 'common/header'}
+<ul class="we7-page-tab">
+	<li {if $op=='list'}class="active"{/if}><a href="{php echo $this->createWebUrl('page2',array('op'=>'list'))}">列表</a></li>
+	<li {if $op=='modify'}class="active"{/if}><a href="{php echo $this->createWebUrl('page2',array('op'=>'modify'))}">添加</a></li>
+</ul>
+{if $op == 'list'}
+<table class="table we7-table table-hover vertical-middle table-manage">
+	<tr>
+		<th>图标</th>
+		<th>标题</th>
+		<th>内容</th>
+		<th width="80">排序</th>
+		<th width="80">状态</th>
+		<th class="text-right">操作</th>
+	</tr>
+	{loop $list $l}
+	<tr>
+		<td><i class="fa {$l['icon']} fa-3x"></i></td>
+		<td>{$l['title']}</td>
+		<td>{$l['content']}</td>
+		<td>{$l['sort']}</td>
+		<td><?php echo $l['status']==1?'显示':'隐藏';?></td>
+		<td>
+			<div class="link-group">
+			<a href="{php echo $this->createWebUrl('page2',array('id'=>$l['id'],'op'=>'modify'))}" >修改</a>
+			<a href="{php echo $this->createWebUrl('page2',array('id'=>$l['id'],'op'=>'del'))}"  onclick="return confirm('确定要删除吗？')">删除</a>
+			</div>
+		</td>
+	</tr>
+	{/loop}
+</table>
+{/if}
+{if $op == 'modify'}
+<div class="clearfix">
+	<form class="we7-form" method="post" action="" enctype="multipart/form-data" id="sham_form">
+		<div class="form-group">
+			<label for="icon" class="col-xs-12 col-sm-2 col-md-2 control-label">图标</label>
+			<div class="col-sm-5 col-xs-5">
+				<input type="text" class="form-control" id="icon" name="icon" placeholder="例子：fa-lightbulb-o" value="{$tpl_data['icon']}">
+			</div>
+			<div class="col-sm-5 col-xs-5">图标获取地址：<a href="http://www.fontawesome.com.cn/">http://www.fontawesome.com.cn/</a></div>
+		</div>
+		<div class="form-group">
+			<label for="title" class="col-xs-12 col-sm-3 col-md-2 control-label">标题</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="title" name="title" placeholder="请输入标题" value="{$tpl_data['title']}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="content" class="col-xs-12 col-sm-3 col-md-2 control-label">内容</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="content" name="content" placeholder="请输入内容" value="{$tpl_data['content']}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="sort" class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" id="sort" name="sort" placeholder="请输入数字排序" value="{$tpl_data['sort']}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">状态</label>
+			<div class="col-sm-8 form-control-static">
+				<input type="radio" name="status" id="status1" <?php if($tpl_data['status'] == 1 || !isset($tpl_data['status'])){echo 'checked';} ?> value="1">
+				<label class="radio-inline" for="status1">显示</label>
+				<input type="radio" name="status" id="status0" <?php if(isset($tpl_data['status']) && $tpl_data['status']==0){echo 'checked';} ?> value="0">
+				<label class="radio-inline" for="status0">隐藏</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="op" value="modify"/>
+				<input type="hidden" name="token" value="{$_W['token']}"/>
+				<input type="hidden" name="submit" value="1"/>
+				<button type="submit" class="btn btn-primary" id="sub_sham">保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+{/if}
+<script>
+	$(function(){
+
+		$('#sham_form').submit(function(){
+			/*
+			if(!$.trim($(':textarea[name="release_agreement"]').val())) {
+				util.message('发布协议不能为空', '', 'error');
+				return false;
+			}*/
+		});
+	});
+
+</script>
+{template 'common/footer'}
+

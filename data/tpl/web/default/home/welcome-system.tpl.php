@@ -19,6 +19,55 @@
 		</div>
 	</div>
     
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="panle we7-panel ">
+				<div class="panel-heading">
+					<h4>商城统计</h4>
+					<a href="<?php  echo url('home/welcome/ext', array('m' => 'store'))?>" class="more">去商城</a>
+				</div>
+				<div clss="panel-body">
+					<div class="shop-statistics">
+						<div class="order">
+							<div class="num">
+								<a href="<?php  echo url('site/entry/orders', array('m' => 'store', 'redirect' => 1))?>"><span class="new"><?php  echo $statistics_order['today']['total_orders'];?></span><span class="old"><?php  echo $statistics_order['yestoday']['total_orders'];?></span></a>
+							</div>
+							<div class="title">今日/昨日新增订单</div>
+						</div>
+						<div  class="income">
+							<div class="num">
+								<a href="<?php  echo url('site/entry/payments', array('m' => 'store', 'redirect' => 1))?>"><span class="money-icon">￥</span>
+									<span class="new"><?php  if(empty($statistics_order['today']['total_amounts'])) { ?>0<?php  } else { ?><?php  echo $statistics_order['today']['total_amounts'];?><?php  } ?></span>
+									<span class="old"><?php  if(empty($statistics_order['yestoday']['total_amounts'])) { ?>0<?php  } else { ?><?php  echo $statistics_order['yestoday']['total_amounts'];?><?php  } ?></span></a>
+							</div>
+							<div class="title">今日/昨日收入</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panle we7-panel ">
+				<div class="panel-heading">
+					<h4>工单统计 </h4>
+					<a href="<?php  echo url('system/workorder/display')?>" class="more">查看工单详情 </a>
+				</div>
+				<div clss="panel-body">
+					<div class="work-statistics">
+						<div class="item">
+							<a href="<?php  echo url('system/workorder/display')?>" ><div class="num" ng-bind="workerInfo.not_handle_count || 0">0</div></a>
+							<div class="title">未处理工单</div>
+						</div>
+						<div class="item">
+							<a href="<?php  echo url('system/workorder/display')?>" ><div class="num" ng-bind="workerInfo.un_read_count || 0">0</div></a>
+							<div class="title">待沟通</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="panle we7-panel">
 		<div class="panel-heading">
 			<h4>统计</h4>
@@ -32,6 +81,10 @@
 				<li role="presentation">
 					<a href="#app_count" aria-controls="app_count" role="tab" data-toggle="tab">前台统计</a>
 				</li>
+				
+				<div class="pull-right we7-margin-top-sm we7-margin-right">
+					<a href="<?php  echo url('statistics/account')?>" class="color-default" target="_blank">查看详情</a>
+				</div>
 				
 			</ul>
 		</div>
@@ -266,6 +319,8 @@
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" :ng-class="{active: key == 'recommend'}" ng-click="changeTab(key)" ng-repeat="(key, item) in recommend"><a href="{{'#' + key}}" role="tab" aria-controls="{{key}}" data-type="{{key}}" data-toggle="tab" >{{item.name}}</a></li>
 			</ul>
+			
+			<a href="javascript:void(0);" class="more" ng-click="closeRecommend()">关闭</a>
 			
 			<a href="http://s.w7.cc/" target="_blank" class="more">去市场</a>
 		</div>

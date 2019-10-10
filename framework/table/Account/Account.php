@@ -86,7 +86,7 @@ class Account extends \We7Table {
 				$users_uids[] = $uid;
 				$this->query->where('c.uid', $users_uids)->where('c.role', array('manager', 'owner', 'vice_founder'));
 			} else {
-				$this->query->where('c.uid', $uid);
+				$this->query->where('c.uid', $uid)->where('c.role <>', 'clerk');
 			}
 		}
 		if ($expire_type == 'expire') {
@@ -206,6 +206,9 @@ class Account extends \We7Table {
 			return array_keys($modules);
 		}
 		$uni_modules = array();
+		
+			$site_store_buy_package = table('site_store_order')->getUserBuyPackage($uniacid);
+			$packageids = array_merge($packageids, array_keys($site_store_buy_package));
 		
 		$uni_groups = $this->query->from('uni_group')->where('uniacid', $uniacid)->whereor('id', $packageids)->getall('modules');
 		if (!empty($uni_groups)) {

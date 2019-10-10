@@ -204,8 +204,8 @@ function file_upload($file, $type = 'image', $name = '', $compress = false) {
 			$limit = $setting['upload']['audio']['limit'];
 			break;
 	}
-	$type = 'image' == $type ? 'image' : 'audio';
-	$setting = $_W['setting']['upload'][$type];
+	$type_setting = in_array($type, array('image', 'thumb')) ? 'image' : 'audio';
+	$setting = $_W['setting']['upload'][$type_setting];
 
 	if (!empty($setting['extentions'])) {
 		$allowExt = $setting['extentions'];

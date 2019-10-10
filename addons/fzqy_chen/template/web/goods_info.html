@@ -1,0 +1,105 @@
+{template 'public/header'}
+
+{template 'public/comhead'}
+<style type="text/css">
+    #goodsinput{font-size: 14px;height: 33px;border-radius: 4px;border:1px solid #e7e7eb;padding-left: 10px;}
+    .searchname{font-size: 14px;color: #666;width: 220px;}
+    .searchname>a>p{color: #666;}
+</style>
+<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->modulename}/template/public/ygcss.css">
+
+<ul class="nav nav-tabs">
+    <span class="ygxian"></span>
+    <div class="ygdangq">当前位置:</div>
+    <li class="active"><a href="javascript:void(0);">产品信息</a></li>
+    <li><a href="{php echo $this->createWebUrl('goods',array('act'=>'index'));}"><i class="fa fa-refresh"></i>返回产品列表</a></li>
+</ul>
+<div class="main ygmain">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                产品信息
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品标题</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="title" class="form-control" value="{$info['title']}"  />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品封面</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('image', $info['image']);}
+                        <span class="help-block">*建议比例 750×350</span>
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品相册</label>
+                    <div class="col-sm-9" style="width: 780px;">
+                        {php echo tpl_form_field_multi_image('goods_images',$info['goods_images']);}
+                        <span class="help-block">*建议尺寸大小750*460</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品价格</label>
+                    <div class="col-sm-2">
+                        <input type="number" name="price" class="form-control" value="{$info['price']}" />
+                        <span class="help-block">*不填则前台不显示价格</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">产品描述</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_ueditor('desc',$info['desc']);}
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                    <div class="col-sm-1">
+                        <input type="number" name="listorder" class="form-control" value="{$info['listorder']}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否推荐</label>
+                    <div class="col-sm-10">
+                        <div class="form-control">
+                            <label> <input type="radio" value="1" name="is_recommend" {if $info['is_recommend']==1||!isset($info['is_recommend'])}checked{/if}>是  </label>
+                            <label>  <input type="radio" value="2" name="is_recommend" {if $info['is_recommend']==2}checked{/if}>否  </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否发布</label>
+                    <div class="col-sm-10">
+                        <div class="form-control">
+                        <label> <input type="radio" value="1" name="status" {if $info['status']==1||!isset($info['status'])}checked{/if}>是  </label>
+                            <label>  <input type="radio" value="2" name="status" {if $info['status']==2}checked{/if}>否  </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #444444;margin-left: 550px;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="goods_id" value="{$info['goods_id']}" />
+
+        </div>
+
+    </form>
+
+</div>
+{template 'public/footer-js'}

@@ -32,11 +32,14 @@ if ($do == 'display') {
 	$psize = 20;
 	$where = array('uniacid' => $_W['uniacid']);
 	if (!empty($_GPC['keyword'])) {
-		$where['title LiKE'] = "%{$_GPC['keyword']}%";
+		$keyword = safe_gpc_string($_GPC['keyword']);
+		$where['title LIKE'] = "%$keyword%";
 	}
 	if (!empty($_GPC['category']['childid'])) {
+		$cid = safe_gpc_int($_GPC['category']['childid']);
 		$where['ccate'] = $cid;
 	} elseif (!empty($_GPC['category']['parentid'])) {
+		$cid = safe_gpc_int($_GPC['category']['parentid']);
 		$where['pcate'] = $cid;
 	}
 	$list = table('site_article')

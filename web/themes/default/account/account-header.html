@@ -22,13 +22,13 @@
 <div class="clearfix"></div>
 <div class="btn-group we7-btn-group ">
 	
-	
-		{if $state == ACCOUNT_MANAGE_NAME_FOUNDER || $state == ACCOUNT_MANAGE_NAME_OWNER}
+		{if $state == ACCOUNT_MANAGE_NAME_FOUNDER || $state == ACCOUNT_MANAGE_NAME_OWNER || $state == ACCOUNT_MANAGE_NAME_VICE_FOUNDER}
 		<a href="{php echo url('account/post/base', array('uniacid' => $account['uniacid'], 'account_type' => ACCOUNT_TYPE))}" class="btn btn-default {if $do == 'base'} active{/if}">基础信息</a>
 		{if ACCOUNT_TYPE == ACCOUNT_TYPE_OFFCIAL_NORMAL || ACCOUNT_TYPE == ACCOUNT_TYPE_OFFCIAL_AUTH}
 		<a href="{php echo url('account/post/sms', array('uniacid' => $account['uniacid'], 'account_type' => ACCOUNT_TYPE))}" class="btn btn-default {if $do == 'sms'} active{/if}">短信信息</a>
 		{/if}
 		{/if}
+	
 	
 	<a href="{php echo url('account/post-user/edit', array('uniacid' => $account['uniacid'], 'account_type' => ACCOUNT_TYPE))}" class="btn btn-default {if $action == 'post-user' && $do == 'edit'} active{/if}">使用者管理</a>
 	{if $account->supportVersion}

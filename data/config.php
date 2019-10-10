@@ -4,10 +4,10 @@ defined('IN_IA') or exit('Access Denied');
 $config = array();
 
 $config['db']['master']['host'] = 'localhost';
-$config['db']['master']['username'] = 'root';
-$config['db']['master']['password'] = '123456';
+$config['db']['master']['username'] = 'xiaochengxu_tong';
+$config['db']['master']['password'] = 'CdKHwzkSkGb2k2ad';
 $config['db']['master']['port'] = '3306';
-$config['db']['master']['database'] = 'sql_base';
+$config['db']['master']['database'] = 'xiaochengxu_tong';
 $config['db']['master']['charset'] = 'utf8';
 $config['db']['master']['pconnect'] = 0;
 $config['db']['master']['tablepre'] = 'ims_';
@@ -26,7 +26,7 @@ $config['db']['slave']['1']['weight'] = 0;
 $config['db']['common']['slave_except_table'] = array('core_sessions');
 
 // --------------------------  CONFIG COOKIE  --------------------------- //
-$config['cookie']['pre'] = 'zo7L_';
+$config['cookie']['pre'] = 'Cxc7_';
 $config['cookie']['domain'] = '';
 $config['cookie']['path'] = '/';
 
@@ -36,9 +36,9 @@ $config['setting']['cache'] = 'mysql';
 $config['setting']['timezone'] = 'Asia/Shanghai';
 $config['setting']['memory_limit'] = '256M';
 $config['setting']['filemode'] = 0644;
-$config['setting']['authkey'] = 'XPeYCQ4p';
+$config['setting']['authkey'] = '2K10Zi49';
 $config['setting']['founder'] = '1';
-$config['setting']['development'] = 1;
+$config['setting']['development'] = 0;
 $config['setting']['referrer'] = 0;
 
 // --------------------------  CONFIG UPLOAD  --------------------------- //

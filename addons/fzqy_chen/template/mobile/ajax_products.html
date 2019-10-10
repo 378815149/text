@@ -1,0 +1,7 @@
+
+		{loop $list $key $item}
+		<li>
+			<a href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}"><img src="{php echo tomedia($item['image'])}"></a>
+			<a class="urlfont" href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}">{$item['title']}</a>
+		</li>
+		{/loop}

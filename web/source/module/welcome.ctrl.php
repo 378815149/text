@@ -16,11 +16,26 @@ $do = !empty($_GPC['do']) ? $_GPC['do'] : 'display';
 
 $module_name = trim($_GPC['m']);
 $uniacid = intval($_GPC['uniacid']);
-$module = $_W['current_module'] = module_fetch($module_name);
+$module = $_W['current_module'] = module_fetch($module_name, false);
+$type = $_W['account']->typeSign;
+if (!empty($module) && empty($module['is_delete']) && !empty($module['recycle_info'])) {
+	foreach ($module['recycle_info'] as $key => $value)
+	{
+		if ($type.'_support' == $key && $value == MODULE_RECYCLE_UNINSTALL_IGNORE) {
+			$module = array();
+			break;
+		}
+		if ( $type.'_support' == $key && $value == MODULE_RECYCLE_INSTALL_DISABLED ){
+			$expire_notice = module_expire_notice();
+			itoast($expire_notice, url('home/welcome'), 'info');
+		}
+	}
+}
 
-if (empty($module)) {
+if (empty($module) || !empty($module['is_delete'])) {
+	$_W['current_module'] = array();
 	cache_build_account_modules($uniacid);
-	itoast('抱歉，你操作的模块不能被访问！');
+	itoast('抱歉，你操作的模块不能被访问！', url('home/welcome'), 'info');
 }
 
 if ('display' == $do) {

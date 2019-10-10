@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$info['title']}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="/addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="/addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="/addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="/addons/mogucms_diy/static/default/js/common.js"></script>
+
+<!--[if lt IE 9]>
+<script src="/addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner helpbaner" style="background:url({if !empty($banner['help'])}{$_W['attachurl']}{$banner['help']}{else}/addons/mogucms_diy/static/default/images/help_banner.jpg{/if}) no-repeat center top; background-size:cover;">
+    <div class="wrapper">
+        <div class="help_bh2">{if !empty($banner['help2'])}{$banner['help2']}{else}帮助中心{/if}</div>
+    </div>
+</div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+		<div class="help_nct_l">
+        	<div class="help_nltop">
+            	<h2>{$info['title']}</h2>
+                <p>{php echo date("Y-m-d",$info['addtime'])}</p>
+            </div>
+        	<div class="help_nltxt">
+			{php echo html_entity_decode($info['content'])}
+			</div>
+        	<div class="help_nlbot wow fadeInUp">{if !empty($prev)}<a class="fl" href="{php echo $this->mogucms_url('helpdetail',array('id'=>$prev['id']))}">上一篇：{$prev['title']}</a>{else}<a class="fl" href="javascript:;">上一篇：没有了</a>{/if}{if !empty($next)}<a class="fr" href="{php echo $this->mogucms_url('helpdetail',array('id'=>$next['id']))}">下一篇：{$next['title']}</a>{else}<a class="fr" href="javascript:;">下一篇：没有了</a>{/if}</div>
+        </div>
+        <div class="help_nct_r">
+        	<div class="help_nrsearch">
+            	<dl>
+                	<dt><input class="help_nrinp" type="text"></dt>
+                    <dd><input class="help_nrbtn" type="button"></dd>
+                </dl>
+            </div>
+            <div class="help_nrnhot">
+            	<h1 class="help_nrnhot_tit">最新推荐</h1>
+            	<ul>
+					{loop $helps $h}
+                	<li class="wow fadeInUp">
+                    	<h3><a href="{php echo $this->mogucms_url('helpdetail',array('id'=>$h['id']))}"><img src="{$_W['attachurl']}{$h['image']}"></a></h3>
+                        <h2><a href="{php echo $this->mogucms_url('helpdetail',array('id'=>$h['id']))}">{$h['title']}</a></h2>
+                        <p>{$h['desc']}</p>
+                    </li>
+                	{/loop}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

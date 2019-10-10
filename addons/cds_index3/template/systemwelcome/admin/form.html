@@ -1,0 +1,25 @@
+{template 'common/header'}
+<table class="table we7-table table-hover vertical-middle table-manage">
+	<tr>
+		<th>姓名</th>
+		<th>电话</th>
+		<th>标题</th>
+		<th>内容</th>
+		<th class="text-right">操作</th>
+	</tr>
+	{loop $list $l}
+	<tr>
+		<td>{$l['name']}</td>
+		<td>{$l['phone']}</td>
+		<td>{$l['title']}</td>
+		<td>{$l['content']}</td>
+		<td>
+			<div class="link-group">
+			<a href="{php echo $this->createWebUrl('form',array('id'=>$l['id'],'op'=>'del'))}"  onclick="return confirm('确定要删除吗？')">删除</a>
+			</div>
+		</td>
+	</tr>
+	{/loop}
+</table>
+{template 'common/footer'}
+

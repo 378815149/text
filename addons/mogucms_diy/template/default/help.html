@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if !empty($title['help'])}{$title['help']}{else}帮助中心{/if}</title>
+<meta name="keywords" content="{$webset['keyword']}" />
+<meta name="description" content="{$webset['description']}" />
+{if !empty($webset['icon'])}
+<link rel="shortcut icon" href="{$_W['attachurl']}{$webset['icon']}" />
+{/if}
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<link href="../addons/mogucms_diy/static/default/css/common.css" type="text/css" rel="stylesheet">
+<link href="../addons/mogucms_diy/static/default/css/style.css" type="text/css" rel="stylesheet">
+{if $webset['skin']=="green" || $webset['skin']=="red"}
+<link href="../addons/mogucms_diy/static/default/css/{$webset['skin']}.css" type="text/css" rel="stylesheet">
+{/if}
+<script src="../addons/mogucms_diy/static/default/js/jquery.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/wow.min.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/jquery.lazyload.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/comloding.js"></script>
+<script src="../addons/mogucms_diy/static/default/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="../addons/mogucms_diy/static/default/js/html5.js"></script>
+<![endif]-->
+<script>
+$(function(){
+	$(".category").on("click",function(){
+		var cid = $(this).attr("cid");
+		$(".category").removeClass("active");
+		$(this).addClass("active");
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=gethelp&cid="+cid,
+		   success: function(msg){
+			 $(".help_box").html(msg);
+		   }
+		});
+	})
+	$(".help_ssbtn").on("click",function(){
+		$(".category").removeClass("active");
+		$(".category:first").addClass("active");
+		var cha = $(".help_ssinp").val();
+		$.ajax({
+		   type: "POST",
+		   url: "/web/index.php?c=account&a=welcome&do=gethelp&cha="+cha,
+		   success: function(msg){
+			 $(".help_box").html(msg);
+		   }
+		});
+	})
+})
+</script>
+</head>
+
+<body>
+{template 'default/header'}
+<div class="banner nbaner" style="background:url({if !empty($banner['help'])}{$_W['attachurl']}{$banner['help']}{else}../addons/mogucms_diy/static/default/images/help_banner.jpg{/if}) no-repeat center center; background-size:cover;">
+    <div class="wrapper">
+        <div class="help_bantxt">
+        	<div class="help_bh2">{if !empty($banner['help2'])}{$banner['help2']}{else}帮助中心{/if}</div>
+            <div class="help_bsearch"><input class="help_ssinp" type="text" placeholder="请输入你要查询的内容"><input class="help_ssbtn" type="button" value="搜索"></div>
+        </div>
+    </div>
+</div>
+<div class="content pad70 bgf8">
+	<div class="wrapper">
+		<div class="ct_menu mag0"><a class="active category" href="javascript:;" cid="0">全部</a>{loop $cates $c}<a href="javascript:;" class="category" cid="{$c['id']}">{$c['name']}</a>{/loop}</div>
+        <div class="help_box">
+        	<ul>
+				{loop $helps $h}
+            	<li class="wow fadeInUp">
+                	<h3><a href="{php echo $this->mogucms_url('helpdetail',array('id'=>$h['id']))}"><img src="{$_W['attachurl']}{$h['image']}" /></a></h3>
+                    <h2><a href="{php echo $this->mogucms_url('helpdetail',array('id'=>$h['id']))}">{$h['title']}</a></h2>
+                    <p>{$h['desc']}</p>
+                    <div class="help_libot"><span>{php echo date("d",$h['addtime'])}</span><em>{php echo date("Y-m",$h['addtime'])}</em></div>
+                </li>
+            	{/loop}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{template 'default/footer'}

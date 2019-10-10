@@ -1,0 +1,2 @@
+<?php
+ defined("\x49\116\x5f\111\101") or exit("\101\143\x63\x65\163\163\x20\104\x65\156\x69\145\x64"); class Peas_cmsModuleProcessor extends WeModuleProcessor { public function respond() { $content = $this->message["\x63\x6f\x6e\164\145\156\x74"]; } }

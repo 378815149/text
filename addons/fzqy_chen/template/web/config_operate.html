@@ -1,0 +1,177 @@
+{template 'public/header'}
+
+{template 'public/comhead'}
+
+<link rel="stylesheet" type="text/css" href="../addons/{php echo $this->modulename}/template/public/ygcss.css">
+
+
+<div class="main ygmain">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                运营设置
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修花多少钱提示语</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="decoration_title1" class="form-control" value="{$info['decoration_title1']}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修花多少钱提示logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('decoration_logo1', $info['decoration_logo1'])}
+                        <span class="help-block">*建议尺寸 270*280</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修成什么样提示语</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="decoration_title2" class="form-control" value="{$info['decoration_title2']}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修成什么样提示logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('decoration_logo2', $info['decoration_logo2'])}
+                        <span class="help-block">*建议尺寸 270*280</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋面积选择设置(㎡)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="acreage" class="form-control" value="{$info['acreage']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 50,60,70,80 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋卧室选择设置(室)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="room" class="form-control" value="{$info['room']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 1,2,3,4,5 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋客厅选择设置(厅)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="parlour" class="form-control" value="{$info['parlour']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 1,2,3,4,5 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋厨房选择设置(厨)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="kitchen" class="form-control" value="{$info['kitchen']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 1,2,3,4,5 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋卫生间选择设置(卫)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="toilet" class="form-control" value="{$info['toilet']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 1,2,3,4,5 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">房屋阳台选择设置(阳)</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="balcony" class="form-control" value="{$info['balcony']}" />
+                        <span class="help-block">*多个请使用','号隔开;如 1,2,3,4,5 (不填写则使用默认值)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">每平米装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="acreage_fee" class="form-control" value="{$info['acreage_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">单个卧室装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="room_fee" class="form-control" value="{$info['room_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">单个客厅装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="parlour_fee" class="form-control" value="{$info['parlour_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">单个厨房装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="kitchen_fee" class="form-control" value="{$info['kitchen_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">单个卫生间装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="toilet_fee" class="form-control" value="{$info['toilet_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">单个阳台装修价格(万)</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="balcony_fee"  class="form-control" value="{$info['balcony_fee']}" />
+                        <span class="help-block">*不填写则使用默认值</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修预算选择设置(万)</label>
+                <div class="col-sm-4">
+                    <textarea name="budget" class="form-control" placeholder="请按照正确格式输入，如10万-20万" cols="5" rows="7">{$info['budget']}</textarea>
+                    <span class="help-block">*多个请回车,一行代表一个可选择值;如10万-20万,不填写则使用默认值</span>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">装修预算选择设置对应全国百分百比(%)</label>
+                    <div class="col-sm-4">
+                        <textarea name="exceed" class="form-control" placeholder="请按照正确格式输入，如10万-20万" cols="5" rows="7">{$info['exceed']}</textarea>
+                        <span class="help-block">*如第一行设置25,装修预算选择设置的第一行设置的是10万-20万,则表示装修预算超过全国25%的用户</span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <input type="submit" name="submit" value="保存设置" class="btn col-lg-3" style="color: white;background-color: #444444;margin-left: 550px;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+
+        </div>
+
+    </form>
+
+</div>
+
+{template 'public/footer-js'}

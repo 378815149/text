@@ -1,0 +1,9 @@
+{loop $list $key $item}
+
+<li>
+	<a class="newwrap" href="{php echo $this->createWebUrl('index',array('act'=>'newdel','article_id'=>$item['article_id']));}">
+		<span>{$item['title']}</span>
+		<em>{php echo date('Y-m-d', $item['addtime'])}</em>
+	</a>
+</li>
+{/loop}

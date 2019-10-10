@@ -17,20 +17,21 @@ class Bootstrap {
     public static function run($name,$arguments){
      
         global $_GPC;
+        var_dump($name);die;
         //加载配置文件
-        //config::load();
+        config::load();
         //设置数据库配置
-        //config::set_db();
+        config::set_db();
 
         $isWeb = stripos($name, 'doWeb') === 0; //web端
         $isMobile = stripos($name, 'doMobile') === 0; //手机端
         $isPage = stripos($name, 'doPage') === 0;  //小程序接口
         if($isWeb) {
-            $dir = 'master';
+            $dir = 'admin';
             $fun = strtolower(substr($name, 5));
         }
         if($isMobile) {
-            $dir = 'web';
+            $dir = 'mobile';
             $fun = strtolower(substr($name, 8));
         }
         if($isPage) {
@@ -38,7 +39,7 @@ class Bootstrap {
             $fun = strtolower(substr($name, 6));
         }
 
-        $class = 'inc\\'.$dir.'\\controller\\'.$fun;
+        $class = 'application\\'.$dir.'\\controller\\'.$fun;
         $action = isset($_GPC['act'])&&$_GPC['act']?$_GPC['act']:'index';
         if (class_exists($class)){
             $obj = new $class();

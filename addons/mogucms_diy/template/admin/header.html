@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>永和CRM</title>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/js/inspiniatext.js"></script>
+    <script type="text/javascript" src="../addons/mogucms_diy/static/js/main.js"></script>
+	<link href="./resource/css/bootstrap.min.css?v=20170426" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/font/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../addons/mogucms_diy/static/css/common.css" rel="stylesheet">
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}
+		{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'isfounder': {if !empty($_W['isfounder'])}1{else}0{/if},
+		'family': '{IMS_FAMILY}',
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		'module' : {'url' : '{if defined('MODULE_URL')}{MODULE_URL}{/if}', 'name' : '{if defined('IN_MODULE')}{IN_MODULE}{/if}'},
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'},
+		'account' : {php echo json_encode($_W['account'])},
+		'server' : {'php' : '{php echo phpversion()}'},
+	};
+	</script>
+	<script type="text/javascript" src="./resource/js/app/util.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/app/common.min.js?v=20170426"></script>
+	<script type="text/javascript" src="./resource/js/require.js?v=20170426"></script>
+<body>
+<div class="header themebgcolor clearfix">
+   <div class="logo"><img src="../addons/mogucms_diy/static/images/crm_logo.png"  width="155" height="44"/></div>
+   <div class="form-search">
+   <form>
+    <input type="text" class="input-medium search-query" placeholder="输入关键字 ">
+    <a class="search_btn" href="#"><i class="fa fa-search"></i></a>
+   </form>
+   </div>
+   <a class="navbar-minimalize themebgcolor btn-primary " href="javascript:;"><i class="fa fa-bars"></i> </a>
+   <ul class="nav navbar-top-links">
+     <li> 
+       <div class="usertopinfo">
+         <img src="../addons/mogucms_diy/static/images/userpor.png" width="50" height="50">
+         <div class="txt">
+           <p class="name">{$_W['username']}</p>
+           <p class="post">{if $_W['role']=="founder"}创始人{elseif $_W['role']==""}普通用户{/if}</p>
+         </div>
+       </div>
+     </li>
+     <li class="messlibox">
+       <a class=" themebgcolor" href="#"><i class="fa fa-commenting"></i> <span class="label-warning themetxtcolor"></span></a>
+       <ul class="hmmesslist">
+         <li class="themetxtcolor">
+           <a href="#">
+           <p class="time">1分钟前</p>
+           <p>Facebook、Twitter等社交媒体是"很棒的沟通形</p>
+           </a>
+         </li>
+         <li class="themetxtcolor">
+           <a href="#">
+           <p class="time">	1分钟前</p>
+           <p>Facebook、Twitter等社交媒体是"很棒的沟通形</p>
+           </a>
+         </li>
+         <li class="allme themetxtcolor"><a href="#">查看全部(10)</a></li>
+       </ul>
+     </li>
+	 <li><a href="/web/index.php?c=account&a=display&"  class=" themebgcolor" ><i class="fa fa-external-link"></i></a></li>
+     <li><a href="/web/index.php?c=site&a=entry&eid={php echo $this->getEid();}"  class=" themebgcolor" ><i class="fa fa-cog"></i></a></li>
+     <li><a href="/web/index.php?c=user&a=logout"  class=" themebgcolor" ><i class="fa fa-power-off"></i></a></li>
+   </ul>  
+</div> <!--header-->
+
+<div class="allwrapper">
+  <div class="leftsidebar" >
+  
+    <ul class="nav" id="side-menu">
+
+        <li>
+            <a href="javascript:;">
+                <i class="icon iconfont icon-shouyeshouye"></i>
+                <span class="nav-label">站点管理</span>
+            </a>
+            <ul class="nav nav-second-level" >
+                    <li><a href="http://test.mogucms.com/web/index.php?c=site&a=entry&eid=35" >我的模板</a></li>
+                    <li><a href="http://test.mogucms.com/web/index.php?c=site&a=entry&eid=35&r=webset.set" >登录设置</a></li>
+                    <li><a href="http://test.mogucms.com/web/index.php?c=site&a=entry&eid=35&r=mysite.list" >我的站点</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="icon iconfont icon-kehu1"></i>
+                <span class="nav-label">客户管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/Client/Index">客户列表</a></li>
+                    <li ><a href="myclient.html" class="themetxtcolor">我的客户</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-chanpin"></i>
+                <span class="nav-label">产品管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/ProductManage/ProductCategory">产品分类管理</a></li>
+                    <li class=""><a href="/ProductManage/Product">产品列表</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-wodeyeji"></i>
+                <span class="nav-label">销售管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="sales_manage.html">销售列表</a></li>
+                    <li class=""><a href="sales_tasks.html">销售任务</a></li>
+                    <li class=""><a href="/SaleManage/Audit">销售审核列表</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-xiaoxi"></i>
+                <span class="nav-label">消息管理</span><!--
+            <span class="badge badge-danger">0</span>--></a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="message_manage.html">消息列表</a></li>
+            </ul>
+        </li>
+        <li class="themetxtcolor">
+            <a href="#">
+                <i class="icon iconfont icon-yonghu"></i>
+                <span class="nav-label">用户管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="staff_list.html">用户列表</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-quanxian"></i>
+                <span class="nav-label">权限管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="system_permissions.html">系统角色</a></li>
+                    <li class=""><a href="/Permission/Index">系统权限</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-jigoucrm"></i>
+                <span class="nav-label">组织机构</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="organizations.html">机构管理</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-wendang"></i>
+                <span class="nav-label">文档管理</span></a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/DocumentManage/DocumentType">文档分类管理</a></li>
+                    <li class=""><a href="/DocumentManage/Document">文档列表</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="icon iconfont icon-xitong"></i>
+                <span class="nav-label">系统管理</span>
+            </a>
+            <ul class="nav nav-second-level">
+                    <li class=""><a href="/SystemManage/SystemCofig">系统设置</a></li>
+            </ul>
+        </li>
+     </ul>
+
+  </div><!--leftsidebar-->

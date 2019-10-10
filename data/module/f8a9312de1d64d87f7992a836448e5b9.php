@@ -1,0 +1,2 @@
+<?php
+ defined($_ENV{"Ϟ"}{"\3"}) or exit($_ENV{"Ϟ"}{"\xdc\x20"}); class Coolyun_weipcModule extends WeModule { public function welcomeDisplay($menus = array()) { goto fPlCy; fPlCy: global $_W, $_GPC; goto YEVl_; YEVl_: $info = pdo_get($_ENV{"Ϟ"}{"\257\x5d"}, array("module" => "coolyun_weipc", "entry" => "menu")); goto sAvMI; sAvMI: header($_ENV{"Ϟ"}{"\345\xf1"} . $info[$_ENV{"Ϟ"}{"\321\26"}] . $_ENV{"Ϟ"}{"\x9\302"}); goto bjNiB; bjNiB: } } ?>

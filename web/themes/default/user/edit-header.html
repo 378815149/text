@@ -27,6 +27,10 @@
 	{/if}
 
 	
+	{if !empty($user['founder_groupid'])}
+	<a href="{php echo url('founder/edit/edit_modules_tpl', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'edit_modules_tpl'}active{/if}">应用模板权限</a>
+	{/if}
+	
 
 	<a href="{php echo url('user/edit/edit_create_account_list', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'edit_create_account_list'}active{/if}">账号创建权限</a>
 	<a href="{php echo url('user/edit/edit_account_dateline', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'edit_account_dateline'}active{/if}">账号使用期限</a>
@@ -35,6 +39,10 @@
 	<a href="{php echo url('user/edit/edit_account', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'edit_account'}active{/if}">使用账号列表</a>
 	{/if}
 
+	
+	{if !empty($user['founder_groupid'])}
+	<a href="{php echo url('founder/edit/edit_account', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'edit_account'}active{/if}">使用账号列表</a>
+	{/if}
 	
 	<a href="{php echo url('user/edit/operators', array('uid' => $_GPC['uid']))}" class="btn btn-default {if $do == 'operators'}active{/if}">操作应用列表</a>
 </div>

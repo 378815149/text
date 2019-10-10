@@ -50,5 +50,7 @@ if (!empty($_W['uid'])) {
 
 $_W['template'] = '2.0';
 
+	$_W['template'] = !empty($_W['setting']['basic']['template']) ? $_W['setting']['basic']['template'] : '2.0';
+
 
 $_W['attachurl'] = attachment_set_attach_url();

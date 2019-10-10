@@ -1,6 +1,6 @@
 <?php
 /**
- * [WeEngine System] Copyright (c) 20190912163200 WE7.CC
+ * [WeEngine System] Copyright (c) 20190920155648 WE7.CC
  * WeEngine is NOT a free software, it under the license terms, visited http://www.we7.cc/ for more details.
  */
 define('IN_MOBILE', true);

@@ -1,0 +1,127 @@
+﻿body,div,span,h1,h2,h3,h4,h5,h6,hr,p,blockquote,strong,var,b,u,i,center,dl,dt,dd,ul,ol,li,prea,address,fieldset,form,fieldset,label,legend,button,input,textarea,th,td, header, footer{margin:0;padding:0;}
+body{color:#333; font-size:12px; line-height:20px; font-family:Arial,'Microsoft YaHei'; height:100%; background:#fff;}
+ul,ol{list-style-type:none;}
+i {font-style:normal}
+select,input,img,select{vertical-align:middle; font-family:Arial,'Microsoft YaHei'; -webkit-tap-highlight-color:rgba(0, 0, 0, 0);  }
+input {/*-webkit-appearance: none;*/ border-radius:0}
+li{list-style-type:none;vertical-align:top;}
+img{vertical-align:middle;border:0px;margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:100%; font-weight:normal;}
+address,cite,dfn,em,var{font-style:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+a img{border:0; -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+del{text-decoration:line-through;}
+em{font-style:normal;}
+.vimg-align{vertical-align:middle;}
+legend{color:#222;}
+fieldset,img{border:0;}
+a{color:#333;text-decoration:none;}
+a:hover{color:#108bec;}
+.fl{ float:left; display:block;}
+.fr{ float:right; display:block;}
+.clear{display:block;clear: both;}
+.ovh{overflow:hidden;}
+input,select,button{outline:none;}
+.wp{width:1100px; margin:0 auto;}
+
+.header{width:100%; border-bottom:1px solid #f2f2f2; padding:15px 0; background:#fff; overflow:hidden;}
+.logo{max-height:43px; margin-right:20px;}
+.ctbox{border-radius: 3px; width:320px; padding:0 40px 50px; position:absolute; left:50%; top:50%; margin-left:-200px; background:rgba(255,255,255,.6)}
+.logct{ margin-top:-260px;}
+.regct{ margin-top:-290px;}
+
+.title{font-size: 16px;color: #333;text-align: center;padding: 50px 0 25px;}
+.form{}
+.form dl{width:100%; overflow:hidden;box-sizing:border-box; margin-top:10px; border:1px solid #eee; line-height:40px; font-size:14px;background:#fff;}
+.form dl dt{float:left; color:#666;padding-left:10px;width:80px;}
+.form dl dd{padding-left: 90px;}
+.inpk, .inpk2{height:40px; line-height:40px; border:0 none; background:none; color:#333; font-size:14px;}
+.inpk{width:90%;padding:0 5%;}
+.inpk2{width:50%; float:left;}
+.submit_btn{width:100%; overflow:hidden; margin-top:20px; height:42px; line-height:42px; text-align:center; border:0 none; background:#428bca; color:#fff; border-radius:5px; font-size:14px;}
+.login_text{width:100%; overflow:hidden; text-align:right; margin-top:10px;font-size:14px;}
+.login_text a{color:#479eff;}
+.yzmimg{width:40%; float:right;}
+.yzmimg img{width:100%; height:36px;}
+.yzmimga{float:right;color:#479eff;padding-right:10px;}
+.logtui{margin-top:20px;font-size:14px;}
+.logtui a{color:#428bca}
+.tac{text-align:center;line-height:30px;color:#888;font-size:14px;}
+.linklogin{text-align:center;}
+.linklogin a{margin:0 10px;display:inline-block;}
+@media all and (max-width:1200px) {
+	.wp{width:90%;}
+}
+@media all and (min-width:0) and (max-width:768px) {
+	.wp{width:90%;}
+	.ctbox{width:100%; position:inherit; margin:0 0 0 0; top:inherit; left:inherit; box-sizing:border-box; box-shadow:none;}
+	.logct{ margin-top:0;}
+	.regct{ margin-top:0;}
+
+}
+
+.footer{width:100%; overflow:hidden;text-align:center;color:#f4f4f4;line-height:20px;margin-top:30px;font-size:14px;position:absolute;left:0;right:0;bottom:10px;}
+.footer a{color:#f4f4f4;text-decoration:none}
+.friend-link a{color:#f4f4f4;padding:0 10px;text-decoration:none}
+.copyright{color:#eee;margin-top:5px;font-size:12px;}
+.copyright a{color:#eee;text-decoration:none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

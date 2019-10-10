@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>产品中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+   	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="{MOBILE_PATH}css/style.css">
+	<script src="{MOBILE_PATH}js/swiper.min.js"></script>
+	<script src="{MOBILE_PATH}js/jquery-1.7.1.min.js"></script>
+	<script src="{MOBILE_PATH}js/semp.js"></script>
+</head>
+<body>
+	<div class="swiper-container">
+        <div class="swiper-wrapper">
+			{loop $info['goods_images'] $key $item}
+            <div class="swiper-slide"><img src="{php echo tomedia($item)}"></div>
+            {/loop}
+		</div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+	<div class="discript">
+		<h1>{$info['title']}</h1>
+		{if $info['price']>0}
+		<span class="price">￥{$info['price']}元</span>
+		{/if}
+	</div>
+	<div class="disinfo-title">产品说明:<img src="{MOBILE_PATH}images/return2.png"></div>
+	<div class="disinfo-del">
+		{$info['desc']}
+	</div>
+
+	{if $otherList}
+	<div class="samepro">
+		<p>相关产品</p>
+		<ul>
+			{loop $otherList   $key $item}
+			<li>
+				<a href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}"><img src="{php echo tomedia($item['image'])}"></a>
+				<a class="urlfont" href="{php echo $this->createWebUrl('index',array('act'=>'prodel','goods_id'=>$item['goods_id']));}">{$item['title']}</a>
+			</li>
+			{/loop}
+
+		</ul>
+	</div>
+	{/if}
+	{php include $this->template('footer');}
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay : 5000
+    });
+</script> 
+</body>
+</html>
